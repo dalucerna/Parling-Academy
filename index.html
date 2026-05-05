@@ -1,747 +1,1088 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parling Academy - Aprende Idiomas Online</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #254A56;
-            --secondary: #3DA5D9;
-            --accent: #00D2BE;
-            --dark: #172D3E;
-            --light: #F2FAFF;
-            --white: #FFFFFF;
-            --text: #172D3E;
-            --text-light: #5B6C78;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text);
-            background: var(--white);
-            line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* Header */
-        header {
-            background: var(--white);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 0;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-        }
-
-        nav a {
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        nav a:hover {
-            color: var(--secondary);
-        }
-
-        .nav-buttons {
-            display: flex;
-            gap: 16px;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: none;
-            font-size: 16px;
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(61, 165, 217, 0.4);
-        }
-
-        /* Hero */
-        .hero {
-            background: linear-gradient(180deg, var(--light) 0%, var(--white) 100%);
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(61, 165, 217, 0.1);
-            color: var(--secondary);
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 24px;
-        }
-
-        .hero h1 {
-            font-size: 56px;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 24px;
-            color: var(--dark);
-        }
-
-        .hero h1 span {
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: 20px;
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 64px;
-            margin-top: 64px;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 48px;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .stat-label {
-            font-size: 16px;
-            color: var(--text-light);
-        }
-
-        /* Schools */
-        .schools {
-            padding: 80px 0;
-            background: var(--white);
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-
-        .section-title h2 {
-            font-size: 40px;
-            margin-bottom: 16px;
-        }
-
-        .section-title p {
-            color: var(--text-light);
-            font-size: 18px;
-        }
-
-        .schools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-        }
-
-        .school-card {
-            background: var(--white);
-            border: 2px solid #E8EBED;
-            border-radius: 16px;
-            padding: 32px;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .school-card:hover {
-            border-color: var(--secondary);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.1);
-        }
-
-        .school-icon {
-            width: 64px;
-            height: 64px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
-
-        .school-card h3 {
-            font-size: 22px;
-            margin-bottom: 12px;
-        }
-
-        .school-card p {
-            color: var(--text-light);
-            margin-bottom: 16px;
-        }
-
-        .school-levels {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--secondary);
-        }
-
-        /* Features */
-        .features {
-            padding: 80px 0;
-            background: var(--light);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
-        }
-
-        .feature-card {
-            background: var(--white);
-            border-radius: 16px;
-            padding: 32px;
-            display: flex;
-            gap: 20px;
-        }
-
-        .feature-icon {
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, rgba(61, 165, 217, 0.15), rgba(0, 210, 190, 0.15));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            flex-shrink: 0;
-        }
-
-        .feature-card h3 {
-            font-size: 20px;
-            margin-bottom: 8px;
-        }
-
-        .feature-card p {
-            color: var(--text-light);
-            font-size: 15px;
-        }
-
-        /* Teachers */
-        .teachers {
-            padding: 80px 0;
-            background: var(--white);
-        }
-
-        .teachers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-        }
-
-        .teacher-card {
-            background: var(--white);
-            border-radius: 16px;
-            padding: 32px;
-            text-align: center;
-            border: 2px solid #E8EBED;
-            transition: all 0.3s;
-        }
-
-        .teacher-card:hover {
-            border-color: var(--secondary);
-            transform: translateY(-4px);
-        }
-
-        .teacher-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            color: white;
-        }
-
-        .teacher-card h3 {
-            font-size: 20px;
-            margin-bottom: 4px;
-        }
-
-        .teacher-role {
-            color: var(--secondary);
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .teacher-specialty {
-            color: var(--text-light);
-            font-size: 14px;
-        }
-
-        /* CTA */
-        .cta {
-            padding: 80px 0;
-            background: linear-gradient(135deg, var(--primary), var(--dark));
-            color: white;
-            text-align: center;
-        }
-
-        .cta h2 {
-            font-size: 40px;
-            margin-bottom: 16px;
-        }
-
-        .cta p {
-            font-size: 18px;
-            opacity: 0.9;
-            margin-bottom: 32px;
-        }
-
-        .cta .btn {
-            background: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background: var(--accent);
-            color: var(--white);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 64px 0 32px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 48px;
-        }
-
-        .footer-brand {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-
-        .footer-brand p {
-            opacity: 0.7;
-            font-size: 14px;
-        }
-
-        .footer-section h4 {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            opacity: 0.6;
-            margin-bottom: 20px;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section li {
-            margin-bottom: 12px;
-        }
-
-        .footer-section a {
-            opacity: 0.8;
-            transition: opacity 0.2s;
-        }
-
-        .footer-section a:hover {
-            opacity: 1;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 32px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            opacity: 0.6;
-            font-size: 14px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .social-links a {
-            font-size: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            nav {
-                display: none;
-            }
-
-            .hero-stats {
-                flex-direction: column;
-                gap: 32px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parling Academy — Version 1: Dark Tech</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #0d0d12;
+      --surface:   #16161f;
+      --card:      #1e1e2a;
+      --border:    #2a2a3a;
+      --accent:    #7c3aed;
+      --accent2:   #06b6d4;
+      --orange:    #f97316;
+      --green:     #10b981;
+      --text:      #f1f1f6;
+      --muted:     #8888aa;
+      --radius:    14px;
+      --font:      'Segoe UI', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--bg);
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 40px 40px;
+      color: var(--text); font-family: var(--font); line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,13,18,.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 64px;
+    }
+    nav    .logo img { height: 104px; width: auto; display: block; }
+    footer .logo img { height: 300px; width: auto; display: block; margin-top: -80px; }
+    .nav-links { display: flex; gap: 2rem; font-size: .9rem; color: var(--muted); align-items: center; }
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-lang-menu { position: relative; }
+    .nav-lang-trigger {
+      display: flex; align-items: center; gap: 4px;
+      cursor: pointer; color: var(--muted); font-size: .9rem;
+      text-decoration: none; background: none; border: none;
+      padding: 0; font-family: inherit; transition: color .2s;
+    }
+    .nav-lang-trigger:hover, .nav-lang-menu:hover .nav-lang-trigger { color: var(--text); }
+    .nav-lang-chev { font-size: .6rem; transition: transform .2s; display: inline-block; margin-left: 2px; }
+    .nav-lang-menu:hover .nav-lang-chev { transform: rotate(180deg); }
+    .nav-lang-panel {
+      position: absolute; top: 100%; left: -12px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px 6px 6px; min-width: 220px;
+      opacity: 0; pointer-events: none;
+      transform: translateY(-8px);
+      transition: opacity .18s, transform .18s;
+      z-index: 200;
+      box-shadow: 0 12px 40px rgba(0,0,0,.55);
+    }
+    .nav-lang-menu:hover .nav-lang-panel { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-lang-panel a {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 12px; border-radius: 8px;
+      color: var(--text); font-size: .88rem;
+      text-decoration: none; transition: background .15s, color .15s;
+    }
+    .nav-lang-panel a:hover { background: var(--card); color: var(--accent); }
+    .nav-cta {
+      background: var(--accent); color: #fff;
+      padding: .5rem 1.2rem; border-radius: 8px; font-weight: 600; font-size: .88rem;
+      transition: opacity .2s, box-shadow .2s;
+      box-shadow: 0 2px 12px rgba(124,58,237,.3);
+    }
+    .nav-cta:hover { opacity: .85; box-shadow: 0 4px 20px rgba(124,58,237,.5); }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 100px 5% 80px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(124,58,237,.15); border: 1px solid rgba(124,58,237,.4);
+      color: #a78bfa; padding: .3rem .9rem; border-radius: 20px; font-size: .8rem;
+      font-weight: 600; margin-bottom: 1.2rem; letter-spacing: .5px;
+    }
+    .hero h1 { font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.2rem; }
+    .hero h1 em { font-style: normal; color: var(--orange); }
+    .hero p { color: var(--muted); font-size: 1.05rem; max-width: 480px; margin-bottom: 2rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: linear-gradient(135deg, #5e008f, #8b00d4);
+      color: #fff; padding: .8rem 1.8rem; border-radius: 10px;
+      font-weight: 700; font-size: .95rem; border: none; cursor: pointer;
+      transition: transform .15s, box-shadow .15s;
+      box-shadow: 0 4px 20px rgba(94,0,143,.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(94,0,143,.5); }
+    .btn-ghost {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--text); padding: .8rem 1.8rem; border-radius: 10px;
+      font-weight: 600; font-size: .95rem; cursor: pointer; transition: border-color .2s;
+    }
+    .btn-ghost:hover { border-color: var(--muted); }
+
+    /* hero visual panel */
+    .hero-visual {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+      padding: 28px; position: relative; overflow: hidden;
+    }
+    .hero-visual::before {
+      content: ''; position: absolute; top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(124,58,237,.3) 0%, transparent 70%);
+    }
+    .lang-flags { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+    .flag-chip {
+      background: var(--card); border: 1px solid var(--border);
+      padding: .4rem .9rem; border-radius: 8px; font-size: .85rem;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .progress-row { margin-bottom: 14px; }
+    .progress-label { display: flex; justify-content: space-between; font-size: .8rem; color: var(--muted); margin-bottom: 5px; }
+    .progress-bar { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 3px; }
+    .streak-box {
+      margin-top: 18px; background: rgba(249,115,22,.06);
+      border: 1px solid rgba(249,115,22,.3);
+      border-radius: 10px; padding: 14px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .streak-icon { font-size: 1.8rem; }
+    .streak-text { font-size: .85rem; color: var(--muted); }
+    .streak-text strong { color: var(--orange); display: block; font-size: .95rem; }
+
+    /* ── Stats ── */
+    .stats {
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 40px 5%; display: flex; justify-content: space-evenly;
+      flex-wrap: nowrap; align-items: stretch;
+    }
+    .stat {
+      text-align: center; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      flex: 1; padding: 0 20px;
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num { font-size: 2rem; font-weight: 800; color: var(--text); line-height: 1; margin-bottom: 6px; }
+    #countryCycler { transition: opacity .4s ease, transform .4s ease; display: block; font-size: 1.35rem; min-width: 10ch; text-align: center; color: var(--orange); line-height: 1; margin-bottom: 6px; }
+    #countryCycler-wrap { flex: 1; padding: 0 20px; border-right: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .stat-label { font-size: .85rem; color: var(--muted); }
+
+    /* ── Section title ── */
+    .section { padding: 70px 5%; max-width: 1200px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 50px; }
+    .section-header h2 { font-size: 2rem; font-weight: 800; margin-bottom: .6rem; }
+    .section-header p { color: var(--muted); font-size: 1rem; }
+
+    /* ── Language Cards ── */
+    .lang-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+    .lang-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 28px 24px; cursor: pointer;
+      transition: border-color .2s, transform .15s;
+    }
+    .lang-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .lang-card .emoji { font-size: 2.2rem; margin-bottom: 14px; }
+    .lang-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+    .lang-card .level { font-size: .78rem; color: var(--accent2); font-weight: 600; margin-bottom: 10px; }
+    .lang-card .courses { font-size: .82rem; color: var(--muted); }
+    .lang-card .tag {
+      display: inline-block; margin-top: 12px;
+      background: rgba(249,115,22,.1); border: 1px solid rgba(249,115,22,.35);
+      color: var(--orange); font-size: .72rem; padding: .2rem .6rem; border-radius: 5px;
+    }
+    .lang-card .price {
+      font-size: 1.15rem; font-weight: 800; color: var(--accent2);
+      margin-top: 16px; line-height: 1;
+    }
+    .lang-card .price span { font-size: .72rem; font-weight: 600; color: var(--muted); }
+    .lang-card .price-note { font-size: .72rem; color: var(--muted); margin-top: 4px; }
+
+    /* ── Carousel ── */
+    .carousel-wrap { position: relative; overflow: hidden; border-radius: 20px; }
+    .carousel-track {
+      display: flex; transition: transform .5s cubic-bezier(.4,0,.2,1);
+    }
+    .carousel-slide {
+      min-width: 100%; display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; border-radius: 20px; overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .slide-visual {
+      position: relative; min-height: 380px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .slide-scene {
+      position: relative; width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .slide-info {
+      background: var(--surface); padding: 52px 44px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .slide-tag {
+      display: inline-block; font-size: .72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px;
+      padding: .3rem .8rem; border-radius: 20px; margin-bottom: 20px; width: fit-content;
+    }
+    .slide-info h3 { font-size: 1.7rem; font-weight: 800; line-height: 1.2; margin-bottom: 14px; }
+    .slide-info p { color: var(--muted); font-size: .95rem; line-height: 1.7; }
+
+    /* carousel controls */
+    .carousel-controls {
+      display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 28px;
+    }
+    .carousel-btn {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--text); font-size: 1.1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, border-color .2s;
+    }
+    .carousel-btn:hover { background: var(--surface); border-color: var(--accent); }
+    .carousel-dots { display: flex; gap: 8px; }
+    .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--border); cursor: pointer; transition: background .2s, transform .2s;
+    }
+    .dot.active { background: var(--orange); transform: scale(1.3); }
+
+    /* scene elements */
+    .scene-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 14px 18px; font-size: .82rem;
+      position: absolute; backdrop-filter: blur(4px);
+    }
+    .avatar-row { display: flex; gap: -6px; }
+    .avatar {
+      width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--bg);
+      display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+      background: var(--card);
+    }
+
+    /* ── CTA Banner ── */
+    /* ── Map Section ── */
+    .map-section { padding: 80px 5%; background: var(--surface); }
+    .map-inner { max-width: 1100px; margin: 0 auto; }
+    .map-countries {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      justify-content: center; margin-bottom: 40px;
+    }
+    .map-pill {
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--text); font-size: .88rem; font-weight: 600;
+      padding: .45rem 1rem; border-radius: 8px;
+      transition: border-color .2s, transform .15s;
+    }
+    .map-pill:hover { border-color: var(--accent2); transform: translateY(-2px); }
+    .map-img-wrap {
+      position: relative;
+      border-radius: 18px; overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 40px rgba(0,0,0,.4);
+    }
+    .map-img { width: 100%; display: block; }
+    .map-overlay {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+    }
+
+    .cta-banner {
+      margin: 0;
+      background: linear-gradient(135deg, #ea6000 0%, var(--orange) 100%);
+      border-radius: 0; padding: 80px 5%; text-align: center;
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    .cta-banner h2 { font-size: clamp(2.5rem, 9vw, 9rem); font-weight: 800; line-height: 1.05; margin-bottom: 1.2rem; }
+    .cta-banner p { font-size: 1rem; margin-bottom: 1.8rem; opacity: .9; }
+    .btn-white {
+      background: #fff; color: var(--accent);
+      padding: .85rem 2rem; border-radius: 10px; font-weight: 700;
+      font-size: 1rem; border: none; cursor: pointer; transition: transform .15s;
+    }
+    .btn-white:hover { transform: translateY(-2px); }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--surface); border-top: 1px solid var(--border);
+      padding: 50px 5% 30px;
+    }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+    .footer-brand p { color: var(--muted); font-size: .88rem; margin-top: 10px; max-width: 260px; }
+    .footer-col h4 { font-size: .85rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 14px; }
+    .footer-col a { display: block; color: var(--muted); font-size: .88rem; margin-bottom: 8px; transition: color .2s; }
+    .footer-col a:hover { color: var(--text); }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 24px; color: var(--muted); font-size: .82rem; display: flex; justify-content: space-between; }
+
+    /* ── Collage ── */
+    .collage-section {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      min-height: 100vh;
+      padding: 80px 5%;
+      gap: 60px;
+      align-items: center;
+    }
+    .collage-text { display: flex; flex-direction: column; gap: 28px; }
+    .collage-text h2 {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 800; line-height: 1.2;
+    }
+    .collage-text h2 em { font-style: normal; color: var(--orange); }
+    .cl-langs {
+      list-style: none; display: flex; flex-direction: column; gap: 12px;
+    }
+    .cl-langs li {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 1rem; font-weight: 600; color: var(--text);
+      background: var(--card); border: 1px solid var(--border);
+      padding: .65rem 1.1rem; border-radius: 10px;
+      cursor: pointer; transition: border-color .2s, transform .15s;
+      width: fit-content; min-width: 200px;
+    }
+    .cl-langs li:hover { border-color: var(--accent); transform: translateX(4px); }
+    .cl-langs li.cl-more { color: var(--muted); background: transparent; border-style: dashed; }
+
+    .collage-grid {
+      display: grid;
+      grid-template-rows: 2fr 1fr;
+      gap: 12px;
+      height: 78vh;
+      min-height: 500px;
+    }
+    .cg-top { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .cg-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    .collage-cell {
+      position: relative; overflow: hidden; cursor: pointer;
+      border-radius: 18px;
+    }
+    .collage-cell .bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transition: transform .6s ease;
+    }
+    .collage-cell:hover .bg { transform: scale(1.06); }
+    .collage-cell .tint {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.55) 0%, rgba(0,0,0,.05) 55%);
+    }
+    .collage-cell .content {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 20px 18px; z-index: 1;
+    }
+    .collage-cell.center-content .content {
+      justify-content: center; align-items: center; text-align: center;
+    }
+    .collage-phrase {
+      font-size: clamp(.8rem, 1.2vw, 1.05rem);
+      font-weight: 700; color: #fff; line-height: 1.3;
+      text-shadow: 0 2px 12px rgba(0,0,0,.5);
+    }
+
+    @media (max-width: 900px) {
+      .collage-section { grid-template-columns: 1fr; min-height: auto; padding: 60px 5%; }
+      .collage-grid { height: 70vw; min-height: 340px; }
+    }
+
+    /* ── Lang Picker ── */
+    .lang-picker { position: relative; }
+    .lang-btn {
+      display: flex; align-items: center; gap: 6px;
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--text); padding: .38rem .85rem; border-radius: 8px;
+      font-size: .85rem; font-weight: 600; cursor: pointer;
+      transition: border-color .2s;
+    }
+    .lang-btn:hover { border-color: var(--accent2); }
+    .lang-btn .arrow { font-size: .6rem; color: var(--muted); transition: transform .2s; }
+    .lang-picker.open .arrow { transform: rotate(180deg); }
+    .lang-dropdown {
+      display: none; position: absolute; top: calc(100% + 8px); right: 0;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden; min-width: 160px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.4); z-index: 200;
+    }
+    .lang-picker.open .lang-dropdown { display: block; }
+    .lang-option {
+      display: flex; align-items: center; gap: 9px;
+      padding: .6rem 1rem; font-size: .85rem; cursor: pointer;
+      transition: background .15s; border: none; background: transparent;
+      color: var(--muted); width: 100%; text-align: left;
+    }
+    .lang-option:hover { background: var(--card); color: var(--text); }
+    .lang-option.active { color: var(--accent2); font-weight: 700; }
+
+    /* ── Methodology ── */
+    .method-wrap { min-height: 93vh; display: flex; flex-direction: column; justify-content: center; padding: 56px 2.5%; }
+    .method-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; align-items: stretch; }
+    .method-step { background: rgba(0,0,0,.28); border: 1px solid rgba(255,255,255,.12); border-radius: 18px; overflow: hidden; position: relative; display: flex; flex-direction: column; transition: border-color .2s, transform .15s, box-shadow .2s; }
+    .method-step:hover { border-color: rgba(255,255,255,.4); transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,.35); }
+    .method-img { width: 100%; height: 300px; object-fit: cover; display: block; transition: transform .5s; }
+    .method-step:hover .method-img { transform: scale(1.06); }
+    .method-num { position: absolute; top: 16px; left: 16px; width: 40px; height: 40px; background: rgba(255,255,255,.95); color: #5e008f; font-size: .9rem; font-weight: 900; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 12px rgba(0,0,0,.4); }
+    .method-body { padding: 28px 26px 34px; flex: 1; display: flex; flex-direction: column; gap: 14px; }
+    .method-step h3 { font-size: 1.25rem; font-weight: 800; color: #fff; }
+    .method-step p { font-size: 1rem; color: rgba(255,255,255,.72); line-height: 1.75; }
+    @media (max-width: 1024px) { .method-steps { grid-template-columns: repeat(3, 1fr); } .method-wrap { min-height: auto; } }
+    @media (max-width: 640px) { .method-steps { grid-template-columns: 1fr; } }
+
+    /* ── Testimonials ── */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+    .testimonial-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; transition: border-color .2s, transform .15s; }
+    .testimonial-card:hover { border-color: var(--accent2); transform: translateY(-3px); }
+    .testimonial-stars { color: #fbbf24; font-size: .9rem; margin-bottom: 12px; letter-spacing: 2px; }
+    .testimonial-quote { font-size: .92rem; color: var(--text); line-height: 1.65; margin-bottom: 18px; font-style: italic; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar { width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--accent); object-fit: cover; flex-shrink: 0; }
+    .testimonial-name { font-size: .88rem; font-weight: 700; }
+    .testimonial-meta { font-size: .75rem; color: var(--muted); }
+
+    /* ── FAQ ── */
+    .faq-list { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color .2s; }
+    .faq-item.open { border-color: var(--accent); }
+    .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; cursor: pointer; font-weight: 600; font-size: .95rem; user-select: none; gap: 12px; }
+    .faq-chev { font-size: .7rem; color: var(--muted); transition: transform .25s; flex-shrink: 0; }
+    .faq-item.open .faq-chev { transform: rotate(180deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding-bottom .35s ease; font-size: .88rem; color: var(--muted); line-height: 1.7; padding: 0 24px; padding-bottom: 0; }
+    .faq-item.open .faq-a { max-height: 300px; padding-bottom: 20px; }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <a href="/" class="logo">
-                    <div class="logo-icon">P</div>
-                    Parling Academy
-                </a>
-                <nav>
-                    <a href="#courses">Cursos</a>
-                    <a href="#schools">Escuelas</a>
-                    <a href="#pricing">Precios</a>
-                    <a href="#about">Nosotros</a>
-                </nav>
-                <div class="nav-buttons">
-                    <button class="btn btn-outline">Iniciar sesión</button>
-                    <button class="btn btn-primary">Empezar gratis</button>
-                </div>
-            </div>
-        </div>
-    </header>
 
-    <section class="hero">
-        <div class="container">
-            <span class="hero-badge">🇦🇷️ Made in Argentina</span>
-            <h1>La academia de idiomas<br>de <span>Latinoamérica</span></h1>
-            <p class="hero-subtitle">Más de 50,000 estudiantes y más de 200 empresas aprenden idiomas en Parling Academy. Domina el inglés, portugués, francés, italiano y más.</p>
-            <button class="btn btn-primary" style="font-size: 18px; padding: 16px 40px;">¿Qué quieres aprender?</button>
-            
-            <div class="hero-stats">
-                <div class="stat">
-                    <div class="stat-number">50,000+</div>
-                    <div class="stat-label">Estudiantes</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">200+</div>
-                    <div class="stat-label">Empresas</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">8</div>
-                    <div class="stat-label">Idiomas</div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- NAV -->
+<nav>
+  <div class="logo"><img src="logo-nobg.png?v=2" alt="Parling Academy"></div>
+  <div class="nav-links">
+    <div class="nav-lang-menu">
+      <button class="nav-lang-trigger">
+        <span data-i18n="nav_lang">Languages</span>
+        <span class="nav-lang-chev">▼</span>
+      </button>
+      <div class="nav-lang-panel">
+        <a href="ingles.html">🇬🇧 Inglés · English</a>
+        <a href="espanol.html">🇪🇸 Español</a>
+        <a href="frances.html">🇫🇷 Francés · Français</a>
+        <a href="aleman.html">🇩🇪 Alemán · Deutsch</a>
+        <a href="italiano.html">🇮🇹 Italiano</a>
+        <a href="portugues.html">🇧🇷 Portugués · Português</a>
+        <a href="chino.html">🇨🇳 Chino · 中文</a>
+      </div>
+    </div>
+    <a href="#" data-i18n="nav_comp">English for companies</a>
+    <a href="#" data-i18n="nav_1to1">1 to 1</a>
+    <a href="#" data-i18n="nav_contact">Contact</a>
+    <a href="#" data-i18n="nav_blog">Blog</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:12px">
+    <div class="lang-picker" id="langPicker">
+      <button class="lang-btn" id="langBtn">
+        <span id="langFlag">🇬🇧</span>
+        <span id="langCode">EN</span>
+        <span class="arrow">▼</span>
+      </button>
+      <div class="lang-dropdown" id="langDropdown">
+        <button class="lang-option active" data-lang="en">🇬🇧 English</button>
+        <button class="lang-option" data-lang="es">🇪🇸 Español</button>
+        <button class="lang-option" data-lang="fr">🇫🇷 Français</button>
+        <button class="lang-option" data-lang="de">🇩🇪 Deutsch</button>
+        <button class="lang-option" data-lang="it">🇮🇹 Italiano</button>
+        <button class="lang-option" data-lang="pt">🇧🇷 Português</button>
+        <button class="lang-option" data-lang="zh">🇨🇳 中文</button>
+      </div>
+    </div>
+    <a class="nav-cta" href="#" data-i18n="nav_cta">Start Free</a>
+  </div>
+</nav>
 
-    <section class="schools" id="schools">
-        <div class="container">
-            <div class="section-title">
-                <h2>Todas las rutas de aprendizaje</h2>
-                <p>Desde nivel básico hasta avanzado en 8 idiomas</p>
-            </div>
-            
-            <div class="schools-grid">
-                <div class="school-card">
-                    <div class="school-icon" style="background: #E3F2FD;">🇺🇸</div>
-                    <h3>Inglés</h3>
-                    <p>El idioma global de los negocios. Desde A1 hasta C1.</p>
-                    <span class="school-levels">7 rutas de aprendizaje</span>
-                </div>
-                
-                <div class="school-card">
-                    <div class="school-icon" style="background: #FFF3E0;">🇧🇷</div>
-                    <h3>Portugués</h3>
-                    <p>El idioma de Brasil y Portugal. Nivel A1 a C1.</p>
-                    <span class="school-levels">5 rutas de aprendizaje</span>
-                </div>
-                
-                <div class="school-card">
-                    <div class="school-icon" style="background: #E8F5E9;">🇫🇷</div>
-                    <h3>Francés</h3>
-                    <p>El idioma del amor y la cultura. A1 a B2.</p>
-                    <span class="school-levels">5 rutas de aprendizaje</span>
-                </div>
-                
-                <div class="school-card">
-                    <div class="school-icon" style="background: #F3E5F5;">🇮🇹</div>
-                    <h3>Italiano</h3>
-                    <p>El idioma de Italia. Desde A1 hasta B1.</p>
-                    <span class="school-levels">4 rutas de aprendizaje</span>
-                </div>
-                
-                <div class="school-card">
-                    <div class="school-icon" style="background: #FFEBEE;">🇩🇪</div>
-                    <h3>Alemán</h3>
-                    <p>El idioma de la ingeniería. A1 a B2.</p>
-                    <span class="school-levels">5 rutas de aprendizaje</span>
-                </div>
-                
-                <div class="school-card">
-                    <div class="school-icon" style="background: #E0F7FA;">🇯🇵</div>
-                    <h3>Japonés</h3>
-                    <p>El idioma del anime y los negocios. N5 a N3.</p>
-                    <span class="school-levels">5 rutas de aprendizaje</span>
-                </div>
-                
-                <div class="school-card">
-                    <div class="school-icon" style="background: #ECEFF1;">🇨🇳</div>
-                    <h3>Chino Mandarín</h3>
-                    <p>El idioma del futuro. Nivel HSK 1 a 4.</p>
-                    <span class="school-levels">5 rutas de aprendizaje</span>
-                </div>
-                
-                <div class="school-card">
-                    <div class="school-icon" style="background: #FFF8E1;">🇪🇸</div>
-                    <h3>Español</h3>
-                    <p>Para extranjeros. Instituto Cervantes.</p>
-                    <span class="school-levels">4 rutas de aprendizaje</span>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- COLLAGE -->
+<section class="collage-section">
 
-    <section class="features">
-        <div class="container">
-            <div class="section-title">
-                <h2>¿Por qué aprender en Parling Academy?</h2>
-                <p>La metodología más efectiva para dominar un idioma</p>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📺</div>
-                    <div>
-                        <h3>Clases en video</h3>
-                        <p>Aprende con videos HD de alta calidad. Descarga las clases y aprende sin conexión.</p>
-                    </div>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <div>
-                        <h3>Rutas de aprendizaje</h3>
-                        <p>Trayectorias completas que te llevan desde cero hasta el dominio del idioma.</p>
-                    </div>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">💬</div>
-                    <div>
-                        <h3>Comunidad activa</h3>
-                        <p>Interactúa con otros estudiantes y profesoresnative speakers.</p>
-                    </div>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <div>
-                        <h3>App móvil</h3>
-                        <p>Lleva tus clases en el teléfono. Aprende en cualquier lugar.</p>
-                    </div>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🏆</div>
-                    <div>
-                        <h3>Certificaciones</h3>
-                        <p>Obtén certificados reconocidos internacionalmente.</p>
-                    </div>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🤖</div>
-                    <div>
-                        <h3>IA para practicar</h3>
-                        <p>Usa inteligencia artificial para practicar conversación.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- LEFT: text -->
+  <div class="collage-text">
+    <h2 style="color:#fff"><span style="color:#f97316">Disfruta</span> ese viaje,<br><span style="color:#f97316">ríete</span> de ese chiste y <span style="color:#f97316">siéntete</span> natural desde el primer día.</h2>
+    <ul class="cl-langs">
+      <li>🇬🇧 English</li>
+      <li>🇫🇷 Français</li>
+      <li>🇩🇪 Deutsch</li>
+      <li>🇮🇹 Italiano</li>
+      <li class="cl-more">+ 3 more languages</li>
+    </ul>
+    <a href="#" class="btn-primary" style="display:block;text-decoration:none;text-align:center;width:100%;padding:1.2rem 2rem;font-size:1.25rem">Start Free</a>
+  </div>
 
-    <section class="teachers">
-        <div class="container">
-            <div class="section-title">
-                <h2>Nuestros profesores son expertos</h2>
-                <p>Aprende con hablantes nativos y certificaciones internacionales</p>
-            </div>
-            
-            <div class="teachers-grid">
-                <div class="teacher-card">
-                    <div class="teacher-avatar">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
-                    <h3>Sarah Mitchell</h3>
-                    <p class="teacher-role">Profesora de Inglés</p>
-                    <p class="teacher-specialty">Certificación TESOL • Cambridge</p>
-                </div>
-                
-                <div class="teacher-card">
-                    <div class="teacher-avatar">🇧🇷</div>
-                    <h3>Carlos Silva</h3>
-                    <p class="teacher-role">Profesor de Portugués</p>
-                    <p class="teacher-specialty">Certificación CELPE-Bras</p>
-                </div>
-                
-                <div class="teacher-card">
-                    <div class="teacher-avatar">🇫🇷</div>
-                    <h3>Pierre Dubois</h3>
-                    <p class="teacher-role">Profesor de Francés</p>
-                    <p class="teacher-specialty">Alliance Française</p>
-                </div>
-                
-                <div class="teacher-card">
-                    <div class="teacher-avatar">🇮🇹</div>
-                    <h3>Marco Rossi</h3>
-                    <p class="teacher-role">Profesor de Italiano</p>
-                    <p class="teacher-specialty">Certificación DITALS</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- RIGHT: 2×2 collage grid -->
+  <div class="collage-grid">
 
-    <section class="cta">
-        <div class="container">
-            <h2>Empieza a aprender hoy</h2>
-            <p>Inicia cualquier curso gratis. O adquiere Parling para tu empresa.</p>
-            <button class="btn">Empezar gratis</button>
+    <!-- Top row: 2 large images -->
+    <div class="cg-top">
+      <div class="collage-cell center-content">
+        <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=900&q=80');filter:brightness(1.1) saturate(1.2)"></div>
+        <div class="tint"></div>
+        <div class="content" style="justify-content:center;align-items:center;text-align:center">
+          <p class="collage-phrase">"The world is waiting.<br>Go speak its language."</p>
         </div>
-    </section>
+      </div>
+      <div class="collage-cell">
+        <div class="bg" style="background-image:url('https://images.pexels.com/photos/30318144/pexels-photo-30318144.jpeg?auto=compress&cs=tinysrgb&w=700');filter:brightness(1.2) saturate(1.5)"></div>
+        <div class="tint" style="background:linear-gradient(to top,rgba(240,80,100,.2) 0%,transparent 60%)"></div>
+      </div>
+    </div>
 
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-                        <div class="logo-icon" style="width: 32px; height: 32px; font-size: 18px;">P</div>
-                        Parling Academy
-                    </div>
-                    <p>Academia de idiomas Online. Made in Argentina 🇦🇷</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Idiomas</h4>
-                    <ul>
-                        <li><a href="#">Inglés</a></li>
-                        <li><a href="#">Portugués</a></li>
-                        <li><a href="#">Francés</a></li>
-                        <li><a href="#">Italiano</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Empresa</h4>
-                    <ul>
-                        <li><a href="#">Acerca de</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Prensa</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Soporte</h4>
-                    <ul>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Contacto</a></li>
-                        <li><a href="#">Términos</a></li>
-                        <li><a href="#">Privacidad</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>© 2021 Parling Academy. Hecho en Argentina. 📍 Napoles, Ciudad de México.</p>
-                <div class="social-links">
-                    <a href="#">YouTube</a>
-                    <a href="#">Instagram</a>
-                    <a href="#">LinkedIn</a>
-                    <a href="#">TikTok</a>
-                </div>
-            </div>
+    <!-- Bottom row: 2 small cards -->
+    <div class="cg-bottom">
+      <div class="collage-cell">
+        <div class="bg" style="background-image:url('https://images.pexels.com/photos/4601426/pexels-photo-4601426.jpeg?auto=compress&cs=tinysrgb&w=700');filter:brightness(1.25) saturate(1.7)"></div>
+        <div class="tint" style="background:linear-gradient(to top,rgba(6,182,212,.25) 0%,transparent 70%)"></div>
+      </div>
+      <div class="collage-cell">
+        <div class="bg" style="background-image:url('https://images.pexels.com/photos/7149169/pexels-photo-7149169.jpeg?auto=compress&cs=tinysrgb&w=700');filter:brightness(1.2) saturate(1.5)"></div>
+        <div class="tint" style="background:linear-gradient(to top,rgba(249,115,22,.2) 0%,transparent 70%)"></div>
+        <div class="content">
+          <p class="collage-phrase" style="font-size:.85rem">"Be here. Be now."</p>
         </div>
-    </footer>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- HERO -->
+<div style="max-width:1200px;margin:0 auto;padding:0 5%">
+  <div class="hero" style="padding-left:0;padding-right:0">
+    <div>
+      <div class="hero-badge" data-i18n="hero_badge">🌍 100,000+ learners worldwide</div>
+      <h1 data-i18n-html="hero_h1">Master any <em>language</em> at your own pace</h1>
+      <p data-i18n="hero_p">Live classes, AI tutors, and expert-built paths for every level — from absolute beginner to fluent speaker.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" data-i18n="hero_btn1">Start learning free</button>
+        <button class="btn-ghost" data-i18n="hero_btn2">Explore languages →</button>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="lang-flags">
+        <div class="flag-chip">🇬🇧 English</div>
+        <div class="flag-chip">🇪🇸 Spanish</div>
+        <div class="flag-chip">🇫🇷 French</div>
+        <div class="flag-chip">🇩🇪 German</div>
+        <div class="flag-chip">🇧🇷 Portuguese</div>
+      </div>
+      <div class="progress-row">
+        <div class="progress-label"><span>English — B2</span><span>72%</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:72%;background:linear-gradient(90deg,#7c3aed,#a855f7)"></div></div>
+      </div>
+      <div class="progress-row">
+        <div class="progress-label"><span>French — A2</span><span>38%</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:38%;background:linear-gradient(90deg,#06b6d4,#0ea5e9)"></div></div>
+      </div>
+      <div class="progress-row">
+        <div class="progress-label"><span>Italian — A1</span><span>15%</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:15%;background:linear-gradient(90deg,#10b981,#34d399)"></div></div>
+      </div>
+      <div class="streak-box">
+        <div class="streak-icon">🔥</div>
+        <div class="streak-text">
+          <strong data-i18n="streak_days">32-day streak</strong>
+          <span data-i18n="streak_text">Keep it up — you're on fire!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-num">9</div><div class="stat-label" data-i18n="stat1">Languages available</div></div>
+  <div class="stat"><div class="stat-num">3.567+</div><div class="stat-label" data-i18n="stat2">Learners</div></div>
+  <div class="stat" id="countryCycler-wrap"><div class="stat-num" id="countryCycler">México</div><div class="stat-label" data-i18n="stat3">Countries with presence</div></div>
+  <div class="stat"><div class="stat-num">30+</div><div class="stat-label" data-i18n="stat4">Teachers</div></div>
+</div>
+
+<!-- METHODOLOGY -->
+<div id="individual" style="background:linear-gradient(135deg,#5b21b6 0%,#7c3aed 50%,#6d28d9 100%)">
+  <div class="method-wrap">
+    <div style="text-align:center;margin-bottom:44px">
+      <h2 data-i18n="method_h2" style="font-size:clamp(3rem,7vw,8rem);font-weight:800;color:#fff;line-height:1.05;text-transform:uppercase">Parling Method</h2>
+    </div>
+    <div class="method-steps">
+      <div class="method-step">
+        <img class="method-img" src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80" alt="Level Assessment" loading="lazy">
+        <div class="method-num">1</div>
+        <div class="method-body">
+          <h3 data-i18n="m1_h3">Level Assessment</h3>
+          <p data-i18n="m1_p">We start with a short diagnostic to pinpoint exactly where you are and build your personal learning path.</p>
+        </div>
+      </div>
+      <div class="method-step">
+        <img class="method-img" src="https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=600&q=80" alt="Live Classes" loading="lazy">
+        <div class="method-num">2</div>
+        <div class="method-body">
+          <h3 data-i18n="m2_h3">Live Classes</h3>
+          <p data-i18n="m2_p">Weekly sessions with native teachers in groups of up to 8 — small enough for real interaction every class.</p>
+        </div>
+      </div>
+      <div class="method-step">
+        <img class="method-img" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&q=80" alt="AI Practice" loading="lazy">
+        <div class="method-num">3</div>
+        <div class="method-body">
+          <h3 data-i18n="m3_h3">AI Practice</h3>
+          <p data-i18n="m3_p">Between classes, practice with our AI tutor 24/7. It corrects grammar, pronunciation, and vocabulary in real time.</p>
+        </div>
+      </div>
+      <div class="method-step">
+        <img class="method-img" src="https://images.unsplash.com/photo-1543269664-56d93c1b41a6?w=600&q=80" alt="Real Scenarios" loading="lazy">
+        <div class="method-num">4</div>
+        <div class="method-body">
+          <h3 data-i18n="m4_h3">Real Scenarios</h3>
+          <p data-i18n="m4_p">Every unit is built around real life: airports, meetings, dates, negotiations. You learn what you will actually use.</p>
+        </div>
+      </div>
+      <div class="method-step">
+        <img class="method-img" src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=80" alt="Certification" loading="lazy">
+        <div class="method-num">5</div>
+        <div class="method-body">
+          <h3 data-i18n="m5_h3">Certification</h3>
+          <p data-i18n="m5_p">Finish each level with an internationally recognized CEFR certificate you can share with universities and employers.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="clases-vivo">
+  <div class="section-header">
+    <h2 data-i18n="sec2_h2">Built for real progress</h2>
+    <p data-i18n="sec2_p">Every tool you need to go from beginner to confident speaker.</p>
+  </div>
+
+  <div class="carousel-wrap">
+    <div class="carousel-track" id="carouselTrack">
+
+      <!-- SLIDE 1 · Live Classes -->
+      <div class="carousel-slide">
+        <div class="slide-visual" style="background:linear-gradient(135deg,#1a0a2e,#0f1a3a)">
+          <div class="slide-scene">
+            <!-- grid of video call tiles -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:32px;width:100%">
+              <div style="background:linear-gradient(135deg,#2d1a5e,#1a2d5e);border-radius:14px;height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:1px solid rgba(124,58,237,.3)">
+                <span style="font-size:2.4rem">👩‍🏫</span>
+                <span style="font-size:.7rem;color:#a78bfa;font-weight:700">Sarah · EN</span>
+              </div>
+              <div style="background:linear-gradient(135deg,#1a2d3e,#0a1a2a);border-radius:14px;height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:1px solid rgba(6,182,212,.3)">
+                <span style="font-size:2.4rem">👨‍💻</span>
+                <span style="font-size:.7rem;color:#67e8f9;font-weight:700">Carlos · B2</span>
+              </div>
+              <div style="background:linear-gradient(135deg,#1a2a1a,#0a1a10);border-radius:14px;height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:1px solid rgba(16,185,129,.3)">
+                <span style="font-size:2.4rem">👩‍🎓</span>
+                <span style="font-size:.7rem;color:#6ee7b7;font-weight:700">Mei · A2</span>
+              </div>
+              <div style="background:linear-gradient(135deg,#2a1a0a,#1a0a05);border-radius:14px;height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:1px solid rgba(245,158,11,.3)">
+                <span style="font-size:2.4rem">🧑‍🤝‍🧑</span>
+                <span style="font-size:.7rem;color:#fcd34d;font-weight:700">+14 más</span>
+              </div>
+            </div>
+            <div class="scene-card" style="bottom:20px;left:50%;transform:translateX(-50%);white-space:nowrap;display:flex;align-items:center;gap:8px">
+              <span style="width:8px;height:8px;background:#10b981;border-radius:50%;display:inline-block"></span>
+              <span style="color:var(--muted);font-size:.75rem">En vivo ahora · <strong style="color:var(--text)">Inglés Avanzado</strong></span>
+            </div>
+          </div>
+        </div>
+        <div class="slide-info">
+          <span class="slide-tag" style="background:rgba(124,58,237,.15);color:#a78bfa" data-i18n="s1_tag">🎥 Live Classes</span>
+          <h3 data-i18n="s1_h3">Learn with real people, not screens</h3>
+          <p data-i18n="s1_p">Weekly sessions with native teachers. Groups of max 8 students so every class is yours.</p>
+        </div>
+      </div>
+
+      <!-- SLIDE 2 · AI Partner -->
+      <div class="carousel-slide">
+        <div class="slide-visual" style="background:linear-gradient(135deg,#061820,#0d1f2d)">
+          <div class="slide-scene" style="padding:32px;flex-direction:column;gap:10px">
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 20px;width:100%;max-width:300px">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+                <span style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#06b6d4,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:.9rem">🤖</span>
+                <span style="font-size:.78rem;color:var(--accent2);font-weight:700">Parling AI</span>
+              </div>
+              <p style="font-size:.82rem;color:var(--text);line-height:1.5">¿Cómo se dice <em style="color:#a78bfa">"Me gustaría reservar una mesa"</em> en francés?</p>
+            </div>
+            <div style="background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(6,182,212,.1));border:1px solid rgba(124,58,237,.3);border-radius:14px;padding:16px 20px;width:100%;max-width:300px;align-self:flex-end">
+              <p style="font-size:.82rem;color:var(--text);line-height:1.5">
+                <strong style="color:var(--accent2)">"Je voudrais réserver une table."</strong><br>
+                <span style="color:var(--muted);font-size:.75rem">Pronunciation tip: "voudrais" → /voo-dreh/ 🔊</span>
+              </p>
+            </div>
+            <div style="background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:10px;padding:10px 14px;width:100%;max-width:300px">
+              <span style="font-size:.75rem;color:#6ee7b7">✅ Gramática correcta · Pronunciación: 94%</span>
+            </div>
+          </div>
+        </div>
+        <div class="slide-info">
+          <span class="slide-tag" style="background:rgba(6,182,212,.12);color:#67e8f9" data-i18n="s2_tag">🤖 AI 24/7</span>
+          <h3 data-i18n="s2_h3">Your tutor available anytime, any hour</h3>
+          <p data-i18n="s2_p">Practice conversation with AI that corrects your grammar and pronunciation in real time, without judgment.</p>
+        </div>
+      </div>
+
+      <!-- SLIDE 3 · Travel Ready -->
+      <div class="carousel-slide">
+        <div class="slide-visual" style="background:linear-gradient(135deg,#0a1a10,#081420)">
+          <div class="slide-scene" style="padding:28px;flex-direction:column;gap:12px;align-items:center">
+            <!-- Boarding pass style card -->
+            <div style="background:linear-gradient(135deg,#1e3a2a,#1a2a3e);border:1px solid rgba(16,185,129,.3);border-radius:16px;padding:20px 24px;width:100%;max-width:310px">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px">
+                <div>
+                  <div style="font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Destino</div>
+                  <div style="font-size:1.4rem;font-weight:800">🇫🇷 París</div>
+                </div>
+                <div style="text-align:right">
+                  <div style="font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Nivel</div>
+                  <div style="font-size:1.1rem;font-weight:700;color:#6ee7b7">B2</div>
+                </div>
+              </div>
+              <div style="border-top:1px dashed var(--border);padding-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                <div><div style="font-size:.68rem;color:var(--muted)">Vocabulario</div><div style="font-size:.88rem;font-weight:700">2,400 palabras</div></div>
+                <div><div style="font-size:.68rem;color:var(--muted)">Conversación</div><div style="font-size:.88rem;font-weight:700">Fluida ✓</div></div>
+              </div>
+            </div>
+            <!-- itinerary -->
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 18px;width:100%;max-width:310px">
+              <div style="font-size:.72rem;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px">Tu itinerario · Semana 12</div>
+              <div style="display:flex;flex-direction:column;gap:7px">
+                <div style="display:flex;align-items:center;gap:10px;font-size:.8rem"><span>✅</span> Reservar hotel en francés</div>
+                <div style="display:flex;align-items:center;gap:10px;font-size:.8rem"><span>✅</span> Pedir en un restaurante</div>
+                <div style="display:flex;align-items:center;gap:10px;font-size:.8rem;color:var(--muted)"><span>⏳</span> Negociar precio en mercado</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-info">
+          <span class="slide-tag" style="background:rgba(16,185,129,.12);color:#6ee7b7" data-i18n="s3_tag">✈️ Real Travel</span>
+          <h3 data-i18n="s3_h3">From classroom to the world</h3>
+          <p data-i18n="s3_p">Every path is designed for real situations: travel, work, culture. You arrive prepared, not with a dictionary.</p>
+        </div>
+      </div>
+
+      <!-- SLIDE 4 · Study Anywhere -->
+      <div class="carousel-slide">
+        <div class="slide-visual" style="background:linear-gradient(135deg,#1a0f00,#1a1a00)">
+          <div class="slide-scene" style="padding:28px;flex-direction:column;align-items:center;gap:14px">
+            <!-- Phone mockup -->
+            <div style="background:#0d0d12;border:2px solid var(--border);border-radius:28px;width:160px;padding:16px 14px;box-shadow:0 20px 60px rgba(0,0,0,.5)">
+              <div style="background:linear-gradient(135deg,#7c3aed,#06b6d4);border-radius:16px;padding:14px;text-align:center;margin-bottom:10px">
+                <div style="font-size:1.8rem">🔥</div>
+                <div style="font-size:1.4rem;font-weight:900;color:#fff">32</div>
+                <div style="font-size:.65rem;color:rgba(255,255,255,.7)">días seguidos</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <div style="background:var(--card);border-radius:8px;padding:8px 10px;font-size:.7rem;display:flex;align-items:center;gap:6px"><span>🇩🇪</span> Lección 14 · 5 min</div>
+                <div style="background:var(--card);border-radius:8px;padding:8px 10px;font-size:.7rem;display:flex;align-items:center;gap:6px"><span>🎧</span> Escucha · 3 min</div>
+                <div style="background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);border-radius:8px;padding:8px 10px;font-size:.7rem;color:#a78bfa;display:flex;align-items:center;gap:6px"><span>✏️</span> Quiz rápido</div>
+              </div>
+            </div>
+            <div class="scene-card" style="font-size:.75rem;display:flex;align-items:center;gap:8px">
+              <span>📍</span> <span style="color:var(--muted)">Subte línea D · <strong style="color:var(--text)">10 min libres</strong></span>
+            </div>
+          </div>
+        </div>
+        <div class="slide-info">
+          <span class="slide-tag" style="background:rgba(245,158,11,.12);color:#fcd34d" data-i18n="s4_tag">📱 Mobile App</span>
+          <h3 data-i18n="s4_h3">10 minutes a day changes everything</h3>
+          <p data-i18n="s4_p">On the bus, at the gym, before bed. The app adapts to your free time and keeps your streak alive.</p>
+        </div>
+      </div>
+
+      <!-- SLIDE 5 · Certification -->
+      <div class="carousel-slide">
+        <div class="slide-visual" style="background:linear-gradient(135deg,#1a0a00,#2a1500)">
+          <div class="slide-scene" style="padding:32px;flex-direction:column;align-items:center;gap:16px">
+            <!-- Certificate card -->
+            <div style="background:linear-gradient(135deg,#2a1a05,#1a0a00);border:1px solid rgba(245,158,11,.35);border-radius:18px;padding:28px;width:100%;max-width:300px;text-align:center;position:relative;overflow:hidden">
+              <div style="position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:radial-gradient(circle,rgba(245,158,11,.2),transparent 70%)"></div>
+              <div style="font-size:2.6rem;margin-bottom:10px">🏆</div>
+              <div style="font-size:.68rem;color:#fcd34d;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px">Certificado CEFR</div>
+              <div style="font-size:1.3rem;font-weight:900;margin-bottom:4px">Inglés B2</div>
+              <div style="font-size:.78rem;color:var(--muted);margin-bottom:18px">Reconocido internacionalmente</div>
+              <div style="display:flex;justify-content:center;gap:16px;font-size:.75rem">
+                <div style="text-align:center"><div style="color:#fcd34d;font-weight:700">98%</div><div style="color:var(--muted)">Speaking</div></div>
+                <div style="text-align:center"><div style="color:#fcd34d;font-weight:700">94%</div><div style="color:var(--muted)">Writing</div></div>
+                <div style="text-align:center"><div style="color:#fcd34d;font-weight:700">96%</div><div style="color:var(--muted)">Listening</div></div>
+              </div>
+            </div>
+            <div class="scene-card" style="font-size:.75rem;display:flex;align-items:center;gap:8px">
+              <span>🌐</span> <span style="color:var(--muted)">Válido en <strong style="color:var(--text)">180+ países</strong></span>
+            </div>
+          </div>
+        </div>
+        <div class="slide-info">
+          <span class="slide-tag" style="background:rgba(245,158,11,.12);color:#fcd34d" data-i18n="s5_tag">🏆 Certifications</span>
+          <h3 data-i18n="s5_h3">A degree that opens doors in any country</h3>
+          <p data-i18n="s5_p">CEFR-aligned certificates recognized by universities and companies worldwide. Show what you're worth.</p>
+        </div>
+      </div>
+
+      <!-- SLIDE 6 · Community -->
+      <div class="carousel-slide">
+        <div class="slide-visual" style="background:linear-gradient(135deg,#0a0a1a,#1a0a2a)">
+          <div class="slide-scene" style="padding:28px;flex-direction:column;align-items:center;gap:12px">
+            <!-- Community bubbles -->
+            <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;max-width:300px">
+              <div style="background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);border-radius:20px;padding:6px 14px;font-size:.78rem;display:flex;align-items:center;gap:6px"><span>🇪🇸</span>Spanish club</div>
+              <div style="background:rgba(6,182,212,.12);border:1px solid rgba(6,182,212,.3);border-radius:20px;padding:6px 14px;font-size:.78rem;display:flex;align-items:center;gap:6px"><span>🇯🇵</span>Nihongo mates</div>
+              <div style="background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);border-radius:20px;padding:6px 14px;font-size:.78rem;display:flex;align-items:center;gap:6px"><span>🇫🇷</span>Paris dreamers</div>
+              <div style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:20px;padding:6px 14px;font-size:.78rem;display:flex;align-items:center;gap:6px"><span>🇩🇪</span>Deutsch gang</div>
+            </div>
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;width:100%;max-width:300px">
+              <div style="display:flex;align-items:center;gap:-8px;margin-bottom:10px">
+                <span style="font-size:1.4rem">👩‍💻</span><span style="font-size:1.4rem;margin-left:-4px">🧑‍🎤</span><span style="font-size:1.4rem;margin-left:-4px">👨‍🍳</span><span style="font-size:1.4rem;margin-left:-4px">👩‍🔬</span>
+                <span style="font-size:.75rem;color:var(--muted);margin-left:10px">+12,400 activos hoy</span>
+              </div>
+              <p style="font-size:.8rem;color:var(--muted);line-height:1.5">"¿Alguien para practicar conversación en 🇮🇹 esta tarde?"</p>
+              <div style="display:flex;gap:6px;margin-top:10px">
+                <span style="background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);color:#6ee7b7;font-size:.7rem;padding:3px 8px;border-radius:10px">3 respuestas</span>
+                <span style="background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.2);color:#a78bfa;font-size:.7rem;padding:3px 8px;border-radius:10px">Italia · A2</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-info">
+          <span class="slide-tag" style="background:rgba(168,85,247,.12);color:#c4b5fd" data-i18n="s6_tag">👥 Community</span>
+          <h3 data-i18n="s6_h3">Thousands learning the same as you, right now</h3>
+          <p data-i18n="s6_p">Groups by language and level, live exchanges, weekly challenges. Never learn alone again.</p>
+        </div>
+      </div>
+
+    </div><!-- /track -->
+  </div><!-- /wrap -->
+
+  <div class="carousel-controls">
+    <button class="carousel-btn" id="cPrev">‹</button>
+    <div class="carousel-dots" id="cDots"></div>
+    <button class="carousel-btn" id="cNext">›</button>
+  </div>
+</div>
+
+
+<!-- TESTIMONIALS -->
+<div class="section">
+  <div class="section-header">
+    <h2 data-i18n="reviews_h2">Why learners love Parling Academy</h2>
+    <p data-i18n="reviews_p">Real students, real results — from all over the world.</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-quote" data-i18n="t1_q">"I tried three other apps before Parling. None of them made me actually speak. After two months here I had my first full conversation in English at work."</p>
+      <div class="testimonial-author">
+        <img class="testimonial-avatar" src="https://i.pravatar.cc/96?img=47" alt="Ana García">
+        <div>
+          <div class="testimonial-name">Ana García</div>
+          <div class="testimonial-meta">🇲🇽 México · English B2</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-quote" data-i18n="t2_q">"The live classes are incredible. My teacher remembers everything about my job and we practice exactly the vocabulary I need. It is not generic at all."</p>
+      <div class="testimonial-author">
+        <img class="testimonial-avatar" src="https://i.pravatar.cc/96?img=12" alt="Carlos Rodríguez">
+        <div>
+          <div class="testimonial-name">Carlos Rodríguez</div>
+          <div class="testimonial-meta">🇦🇷 Argentina · French A2→B1</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-quote" data-i18n="t3_q">"I travel a lot for work and needed real German fast. Parling method is nothing like school — I was ordering food in Berlin after 6 weeks."</p>
+      <div class="testimonial-author">
+        <img class="testimonial-avatar" src="https://i.pravatar.cc/96?img=44" alt="Valentina Moreno">
+        <div>
+          <div class="testimonial-name">Valentina Moreno</div>
+          <div class="testimonial-meta">🇨🇴 Colombia · German A1→A2</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-quote" data-i18n="t4_q">"The AI practice between classes is a game-changer. I talk to it every day during my commute and my pronunciation improved more than in years of school."</p>
+      <div class="testimonial-author">
+        <img class="testimonial-avatar" src="https://i.pravatar.cc/96?img=57" alt="João Silva">
+        <div>
+          <div class="testimonial-name">João Silva</div>
+          <div class="testimonial-meta">🇧🇷 Brasil · English B1→B2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div style="background:var(--surface)">
+  <div class="section">
+    <div class="section-header">
+      <h2 data-i18n="faq_h2">Frequently Asked Questions</h2>
+      <p data-i18n="faq_p">Everything you need to know before you start.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q"><span data-i18n="faq1_q">How many live classes are included per month?</span><span class="faq-chev">▼</span></div>
+        <div class="faq-a" data-i18n="faq1_a">Each monthly plan includes 4 live group classes (one per week). You can also add 1-to-1 sessions with your teacher for an additional fee.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span data-i18n="faq2_q">What level do I need to start?</span><span class="faq-chev">▼</span></div>
+        <div class="faq-a" data-i18n="faq2_a">No prior experience needed. We offer paths starting from absolute zero (A1) all the way to advanced C2. A short placement test ensures you join the right group.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span data-i18n="faq3_q">What happens if I miss a class?</span><span class="faq-chev">▼</span></div>
+        <div class="faq-a" data-i18n="faq3_a">All live sessions are recorded and available for 7 days after the class. You can also join a makeup session the same week at no extra charge.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span data-i18n="faq4_q">Can I switch languages or pause my subscription?</span><span class="faq-chev">▼</span></div>
+        <div class="faq-a" data-i18n="faq4_a">Yes — you can change your language at the start of any new month. You can also pause your subscription for up to 2 months per year without losing your progress.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span data-i18n="faq5_q">Are the certificates officially recognized?</span><span class="faq-chev">▼</span></div>
+        <div class="faq-a" data-i18n="faq5_a">Our certificates are aligned with the CEFR international framework and recognized by universities, companies, and immigration bodies in over 180 countries.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span data-i18n="faq6_q">How is Parling different from other apps?</span><span class="faq-chev">▼</span></div>
+        <div class="faq-a" data-i18n="faq6_a">Most apps focus on solo exercises. Parling combines live human interaction with 24/7 AI practice and real-world scenarios. You learn not just a language — you learn to use it.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <h2 data-i18n="cta_h2">Would you like to get another personality? learn a new language!</h2>
+  <p data-i18n="cta_p">Join 100,000 learners who transformed their careers and lives through language.</p>
+  <button class="btn-white" data-i18n="cta_btn">Get started free today</button>
+</div>
+
+<!-- FOOTER -->
+<footer id="contacto">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo"><img src="logo-nobg.png?v=2" alt="Parling Academy"></div>
+      <p data-i18n="footer_brand_p">The world's best place to learn a new language — at any level, at any pace.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_learn">Learn</h4>
+      <a href="#" data-i18n="f_all_langs">All Languages</a>
+      <a href="#" data-i18n="f_paths">Learning Paths</a>
+      <a href="#" data-i18n="f_live">Live Classes</a>
+      <a href="#" data-i18n="f_certs">Certificates</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_company">Company</h4>
+      <a href="#" data-i18n="f_about">About</a>
+      <a href="#" data-i18n="f_blog">Blog</a>
+      <a href="#" data-i18n="f_careers">Careers</a>
+      <a href="#" data-i18n="f_press">Press</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_support">Support</h4>
+      <a href="#" data-i18n="f_help">Help Center</a>
+      <a href="#" data-i18n="f_community">Community</a>
+      <a href="#" data-i18n="f_privacy">Privacy</a>
+      <a href="#" data-i18n="f_terms">Terms</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span data-i18n="footer_copy">© 2026 Parling Academy. All rights reserved.</span>
+    <span data-i18n="footer_tagline">Made with ❤️ for language lovers</span>
+  </div>
+</footer>
+
+<script>
+  /* ── Carousel ── */
+  (function() {
+    const track = document.getElementById('carouselTrack');
+    const slides = track.querySelectorAll('.carousel-slide');
+    const dotsEl = document.getElementById('cDots');
+    let current = 0, timer;
+
+    slides.forEach((_, i) => {
+      const d = document.createElement('div');
+      d.className = 'dot' + (i === 0 ? ' active' : '');
+      d.addEventListener('click', () => go(i));
+      dotsEl.appendChild(d);
+    });
+
+    function go(n) {
+      current = (n + slides.length) % slides.length;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+      resetTimer();
+    }
+
+    function resetTimer() {
+      clearInterval(timer);
+      timer = setInterval(() => go(current + 1), 4500);
+    }
+
+    document.getElementById('cPrev').addEventListener('click', () => go(current - 1));
+    document.getElementById('cNext').addEventListener('click', () => go(current + 1));
+    resetTimer();
+  })();
+
+  /* ── i18n ── */
+  const LANGS = {
+    en: { nav_lang:'Languages', nav_comp:'English for companies', nav_1to1:'1 to 1', nav_contact:'Contact', nav_blog:'Blog', nav_cta:'Start Free', hero_badge:'🌍 100,000+ learners worldwide', hero_h1:'Master any <em>language</em> at your own pace', hero_p:'Live classes, AI tutors, and expert-built paths for every level — from absolute beginner to fluent speaker.', hero_btn1:'Start learning free', hero_btn2:'Explore languages →', streak_days:'32-day streak', streak_text:"Keep it up — you're on fire!", stat1:'Languages available', stat2:'Learners', stat3:'Countries', stat4:'Teachers', sec1_h2:'Choose your language', sec1_p:'Structured paths from A1 to C2 — start anywhere, learn everything.', sec2_h2:'Built for real progress', sec2_p:'Every tool you need to go from beginner to confident speaker.', s1_tag:'🎥 Live Classes', s1_h3:'Learn with real people, not screens', s1_p:'Weekly sessions with native teachers. Groups of max 8 students so every class is yours.', s2_tag:'🤖 AI 24/7', s2_h3:'Your tutor available anytime, any hour', s2_p:'Practice conversation with AI that corrects your grammar and pronunciation in real time, without judgment.', s3_tag:'✈️ Real Travel', s3_h3:'From classroom to the world', s3_p:'Every path is designed for real situations: travel, work, culture. You arrive prepared, not with a dictionary.', s4_tag:'📱 Mobile App', s4_h3:'10 minutes a day changes everything', s4_p:'On the bus, at the gym, before bed. The app adapts to your free time and keeps your streak alive.', s5_tag:'🏆 Certifications', s5_h3:'A degree that opens doors in any country', s5_p:"CEFR-aligned certificates recognized by universities and companies worldwide. Show what you're worth.", s6_tag:'👥 Community', s6_h3:'Thousands learning the same as you, right now', s6_p:'Groups by language and level, live exchanges, weekly challenges. Never learn alone again.', cta_h2:'Would you like to get another personality? learn a new language!', cta_p:'Join 100,000 learners who transformed their careers and lives through language.', cta_btn:'Get started free today', footer_brand_p:"The world's best place to learn a new language — at any level, at any pace.", footer_learn:'Learn', footer_company:'Company', footer_support:'Support', f_all_langs:'All Languages', f_paths:'Learning Paths', f_live:'Live Classes', f_certs:'Certificates', f_about:'About', f_blog:'Blog', f_careers:'Careers', f_press:'Press', f_help:'Help Center', f_community:'Community', f_privacy:'Privacy', f_terms:'Terms', footer_copy:'© 2026 Parling Academy. All rights reserved.', footer_tagline:'Made with ❤️ for language lovers', method_h2:'Parling Method', method_p:'A proven 5-step framework that takes you from your first word to confident speaking.', m1_h3:'Level Assessment', m1_p:'We start with a short diagnostic to pinpoint exactly where you are and build your personal learning path.', m2_h3:'Live Classes', m2_p:'Weekly sessions with native teachers in groups of up to 8 — small enough for real interaction every class.', m3_h3:'AI Practice', m3_p:'Between classes, practice with our AI tutor 24/7. It corrects grammar, pronunciation, and vocabulary in real time.', m4_h3:'Real Scenarios', m4_p:'Every unit is built around real life: airports, meetings, dates, negotiations. You learn what you will actually use.', m5_h3:'Certification', m5_p:'Finish each level with an internationally recognized CEFR certificate you can share with universities and employers.', reviews_h2:'Why learners love Parling Academy', reviews_p:'Real students, real results — from all over the world.', t1_q:'"I tried three other apps before Parling. None of them made me actually speak. After two months here I had my first full conversation in English at work."', t2_q:'"The live classes are incredible. My teacher remembers everything about my job and we practice exactly the vocabulary I need. It is not generic at all."', t3_q:'"I travel a lot for work and needed real German fast. Parling method is nothing like school — I was ordering food in Berlin after 6 weeks."', t4_q:'"The AI practice between classes is a game-changer. I talk to it every day during my commute and my pronunciation improved more than in years of school."', faq_h2:'Frequently Asked Questions', faq_p:'Everything you need to know before you start.', faq1_q:'How many live classes are included per month?', faq1_a:'Each monthly plan includes 4 live group classes (one per week). You can also add 1-to-1 sessions with your teacher for an additional fee.', faq2_q:'What level do I need to start?', faq2_a:'No prior experience needed. We offer paths starting from absolute zero (A1) all the way to advanced C2. A short placement test ensures you join the right group.', faq3_q:'What happens if I miss a class?', faq3_a:'All live sessions are recorded and available for 7 days after the class. You can also join a makeup session the same week at no extra charge.', faq4_q:'Can I switch languages or pause my subscription?', faq4_a:'Yes — you can change your language at the start of any new month. You can also pause your subscription for up to 2 months per year without losing your progress.', faq5_q:'Are the certificates officially recognized?', faq5_a:'Our certificates are aligned with the CEFR international framework and recognized by universities, companies, and immigration bodies in over 180 countries.', faq6_q:'How is Parling different from other apps?', faq6_a:'Most apps focus on solo exercises. Parling combines live human interaction with 24/7 AI practice and real-world scenarios. You learn not just a language — you learn to use it.' },
+    es: { nav_lang:'Idiomas', nav_comp:'Inglés para empresas', nav_1to1:'1 a 1', nav_contact:'Contacto', nav_blog:'Blog', nav_cta:'Empieza gratis', hero_badge:'🌍 +100,000 estudiantes en el mundo', hero_h1:'Domina cualquier <em>idioma</em> a tu ritmo', hero_p:'Clases en vivo, tutores IA y rutas diseñadas por expertos para cada nivel — desde cero hasta hablar con fluidez.', hero_btn1:'Empieza gratis', hero_btn2:'Explorar idiomas →', streak_days:'Racha de 32 días', streak_text:'¡Sigue así, estás en llamas!', stat1:'Idiomas disponibles', stat2:'Estudiantes', stat3:'Países', stat4:'Profesores', sec1_h2:'Elige tu idioma', sec1_p:'Rutas estructuradas de A1 a C2 — empieza donde quieras, aprende todo.', sec2_h2:'Diseñado para el progreso real', sec2_p:'Cada herramienta que necesitas para pasar de principiante a hablante seguro.', s1_tag:'🎥 Clases en vivo', s1_h3:'Aprende con personas reales, no pantallas', s1_p:'Sesiones semanales con profesores nativos. Grupos de máximo 8 alumnos para que cada clase sea tuya.', s2_tag:'🤖 IA 24/7', s2_h3:'Tu tutor siempre disponible, a cualquier hora', s2_p:'Practicá conversación con una IA que corrige tu gramática y pronunciación en tiempo real, sin juicios ni esperas.', s3_tag:'✈️ Viaje real', s3_h3:'Del aula al mundo, sin perder el hilo', s3_p:'Cada ruta está diseñada para situaciones reales: viajes, trabajo, cultura. Llegás preparado, no con el diccionario en mano.', s4_tag:'📱 App móvil', s4_h3:'10 minutos al día cambian todo', s4_p:'En el colectivo, en el gimnasio, antes de dormir. La app se adapta a tu tiempo libre y mantiene tu racha viva.', s5_tag:'🏆 Certificaciones', s5_h3:'Un título que abre puertas en cualquier país', s5_p:'Certificados alineados al marco CEFR, reconocidos por universidades y empresas de todo el mundo.', s6_tag:'👥 Comunidad', s6_h3:'Miles aprendiendo lo mismo que vos, ahora', s6_p:'Grupos por idioma y nivel, intercambios en vivo, retos semanales. Nunca más aprender solo frente a una pantalla.', cta_h2:'¿Te gustaría tener otra personalidad? ¡aprende un nuevo idioma!', cta_p:'Únete a 100,000 estudiantes que transformaron sus carreras y vidas a través del idioma.', cta_btn:'Empieza gratis hoy', footer_brand_p:'El mejor lugar del mundo para aprender un nuevo idioma — a cualquier nivel, a cualquier ritmo.', footer_learn:'Aprender', footer_company:'Empresa', footer_support:'Soporte', f_all_langs:'Todos los idiomas', f_paths:'Rutas de aprendizaje', f_live:'Clases en vivo', f_certs:'Certificados', f_about:'Nosotros', f_blog:'Blog', f_careers:'Empleos', f_press:'Prensa', f_help:'Centro de ayuda', f_community:'Comunidad', f_privacy:'Privacidad', f_terms:'Términos', footer_copy:'© 2026 Parling Academy. Todos los derechos reservados.', footer_tagline:'Hecho con ❤️ para los amantes de los idiomas', method_h2:'Método Parling', method_p:'Un sistema probado de 5 pasos que te lleva de las primeras palabras a hablar con confianza.', m1_h3:'Diagnóstico de nivel', m1_p:'Comenzamos con un diagnóstico corto para identificar exactamente dónde estás y construir tu ruta de aprendizaje personal.', m2_h3:'Clases en vivo', m2_p:'Sesiones semanales con profesores nativos en grupos de hasta 8 alumnos — lo suficientemente pequeños para que haya interacción real en cada clase.', m3_h3:'Práctica con IA', m3_p:'Entre clases, practicá con nuestro tutor IA las 24 hs. Corrige gramática, pronunciación y vocabulario en tiempo real.', m4_h3:'Situaciones reales', m4_p:'Cada unidad está construida en torno a la vida real: aeropuertos, reuniones, citas, negociaciones. Aprendés lo que realmente vas a usar.', m5_h3:'Certificación', m5_p:'Terminá cada nivel con un certificado CEFR reconocido internacionalmente que podés compartir con universidades y empleadores.', reviews_h2:'Por qué los estudiantes aman Parling Academy', reviews_p:'Estudiantes reales, resultados reales — de todo el mundo.', t1_q:'"Probé otras tres aplicaciones antes de Parling. Ninguna me hizo hablar de verdad. Después de dos meses aquí tuve mi primera conversación completa en inglés en el trabajo."', t2_q:'"Las clases en vivo son increíbles. Mi profesora recuerda todo sobre mi trabajo y practicamos exactamente el vocabulario que necesito. No es para nada genérico."', t3_q:'"Viajo mucho por trabajo y necesitaba alemán real rápido. El método Parling no se parece en nada a la escuela — después de 6 semanas estaba pidiendo comida en Berlín."', t4_q:'"La práctica con IA entre clases es un cambio total. Le hablo todos los días durante el viaje al trabajo y mi pronunciación mejoró más que en años de escuela."', faq_h2:'Preguntas frecuentes', faq_p:'Todo lo que necesitás saber antes de empezar.', faq1_q:'¿Cuántas clases en vivo incluye el plan mensual?', faq1_a:'Cada plan mensual incluye 4 clases grupales en vivo (una por semana). También podés agregar sesiones 1 a 1 con tu profesor por un cargo adicional.', faq2_q:'¿Qué nivel necesito para empezar?', faq2_a:'No se necesita experiencia previa. Ofrecemos rutas desde cero absoluto (A1) hasta nivel avanzado C2. Una prueba de colocación corta al inicio asegura que te unas al grupo correcto.', faq3_q:'¿Qué pasa si me pierdo una clase?', faq3_a:'Todas las sesiones en vivo se graban y están disponibles por 7 días después de la clase. También podés unirte a una sesión de recuperación la misma semana sin cargo adicional.', faq4_q:'¿Puedo cambiar de idioma o pausar mi suscripción?', faq4_a:'Sí — podés cambiar tu idioma al inicio de cualquier mes nuevo. También podés pausar tu suscripción hasta 2 meses por año sin perder tu progreso.', faq5_q:'¿Los certificados tienen reconocimiento oficial?', faq5_a:'Nuestros certificados están alineados con el marco CEFR y son reconocidos por universidades, empresas y organismos de inmigración en más de 180 países.', faq6_q:'¿En qué se diferencia Parling de otras aplicaciones?', faq6_a:'La mayoría de las aplicaciones se enfocan en ejercicios individuales. Parling combina interacción humana en vivo con práctica IA 24/7 y situaciones del mundo real. No solo aprendés un idioma — aprendés a usarlo.' },
+    fr: { nav_lang:'Langues', nav_comp:'Anglais pour entreprises', nav_1to1:'1 pour 1', nav_contact:'Contact', nav_blog:'Blog', nav_cta:'Commencer gratuitement', hero_badge:'🌍 +100 000 apprenants dans le monde', hero_h1:"Maîtrisez n'importe quelle <em>langue</em> à votre rythme", hero_p:"Cours en direct, tuteurs IA et parcours d'experts pour chaque niveau — du grand débutant au locuteur courant.", hero_btn1:'Commencer gratuitement', hero_btn2:'Explorer les langues →', streak_days:'Série de 32 jours', streak_text:'Continuez, vous êtes en feu !', stat1:'Langues disponibles', stat2:'Apprenants', stat3:'Pays', stat4:'Professeurs', sec1_h2:'Choisissez votre langue', sec1_p:"Parcours structurés de A1 à C2 — commencez où vous voulez, apprenez tout.", sec2_h2:'Conçu pour un vrai progrès', sec2_p:"Tous les outils pour passer de débutant à locuteur confiant.", s1_tag:'🎥 Cours en direct', s1_h3:'Apprenez avec de vraies personnes', s1_p:"Sessions hebdomadaires avec des enseignants natifs. Groupes de 8 élèves maximum.", s2_tag:'🤖 IA 24/7', s2_h3:'Votre tuteur disponible à tout moment', s2_p:'Pratiquez la conversation avec une IA qui corrige votre grammaire et prononciation en temps réel.', s3_tag:'✈️ Voyage réel', s3_h3:'De la salle de classe au monde entier', s3_p:'Chaque parcours est conçu pour des situations réelles : voyages, travail, culture.', s4_tag:"📱 Application mobile", s4_h3:'10 minutes par jour changent tout', s4_p:"Dans le bus, à la salle de sport, avant de dormir. L'application s'adapte à votre temps libre.", s5_tag:'🏆 Certifications', s5_h3:'Un diplôme qui ouvre des portes partout', s5_p:'Certificats alignés sur le CECR, reconnus par les universités et les entreprises du monde entier.', s6_tag:"👥 Communauté", s6_h3:"Des milliers d'apprenants comme vous, maintenant", s6_p:"Groupes par langue et niveau, échanges en direct, défis hebdomadaires. N'apprenez plus seul.", cta_h2:'Voulez-vous avoir une autre personnalité ? apprenez une nouvelle langue !', cta_p:"Rejoignez 100 000 apprenants qui ont transformé leur carrière grâce aux langues.", cta_btn:"Commencer gratuitement aujourd'hui", footer_brand_p:'Le meilleur endroit au monde pour apprendre une nouvelle langue.', footer_learn:'Apprendre', footer_company:'Entreprise', footer_support:'Support', f_all_langs:'Toutes les langues', f_paths:"Parcours d'apprentissage", f_live:'Cours en direct', f_certs:'Certificats', f_about:'À propos', f_blog:'Blog', f_careers:'Carrières', f_press:'Presse', f_help:"Centre d'aide", f_community:'Communauté', f_privacy:'Confidentialité', f_terms:'Conditions', footer_copy:'© 2026 Parling Academy. Tous droits réservés.', footer_tagline:'Fait avec ❤️ pour les amoureux des langues', method_h2:'Méthode Parling', method_p:"Un système en 5 étapes qui vous emmène de vos premiers mots à la confiance à l'oral.", m1_h3:'Évaluation du niveau', m1_p:'On commence par un test rapide pour identifier exactement où vous en êtes et construire votre parcours personnel.', m2_h3:'Cours en direct', m2_p:'Sessions hebdomadaires avec des enseignants natifs en groupes de 8 maximum — assez petits pour interagir à chaque cours.', m3_h3:'Pratique IA', m3_p:'Entre les cours, entraînez-vous avec notre tuteur IA 24h/24. Il corrige la grammaire, la prononciation et le vocabulaire en temps réel.', m4_h3:'Situations réelles', m4_p:"Chaque unité est construite autour de la vie réelle : aéroports, réunions, rendez-vous, négociations. Vous apprenez ce que vous utiliserez vraiment.", m5_h3:'Certification', m5_p:"Terminez chaque niveau avec un certificat CECR reconnu internationalement que vous pouvez partager avec des universités et employeurs.", reviews_h2:'Pourquoi les apprenants adorent Parling Academy', reviews_p:'De vrais étudiants, de vrais résultats — du monde entier.', t1_q:'"Je avais essayé trois autres applications avant Parling. Aucune ne me avait fait vraiment parler. Après deux mois ici, je avais ma première vraie conversation en anglais au travail."', t2_q:"\"Les cours en direct sont incroyables. Mon professeur se souvient de tout sur mon travail et on pratique exactement le vocabulaire dont j'ai besoin.\"", t3_q:'"Je voyage beaucoup pour le travail et je devais apprendre rapidement un allemand pratique. La méthode Parling ne ressemble pas du tout à une école — après 6 semaines je commandais à Berlin."', t4_q:"\"La pratique IA entre les cours est révolutionnaire. Je lui parle chaque jour dans les transports et ma prononciation s'est améliorée plus qu'en des années d'école.\"", faq_h2:'Questions fréquentes', faq_p:'Tout ce que vous devez savoir avant de commencer.', faq1_q:'Combien de cours en direct sont inclus par mois ?', faq1_a:'Chaque plan mensuel comprend 4 cours collectifs en direct (un par semaine). Vous pouvez aussi ajouter des sessions individuelles avec votre professeur.', faq2_q:'Quel niveau faut-il pour commencer ?', faq2_a:"Aucune expérience préalable n'est nécessaire. Nous proposons des parcours depuis le niveau zéro (A1) jusqu'au niveau avancé C2.", faq3_q:'Que se passe-t-il si je rate un cours ?', faq3_a:"Toutes les sessions en direct sont enregistrées et disponibles pendant 7 jours. Vous pouvez aussi rejoindre une session de rattrapage la même semaine gratuitement.", faq4_q:'Puis-je changer de langue ou mettre mon abonnement en pause ?', faq4_a:"Oui — vous pouvez changer de langue au début de n'importe quel mois. Vous pouvez aussi mettre votre abonnement en pause jusqu'à 2 mois par an sans perdre votre progression.", faq5_q:'Les certificats sont-ils officiellement reconnus ?', faq5_a:'Nos certificats sont alignés sur le cadre CECR et reconnus par les universités, les entreprises et les organismes en plus de 180 pays.', faq6_q:'En quoi Parling se distingue-t-il des autres applications ?', faq6_a:"La plupart des applications se concentrent sur des exercices individuels. Parling combine l'interaction humaine en direct, la pratique IA 24h/24 et des scénarios réels." },
+    de: { nav_lang:'Sprachen', nav_comp:'Englisch für Unternehmen', nav_1to1:'1 zu 1', nav_contact:'Kontakt', nav_blog:'Blog', nav_cta:'Kostenlos starten', hero_badge:'🌍 Über 100.000 Lernende weltweit', hero_h1:'Beherrsche jede <em>Sprache</em> in deinem eigenen Tempo', hero_p:'Live-Kurse, KI-Tutoren und Lernpfade von Experten für jedes Niveau — vom Anfänger bis zum fließenden Sprecher.', hero_btn1:'Kostenlos lernen', hero_btn2:'Sprachen entdecken →', streak_days:'32-Tage-Serie', streak_text:'Weiter so — du bist auf Feuer!', stat1:'Verfügbare Sprachen', stat2:'Aktive Lernende', stat3:'Länder', stat4:'Lehrer', sec1_h2:'Wähle deine Sprache', sec1_p:'Strukturierte Lernpfade von A1 bis C2 — fang an wo du willst, lerne alles.', sec2_h2:'Für echten Fortschritt gebaut', sec2_p:'Alle Werkzeuge um vom Anfänger zum selbstsicheren Sprecher zu werden.', s1_tag:'🎥 Live-Kurse', s1_h3:'Lerne mit echten Menschen, nicht mit Bildschirmen', s1_p:'Wöchentliche Sitzungen mit Muttersprachlern. Gruppen von maximal 8 Schülern.', s2_tag:'🤖 KI 24/7', s2_h3:'Dein Tutor immer verfügbar, zu jeder Stunde', s2_p:'Übe Konversation mit einer KI, die deine Grammatik und Aussprache in Echtzeit korrigiert.', s3_tag:'✈️ Echte Reise', s3_h3:'Vom Klassenraum in die Welt', s3_p:'Jeder Lernpfad ist für reale Situationen konzipiert: Reisen, Arbeit, Kultur.', s4_tag:'📱 Mobile App', s4_h3:'10 Minuten täglich ändern alles', s4_p:'Im Bus, im Fitnessstudio, vor dem Schlafen. Die App passt sich deiner Freizeit an.', s5_tag:'🏆 Zertifikate', s5_h3:'Ein Abschluss, der überall Türen öffnet', s5_p:'Am GER-Rahmen ausgerichtete Zertifikate, anerkannt von Universitäten und Unternehmen weltweit.', s6_tag:'👥 Gemeinschaft', s6_h3:'Tausende lernen dasselbe wie du, jetzt', s6_p:'Gruppen nach Sprache und Niveau, Live-Austausch, wöchentliche Challenges.', cta_h2:'Möchtest du eine andere Persönlichkeit? Lerne eine neue Sprache!', cta_p:'Schließe dich 100.000 Lernenden an, die ihre Karriere durch Sprache verändert haben.', cta_btn:'Heute kostenlos starten', footer_brand_p:'Der beste Ort der Welt, um eine neue Sprache zu lernen.', footer_learn:'Lernen', footer_company:'Unternehmen', footer_support:'Support', f_all_langs:'Alle Sprachen', f_paths:'Lernpfade', f_live:'Live-Kurse', f_certs:'Zertifikate', f_about:'Über uns', f_blog:'Blog', f_careers:'Karriere', f_press:'Presse', f_help:'Hilfezentrum', f_community:'Gemeinschaft', f_privacy:'Datenschutz', f_terms:'AGB', footer_copy:'© 2026 Parling Academy. Alle Rechte vorbehalten.', footer_tagline:'Mit ❤️ für Sprachliebhaber gemacht', method_h2:'Parling-Methode', method_p:'Ein bewährtes 5-Schritte-System, das dich von deinen ersten Worten zum sicheren Sprechen bringt.', m1_h3:'Niveaudiagnose', m1_p:'Wir beginnen mit einem kurzen Test, um genau festzustellen, wo du stehst, und erstellen deinen persönlichen Lernpfad.', m2_h3:'Live-Unterricht', m2_p:'Wöchentliche Sitzungen mit Muttersprachlern in Gruppen bis 8 — klein genug für echte Interaktion in jeder Stunde.', m3_h3:'KI-Training', m3_p:'Zwischen den Stunden übst du 24/7 mit unserem KI-Tutor. Er korrigiert Grammatik, Aussprache und Wortschatz in Echtzeit.', m4_h3:'Reale Situationen', m4_p:'Jede Einheit ist um das echte Leben aufgebaut: Flughäfen, Meetings, Verabredungen, Verhandlungen. Du lernst, was du wirklich brauchen wirst.', m5_h3:'Zertifizierung', m5_p:'Beende jedes Niveau mit einem international anerkannten GER-Zertifikat, das du mit Hochschulen und Arbeitgebern teilen kannst.', reviews_h2:'Warum Lernende Parling Academy lieben', reviews_p:'Echte Studierende, echte Ergebnisse — aus aller Welt.', t1_q:'"Ich hatte drei andere Apps ausprobiert, bevor ich zu Parling kam. Keine hat mich wirklich sprechen lassen. Nach zwei Monaten hier führte ich mein erstes Gespräch auf Englisch bei der Arbeit."', t2_q:'"Die Live-Stunden sind unglaublich. Meine Lehrerin erinnert sich an alles über meinen Beruf und wir üben genau das Vokabular, das ich brauche."', t3_q:'"Ich reise viel für die Arbeit und brauchte schnell echtes Deutsch. Die Parling-Methode ist überhaupt nicht wie Schule — nach 6 Wochen habe ich in Berlin bestellt."', t4_q:'"Das KI-Training zwischen den Stunden ist bahnbrechend. Ich spreche täglich während meines Arbeitswegs damit und meine Aussprache hat sich mehr verbessert als in Schuljahren."', faq_h2:'Häufig gestellte Fragen', faq_p:'Alles, was du wissen musst, bevor du anfängst.', faq1_q:'Wie viele Live-Stunden sind im Monatsplan enthalten?', faq1_a:'Jeder Monatsplan enthält 4 Gruppenunterrichtsstunden (eine pro Woche). Du kannst auch Einzelstunden mit deinem Lehrer hinzubuchen.', faq2_q:'Welches Niveau benötige ich zum Starten?', faq2_a:'Keine Vorkenntnisse nötig. Wir bieten Lernpfade ab absolutem Anfänger (A1) bis zum Fortgeschrittenen C2 an.', faq3_q:'Was passiert, wenn ich eine Stunde verpasse?', faq3_a:'Alle Live-Sitzungen werden aufgezeichnet und sind 7 Tage nach dem Unterricht verfügbar. Du kannst auch kostenlos an einer Wiederholungsstunde in der gleichen Woche teilnehmen.', faq4_q:'Kann ich die Sprache wechseln oder mein Abonnement pausieren?', faq4_a:'Ja — du kannst deine Sprache zu Beginn eines neuen Monats wechseln. Du kannst auch dein Abonnement bis zu 2 Monate pro Jahr pausieren, ohne deinen Fortschritt zu verlieren.', faq5_q:'Werden die Zertifikate offiziell anerkannt?', faq5_a:'Unsere Zertifikate sind am GER-Rahmen ausgerichtet und werden von Universitäten, Unternehmen und Einwanderungsbehörden in über 180 Ländern anerkannt.', faq6_q:'Wie unterscheidet sich Parling von anderen Apps?', faq6_a:'Die meisten Apps konzentrieren sich auf Einzelübungen. Parling kombiniert Live-Interaktion mit Menschen, 24/7 KI-Training und reale Szenarien. Du lernst nicht nur eine Sprache — du lernst sie zu nutzen.' },
+    it: { nav_lang:'Lingue', nav_comp:'Inglese per aziende', nav_1to1:'1 a 1', nav_contact:'Contatto', nav_blog:'Blog', nav_cta:'Inizia gratis', hero_badge:'🌍 Oltre 100.000 studenti nel mondo', hero_h1:'Padroneggia qualsiasi <em>lingua</em> al tuo ritmo', hero_p:'Lezioni dal vivo, tutor IA e percorsi costruiti da esperti per ogni livello — dal principiante al parlante fluente.', hero_btn1:'Inizia gratis', hero_btn2:'Esplora le lingue →', streak_days:'Serie di 32 giorni', streak_text:'Continua così, sei in fiamme!', stat1:'Lingue disponibili', stat2:'Studenti attivi', stat3:'Paesi', stat4:'Insegnanti', sec1_h2:'Scegli la tua lingua', sec1_p:'Percorsi strutturati da A1 a C2 — inizia dove vuoi, impara tutto.', sec2_h2:'Costruito per il vero progresso', sec2_p:'Tutti gli strumenti per passare da principiante a parlante sicuro.', s1_tag:'🎥 Lezioni dal vivo', s1_h3:'Impara con persone reali, non con schermi', s1_p:'Sessioni settimanali con insegnanti madrelingua. Gruppi di massimo 8 studenti.', s2_tag:'🤖 IA 24/7', s2_h3:'Il tuo tutor sempre disponibile, a qualsiasi ora', s2_p:'Pratica la conversazione con una IA che corregge la tua grammatica e pronuncia in tempo reale.', s3_tag:"✈️ Viaggio reale", s3_h3:"Dall'aula al mondo", s3_p:'Ogni percorso è progettato per situazioni reali: viaggi, lavoro, cultura.', s4_tag:'📱 App mobile', s4_h3:'10 minuti al giorno cambiano tutto', s4_p:"In autobus, in palestra, prima di dormire. L'app si adatta al tuo tempo libero.", s5_tag:'🏆 Certificazioni', s5_h3:'Un titolo che apre porte in qualsiasi paese', s5_p:'Certificati allineati al QCER, riconosciuti da università e aziende di tutto il mondo.', s6_tag:'👥 Comunità', s6_h3:'Migliaia che imparano come te, adesso', s6_p:'Gruppi per lingua e livello, scambi dal vivo, sfide settimanali.', cta_h2:"Vorresti avere un'altra personalità? impara una nuova lingua!", cta_p:'Unisciti a 100.000 studenti che hanno trasformato la loro carriera attraverso le lingue.', cta_btn:'Inizia gratis oggi', footer_brand_p:'Il posto migliore del mondo per imparare una nuova lingua.', footer_learn:'Imparare', footer_company:'Azienda', footer_support:'Supporto', f_all_langs:'Tutte le lingue', f_paths:'Percorsi di apprendimento', f_live:'Lezioni dal vivo', f_certs:'Certificati', f_about:'Chi siamo', f_blog:'Blog', f_careers:'Carriere', f_press:'Stampa', f_help:'Centro assistenza', f_community:'Comunità', f_privacy:'Privacy', f_terms:'Termini', footer_copy:'© 2026 Parling Academy. Tutti i diritti riservati.', footer_tagline:'Fatto con ❤️ per gli amanti delle lingue', method_h2:'Metodo Parling', method_p:'Un sistema collaudato in 5 fasi che ti porta dalle prime parole alla sicurezza nel parlare.', m1_h3:'Valutazione del livello', m1_p:'Iniziamo con un breve test diagnostico per capire esattamente dove sei e costruire il tuo percorso personale.', m2_h3:'Lezioni dal vivo', m2_p:'Sessioni settimanali con insegnanti madrelingua in gruppi fino a 8 — piccoli abbastanza per interagire ogni lezione.', m3_h3:'Pratica con IA', m3_p:'Tra le lezioni, esercitati con il nostro tutor IA 24/7. Corregge grammatica, pronuncia e vocabolario in tempo reale.', m4_h3:'Situazioni reali', m4_p:"Ogni unità è costruita attorno alla vita reale: aeroporti, riunioni, appuntamenti, trattative. Impari quello che userai davvero.", m5_h3:'Certificazione', m5_p:'Completa ogni livello con un certificato QCER riconosciuto internazionalmente che puoi condividere con università e datori di lavoro.', reviews_h2:'Perché gli studenti amano Parling Academy', reviews_p:'Studenti reali, risultati reali — da tutto il mondo.', t1_q:'"Avevo provato tre altre app prima di Parling. Nessuna mi aveva fatto parlare davvero. Dopo due mesi qui ho avuto la mia prima conversazione completa in inglese al lavoro."', t2_q:'"Le lezioni dal vivo sono incredibili. La mia insegnante ricorda tutto del mio lavoro e pratichiamo esattamente il vocabolario di cui ho bisogno."', t3_q:'"Viaggio molto per lavoro e avevo bisogno di imparare il tedesco velocemente. Il metodo Parling non assomiglia per niente alla scuola — dopo 6 settimane ordinavo da mangiare a Berlino."', t4_q:'"La pratica IA tra le lezioni è rivoluzionaria. Le parlo ogni giorno durante il tragitto e la mia pronuncia è migliorata più che in anni di scuola."', faq_h2:'Domande frequenti', faq_p:'Tutto quello che devi sapere prima di iniziare.', faq1_q:'Quante lezioni dal vivo sono incluse nel piano mensile?', faq1_a:'Ogni piano mensile include 4 lezioni di gruppo dal vivo (una a settimana). Puoi anche aggiungere sessioni individuali con il tuo insegnante a una tariffa aggiuntiva.', faq2_q:'Che livello serve per iniziare?', faq2_a:'Nessuna esperienza precedente necessaria. Offriamo percorsi da zero assoluto (A1) fino al livello avanzato C2.', faq3_q:'Cosa succede se salto una lezione?', faq3_a:'Tutte le sessioni dal vivo vengono registrate e sono disponibili per 7 giorni dopo la lezione. Puoi anche partecipare a una sessione di recupero la stessa settimana senza costi aggiuntivi.', faq4_q:"Posso cambiare lingua o sospendere l'abbonamento?", faq4_a:"Sì — puoi cambiare lingua all'inizio di qualsiasi nuovo mese. Puoi anche sospendere l'abbonamento fino a 2 mesi all'anno senza perdere i progressi.", faq5_q:'I certificati hanno riconoscimento ufficiale?', faq5_a:'I nostri certificati sono allineati al QCER e sono ampiamente riconosciuti da università, aziende e uffici immigrazione in oltre 180 paesi.', faq6_q:'Come si differenzia Parling da altre app?', faq6_a:'La maggior parte delle app si concentra su esercizi individuali. Parling combina interazione umana dal vivo, pratica IA 24/7 e scenari del mondo reale.' },
+    pt: { nav_lang:'Idiomas', nav_comp:'Inglês para empresas', nav_1to1:'1 para 1', nav_contact:'Contato', nav_blog:'Blog', nav_cta:'Comece grátis', hero_badge:'🌍 +100.000 alunos no mundo', hero_h1:'Domine qualquer <em>idioma</em> no seu ritmo', hero_p:'Aulas ao vivo, tutores de IA e trilhas criadas por especialistas para cada nível — do iniciante ao falante fluente.', hero_btn1:'Comece grátis', hero_btn2:'Explorar idiomas →', streak_days:'Série de 32 dias', streak_text:'Continue assim, você está pegando fogo!', stat1:'Idiomas disponíveis', stat2:'Alunos ativos', stat3:'Países', stat4:'Professores', sec1_h2:'Escolha seu idioma', sec1_p:'Trilhas estruturadas de A1 a C2 — comece onde quiser, aprenda tudo.', sec2_h2:'Construído para o progresso real', sec2_p:'Todas as ferramentas para ir de iniciante a falante confiante.', s1_tag:'🎥 Aulas ao vivo', s1_h3:'Aprenda com pessoas reais, não telas', s1_p:'Sessões semanais com professores nativos. Grupos de no máximo 8 alunos.', s2_tag:'🤖 IA 24/7', s2_h3:'Seu tutor sempre disponível, a qualquer hora', s2_p:'Pratique conversação com uma IA que corrige sua gramática e pronúncia em tempo real.', s3_tag:'✈️ Viagem real', s3_h3:'Da sala de aula para o mundo', s3_p:'Cada trilha é projetada para situações reais: viagens, trabalho, cultura.', s4_tag:'📱 App móvel', s4_h3:'10 minutos por dia mudam tudo', s4_p:'No ônibus, na academia, antes de dormir. O app se adapta ao seu tempo livre.', s5_tag:'🏆 Certificações', s5_h3:'Um título que abre portas em qualquer país', s5_p:'Certificados alinhados ao QECR, reconhecidos por universidades e empresas do mundo todo.', s6_tag:'👥 Comunidade', s6_h3:'Milhares aprendendo o mesmo que você, agora', s6_p:'Grupos por idioma e nível, trocas ao vivo, desafios semanais.', cta_h2:'Gostaria de ter outra personalidade? aprenda um novo idioma!', cta_p:'Junte-se a 100.000 alunos que transformaram suas carreiras através dos idiomas.', cta_btn:'Comece grátis hoje', footer_brand_p:'O melhor lugar do mundo para aprender um novo idioma.', footer_learn:'Aprender', footer_company:'Empresa', footer_support:'Suporte', f_all_langs:'Todos os idiomas', f_paths:'Trilhas de aprendizado', f_live:'Aulas ao vivo', f_certs:'Certificados', f_about:'Sobre', f_blog:'Blog', f_careers:'Carreiras', f_press:'Imprensa', f_help:'Central de ajuda', f_community:'Comunidade', f_privacy:'Privacidade', f_terms:'Termos', footer_copy:'© 2026 Parling Academy. Todos os direitos reservados.', footer_tagline:'Feito com ❤️ para amantes de idiomas', method_h2:'Método Parling', method_p:'Um sistema comprovado de 5 passos que te leva das primeiras palavras à confiança para falar.', m1_h3:'Avaliação de nível', m1_p:'Começamos com um breve diagnóstico para identificar exatamente onde você está e construir seu caminho de aprendizado pessoal.', m2_h3:'Aulas ao vivo', m2_p:'Sessões semanais com professores nativos em grupos de até 8 — pequenos o suficiente para interação real em cada aula.', m3_h3:'Prática com IA', m3_p:'Entre as aulas, pratique com nosso tutor de IA 24h. Ele corrige gramática, pronúncia e vocabulário em tempo real.', m4_h3:'Situações reais', m4_p:'Cada unidade é construída em torno da vida real: aeroportos, reuniões, encontros, negociações. Você aprende o que vai usar de verdade.', m5_h3:'Certificação', m5_p:'Conclua cada nível com um certificado QECR reconhecido internacionalmente que você pode compartilhar com universidades e empregadores.', reviews_h2:'Por que os alunos amam a Parling Academy', reviews_p:'Alunos reais, resultados reais — do mundo inteiro.', t1_q:'"Tentei três outros aplicativos antes do Parling. Nenhum me fez falar de verdade. Depois de dois meses aqui tive minha primeira conversa completa em inglês no trabalho."', t2_q:'"As aulas ao vivo são incríveis. Minha professora lembra de tudo sobre meu trabalho e praticamos exatamente o vocabulário que preciso."', t3_q:'"Viajo muito a trabalho e precisava de alemão real rápido. O método Parling não tem nada a ver com a escola — depois de 6 semanas eu estava pedindo comida em Berlim."', t4_q:'"A prática de IA entre as aulas é revolucionária. Falo com ela todos os dias no trajeto e minha pronúncia melhorou mais do que em anos de escola."', faq_h2:'Perguntas frequentes', faq_p:'Tudo o que você precisa saber antes de começar.', faq1_q:'Quantas aulas ao vivo estão incluídas no plano mensal?', faq1_a:'Cada plano mensal inclui 4 aulas em grupo ao vivo (uma por semana). Você também pode adicionar sessões individuais com seu professor por uma taxa adicional.', faq2_q:'Que nível preciso para começar?', faq2_a:'Nenhuma experiência prévia necessária. Oferecemos trilhas começando do zero absoluto (A1) até o nível avançado C2.', faq3_q:'O que acontece se eu perder uma aula?', faq3_a:'Todas as sessões ao vivo são gravadas e ficam disponíveis por 7 dias após a aula. Você também pode entrar em uma sessão de reposição na mesma semana sem custo adicional.', faq4_q:'Posso trocar de idioma ou pausar minha assinatura?', faq4_a:'Sim — você pode trocar o idioma no início de qualquer novo mês. Também pode pausar a assinatura por até 2 meses por ano sem perder seu progresso.', faq5_q:'Os certificados têm reconhecimento oficial?', faq5_a:'Nossos certificados são alinhados ao QECR e amplamente reconhecidos por universidades, empresas e órgãos de imigração em mais de 180 países.', faq6_q:'Como o Parling é diferente de outros aplicativos?', faq6_a:'A maioria dos aplicativos foca em exercícios individuais. O Parling combina interação humana ao vivo, prática de IA 24h e cenários do mundo real.' },
+    zh: { nav_lang:'语言', nav_comp:'企业英语', nav_1to1:'一对一', nav_contact:'联系', nav_blog:'博客', nav_cta:'免费开始', hero_badge:'🌍 全球超过100,000名学习者', hero_h1:'以自己的节奏掌握任何<em>语言</em>', hero_p:'直播课、AI导师和专家构建的学习路径，适合每个级别——从零基础到流利表达。', hero_btn1:'免费开始学习', hero_btn2:'探索语言 →', streak_days:'32天连续学习', streak_text:'继续保持，你太棒了！', stat1:'可用语言', stat2:'活跃学习者', stat3:'国家', stat4:'教师', sec1_h2:'选择你的语言', sec1_p:'从A1到C2的结构化学习路径——从任何地方开始，学习一切。', sec2_h2:'为真正的进步而构建', sec2_p:'你从初学者到自信表达者所需的每个工具。', s1_tag:'🎥 直播课', s1_h3:'与真实的人学习，而不是屏幕', s1_p:'与母语教师进行每周课程。最多8名学生的小组。', s2_tag:'🤖 AI 24/7', s2_h3:'随时可用的导师，任何时间', s2_p:'与AI练习对话，实时纠正语法和发音，无需等待。', s3_tag:'✈️ 真实旅行', s3_h3:'从课堂到世界', s3_p:'每条路径都为真实情境设计：旅行、工作、文化。', s4_tag:'📱 移动应用', s4_h3:'每天10分钟改变一切', s4_p:'在公交车上、健身房、睡觉前。应用适应你的空闲时间。', s5_tag:'🏆 认证', s5_h3:'一个在任何国家都能打开大门的证书', s5_p:'与CEFR框架对齐的证书，被全球大学和公司认可。', s6_tag:'👥 社区', s6_h3:'现在有数千人和你学习同样的内容', s6_p:'按语言和级别分组，实时交流，每周挑战。', cta_h2:'你想拥有另一种个性吗？学习一门新语言！', cta_p:'加入100,000名通过语言改变职业和生活的学习者。', cta_btn:'今天免费开始', footer_brand_p:'世界上学习新语言的最佳场所。', footer_learn:'学习', footer_company:'公司', footer_support:'支持', f_all_langs:'所有语言', f_paths:'学习路径', f_live:'直播课', f_certs:'证书', f_about:'关于我们', f_blog:'博客', f_careers:'职业', f_press:'新闻', f_help:'帮助中心', f_community:'社区', f_privacy:'隐私', f_terms:'条款', footer_copy:'© 2026 Parling Academy. 保留所有权利。', footer_tagline:'用❤️为语言爱好者制作', method_h2:'Parling方法论', method_p:'经过验证的5步系统，带你从第一个词到自信开口说话。', m1_h3:'水平评估', m1_p:'我们从简短的诊断测试开始，精确确定你的起点，并构建个人学习路径。', m2_h3:'直播课程', m2_p:'每周与母语教师进行课程，小组最多8人——小到足以每节课都能真正互动。', m3_h3:'AI练习', m3_p:'课间随时与我们的AI导师练习。实时纠正语法、发音和词汇。', m4_h3:'真实情景', m4_p:'每个单元都围绕现实生活构建：机场、会议、约会、谈判。你学的是真正会用到的内容。', m5_h3:'认证', m5_p:'完成每个级别，获得国际认可的CEFR证书，可与大学和雇主分享。', reviews_h2:'为什么学员喜爱Parling Academy', reviews_p:'真实学员，真实成果——来自全球各地。', t1_q:'"在Parling之前我试过三个其他应用。没有一个让我真正开口说话。在这里两个月后，我在工作中完成了第一次完整的英语对话。"', t2_q:'"直播课太棒了。我的老师记得我工作的一切，我们练习的正是我需要的词汇。完全不是千篇一律的课程。"', t3_q:'"我经常出差，需要快速学好实用德语。Parling的方法和学校完全不一样——6周后我在柏林点餐完全没问题。"', t4_q:'"课间的AI练习彻底改变了我的学习。我每天通勤时都与它对话，发音进步比多年学校学习还大。"', faq_h2:'常见问题', faq_p:'开始之前你需要了解的一切。', faq1_q:'月度计划包含多少节直播课？', faq1_a:'每个月度计划包含4节小组直播课（每周一节）。你也可以额外购买与老师的一对一课程。', faq2_q:'开始需要什么水平？', faq2_a:'无需任何基础。我们提供从零基础（A1）到高级C2的学习路径。开始时的简短水平测试确保你加入正确的小组。', faq3_q:'如果错过一节课怎么办？', faq3_a:'所有直播课录制后7天内可回看。你也可以在同一周免费参加补课。', faq4_q:'我可以更换语言或暂停订阅吗？', faq4_a:'可以——你可以在任何新月份开始时更换学习语言。每年还可以暂停订阅最多2个月，不会失去任何进度。', faq5_q:'证书是否有官方认可？', faq5_a:'我们的证书与CEFR国际框架对齐，获得全球180多个国家的大学、企业和移民机构的广泛认可。', faq6_q:'Parling与其他应用有何不同？', faq6_a:'大多数应用专注于个人练习。Parling将直播人类互动、24/7 AI练习和真实场景相结合。你不只是学一门语言——你学的是如何使用它。' }
+  };
+  const FLAGS = { en:'🇬🇧', es:'🇪🇸', fr:'🇫🇷', de:'🇩🇪', it:'🇮🇹', pt:'🇧🇷', zh:'🇨🇳' };
+  const CODES = { en:'EN', es:'ES', fr:'FR', de:'DE', it:'IT', pt:'PT', zh:'中文' };
+  let currentLang = localStorage.getItem('parlLang') || 'en';
+
+  function applyLang(lang) {
+    const t = LANGS[lang];
+    document.querySelectorAll('[data-i18n]').forEach(el => { if (t[el.dataset.i18n]) el.textContent = t[el.dataset.i18n]; });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => { if (t[el.dataset.i18nHtml]) el.innerHTML = t[el.dataset.i18nHtml]; });
+    document.getElementById('langFlag').textContent = FLAGS[lang];
+    document.getElementById('langCode').textContent = CODES[lang];
+    document.querySelectorAll('.lang-option').forEach(o => o.classList.toggle('active', o.dataset.lang === lang));
+    localStorage.setItem('parlLang', lang);
+    currentLang = lang;
+  }
+
+  document.getElementById('langBtn').addEventListener('click', e => {
+    e.stopPropagation();
+    document.getElementById('langPicker').classList.toggle('open');
+  });
+  document.querySelectorAll('.lang-option').forEach(btn => {
+    btn.addEventListener('click', () => {
+      applyLang(btn.dataset.lang);
+      document.getElementById('langPicker').classList.remove('open');
+    });
+  });
+  document.addEventListener('click', () => document.getElementById('langPicker').classList.remove('open'));
+  applyLang(currentLang);
+
+  /* FAQ accordion */
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => item.classList.toggle('open'));
+  });
+
+  /* Country cycler */
+  (function() {
+    const countries = ['México','Estados Unidos','España','Venezuela','Perú','Bolivia','Argentina','Chile','Colombia','Brasil','Uruguay'];
+    const el = document.getElementById('countryCycler');
+    let i = 0;
+    setInterval(() => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(-6px)';
+      setTimeout(() => {
+        i = (i + 1) % countries.length;
+        el.textContent = countries[i];
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      }, 400);
+    }, 3000);
+  })();
+</script>
 </body>
 </html>
