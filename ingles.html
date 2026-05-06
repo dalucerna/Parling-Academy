@@ -249,7 +249,7 @@
   <div class="logo"><a href="index.html"><img src="logo-nobg.png?v=2" alt="Parling Academy"></a></div>
   <div class="nav-links">
     <div class="nav-lang-menu">
-      <button class="nav-lang-trigger"><span class="nav-lang-text">Idiomas</span> <span class="nav-lang-chev">▼</span></button>
+      <button class="nav-lang-trigger">Idiomas <span class="nav-lang-chev">▼</span></button>
       <div class="nav-lang-panel">
         <a href="ingles.html" class="current">🇬🇧 Inglés · English</a>
         <a href="espanol.html">🇪🇸 Español</a>
@@ -995,8 +995,8 @@
     // Nav CTA
     const navCta = document.querySelector('.nav-cta');
     if (navCta) navCta.textContent = t.nav_cta;
-    const triggerText = document.querySelector('.nav-lang-text');
-    if (triggerText) triggerText.textContent = t.nav_lang;
+    const langTrigger = document.querySelector('.nav-lang-trigger');
+    if (langTrigger) langTrigger.innerHTML = t.nav_lang + ' <span class="nav-lang-chev">▼</span>';
 
     // Back link
     const backLink = document.querySelector('.back-link');
