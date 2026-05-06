@@ -469,7 +469,7 @@
       nav_home: 'Home',
       nav_live: 'Live Classes',
       nav_1to1: '1 to 1',
-      nav_contact: 'Contact', nav_blog: 'Blog',
+      nav_contact: 'Contact', nav_blog: 'Blog', nav_lang: 'Languages',
       nav_comp: 'Para empresas',
       nav_cta: 'Empieza gratis',
       back_link: '\u2190 All languages',
@@ -537,7 +537,7 @@
       nav_home: 'Inicio',
       nav_live: 'Clases en vivo',
       nav_1to1: '1 a 1',
-      nav_contact: 'Contacto', nav_blog: 'Blog',
+      nav_contact: 'Contacto', nav_blog: 'Blog', nav_lang: 'Idiomas',
       nav_comp: 'Para empresas',
       nav_cta: 'Empieza gratis',
       back_link: '\u2190 Todos los idiomas',
@@ -605,7 +605,7 @@
       nav_home: 'Accueil',
       nav_live: 'Cours en direct',
       nav_1to1: '1 pour 1',
-      nav_contact: 'Contact', nav_blog: 'Blog',
+      nav_contact: 'Contact', nav_blog: 'Blog', nav_lang: 'Languages',
       nav_comp: 'Pour les entreprises',
       nav_cta: 'Commencer gratuitement',
       back_link: '\u2190 Toutes les langues',
@@ -673,7 +673,7 @@
       nav_home: 'Startseite',
       nav_live: 'Live-Kurse',
       nav_1to1: '1 zu 1',
-      nav_contact: 'Kontakt', nav_blog: 'Blog',
+      nav_contact: 'Kontakt', nav_blog: 'Blog', nav_lang: 'Sprachen',
       nav_comp: 'F\u00fcr Unternehmen',
       nav_cta: 'Kostenlos starten',
       back_link: '\u2190 Alle Sprachen',
@@ -741,7 +741,7 @@
       nav_home: 'Home',
       nav_live: 'Lezioni dal vivo',
       nav_1to1: '1 a 1',
-      nav_contact: 'Contatto', nav_blog: 'Blog',
+      nav_contact: 'Contatto', nav_blog: 'Blog', nav_lang: 'Lingue',
       nav_comp: 'Per le aziende',
       nav_cta: 'Inizia gratis',
       back_link: '\u2190 Tutte le lingue',
@@ -809,7 +809,7 @@
       nav_home: 'In\u00edcio',
       nav_live: 'Aulas ao vivo',
       nav_1to1: '1 para 1',
-      nav_contact: 'Contato', nav_blog: 'Blog',
+      nav_contact: 'Contato', nav_blog: 'Blog', nav_lang: 'Idiomas',
       nav_comp: 'Para empresas',
       nav_cta: 'Comece gr\u00e1tis',
       back_link: '\u2190 Todos os idiomas',
@@ -877,7 +877,7 @@
       nav_home: '\u9996\u9875',
       nav_live: '\u76f4\u64ad\u8bfe',
       nav_1to1: '1\u5bf91',
-      nav_contact: '\u8054\u7cfb', nav_blog: 'Blog',
+      nav_contact: '\u8054\u7cfb', nav_blog: 'Blog', nav_lang: 'Languages',
       nav_comp: '\u4f01\u4e1a\u670d\u52a1',
       nav_cta: '\u514d\u8d39\u5f00\u59cb',
       back_link: '\u2190 \u6240\u6709\u8bed\u8a00',
@@ -995,6 +995,8 @@
     // Nav CTA
     const navCta = document.querySelector('.nav-cta');
     if (navCta) navCta.textContent = t.nav_cta;
+    const trigger = document.querySelector('.nav-lang-trigger');
+    if (trigger) trigger.childNodes[0].textContent = t.nav_lang + ' ';
 
     // Back link
     const backLink = document.querySelector('.back-link');
