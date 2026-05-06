@@ -297,6 +297,20 @@
     }
     .btn-white:hover { transform: translateY(-2px); }
 
+    /* ── Founders ── */
+    .founders-section { padding: 70px 5%; text-align: center; background: var(--surface); }
+    .founders-section h2 { font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
+    .founders-sub { color: var(--muted); margin-bottom: 48px; font-size: 1rem; }
+    .founders-grid { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; max-width: 820px; margin: 0 auto; }
+    .founder-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 32px 28px; width: 340px; text-align: center; transition: border-color .2s, transform .2s; }
+    .founder-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .founder-card img { width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--accent); object-fit: cover; margin-bottom: 16px; }
+    .founder-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 4px; }
+    .founder-role { font-size: .78rem; color: var(--accent2); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 14px; }
+    .founder-bio { color: var(--muted); font-size: .9rem; line-height: 1.65; margin-bottom: 16px; }
+    .founder-tags { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+    .founder-tags span { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-size: .78rem; color: var(--muted); }
+
     /* ── Footer ── */
     footer {
       background: var(--surface); border-top: 1px solid var(--border);
@@ -964,8 +978,36 @@
   <button class="btn-white" data-i18n="cta_btn">Get started free today</button>
 </div>
 
+<!-- FOUNDERS -->
+<section class="founders-section" id="contacto">
+  <h2>Nuestros cofundadores</h2>
+  <p class="founders-sub">Las personas detrás de Parling Academy</p>
+  <div class="founders-grid">
+    <div class="founder-card">
+      <img src="https://i.pravatar.cc/120?img=47" alt="Cynthia Casana">
+      <h3>Cynthia Casana</h3>
+      <span class="founder-role">Co-fundadora</span>
+      <p class="founder-bio">Licenciada en Relaciones Internacionales. Vivió y estudió en Francia, donde desarrolló su pasión por el aprendizaje de idiomas y las culturas del mundo.</p>
+      <div class="founder-tags">
+        <span>🇫🇷 Francia</span>
+        <span>Relaciones Internacionales</span>
+      </div>
+    </div>
+    <div class="founder-card">
+      <img src="https://i.pravatar.cc/120?img=68" alt="David Casana">
+      <h3>David Casana</h3>
+      <span class="founder-role">Co-fundador</span>
+      <p class="founder-bio">Especialista en Comercio Internacional. Vivió y estudió en Estados Unidos, donde adquirió una perspectiva global del mundo de los negocios y la educación.</p>
+      <div class="founder-tags">
+        <span>🇺🇸 EE.UU.</span>
+        <span>Comercio Internacional</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
-<footer id="contacto">
+<footer>
   <div class="footer-grid">
     <div class="footer-brand">
       <div class="logo"><img src="logo-nobg.png?v=2" alt="Parling Academy"></div>
