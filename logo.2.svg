@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 68">
+  <path d="M38 23 Q38 17 44 17 L71 19 L71 50 L44 48 Q38 48 38 42 Z" fill="none" stroke="#fff" stroke-width="2.2"/>
+  <path d="M77 19 L104 17 Q110 17 110 23 L110 42 Q110 48 104 48 L77 50 Z" fill="none" stroke="#fff" stroke-width="2.2"/>
+  <path d="M71 19 L74 21 L77 19" fill="none" stroke="#fff" stroke-width="2.2"/>
+  <path d="M71 50 L74 48 L77 50" fill="none" stroke="#fff" stroke-width="2.2"/>
+  <rect x="89" y="5" width="36" height="28" rx="9" fill="#7c3aed"/>
+  <polygon points="95,33 91,43 105,33" fill="#7c3aed"/>
+  <rect x="107" y="12" width="25" height="20" rx="7" fill="#f97316"/>
+  <polygon points="111,32 109,40 119,32" fill="#f97316"/>
+  <text x="74" y="64" text-anchor="middle" fill="#fff" font-family="'Segoe UI',system-ui,sans-serif" font-size="10" font-weight="800" letter-spacing="2.5">PARLING ACADEMY</text>
+</svg>

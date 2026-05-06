@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parling Academy — Aprende el idioma que quieras</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #0a0b14;
+      --surface: #12131e;
+      --card:    #1a1b28;
+      --border:  #252636;
+      --accent:  #7c3aed;
+      --accent2: #06b6d4;
+      --green:   #10b981;
+      --text:    #f1f1f6;
+      --muted:   #8888aa;
+      --radius:  14px;
+      --font:    'Segoe UI', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--bg);
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 40px 40px;
+      color: var(--text); font-family: var(--font); line-height: 1.6; overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,11,20,.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 64px;
+    }
+    .logo img { height: 48px; width: auto; display: block; mix-blend-mode: screen; }
+    .nav-links { display: flex; gap: 2rem; font-size: .9rem; color: var(--muted); }
+    .nav-links a { transition: color .2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      border: 1.5px solid var(--accent2); color: var(--accent2);
+      padding: .48rem 1.2rem; border-radius: 8px; font-weight: 600; font-size: .88rem;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: rgba(6,182,212,.1); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; overflow: hidden;
+      min-height: 92vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 80px 5% 100px;
+    }
+
+    /* blobs igual a la imagen */
+    .blob-a {
+      position: absolute; bottom: -80px; right: -120px;
+      width: 500px; height: 500px;
+      background: radial-gradient(ellipse at 40% 50%, #0c3d6e 0%, #071e3d 55%, transparent 75%);
+      border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+      opacity: .85;
+    }
+    .blob-b {
+      position: absolute; bottom: 30px; right: 30px;
+      width: 280px; height: 280px;
+      background: radial-gradient(ellipse at 50% 50%, #06b6d4 0%, #0284c7 55%, transparent 75%);
+      border-radius: 42% 58% 36% 64% / 58% 43% 57% 42%;
+      opacity: .55;
+    }
+    .blob-c {
+      position: absolute; top: -120px; left: -120px;
+      width: 360px; height: 360px;
+      background: radial-gradient(circle, rgba(124,58,237,.25) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    /* icon */
+    .hero-icon { width: 78px; height: 78px; margin: 0 auto 28px; position: relative; z-index: 1; }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.1;
+      margin-bottom: 1.2rem; max-width: 680px; position: relative; z-index: 1;
+    }
+    .hero p {
+      color: var(--muted); font-size: 1.05rem; max-width: 480px;
+      margin: 0 auto 2.4rem; position: relative; z-index: 1;
+    }
+    .hero-actions {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 2.4rem; position: relative; z-index: 1;
+    }
+    .btn-solicitar {
+      border: 1.5px solid var(--accent2); color: var(--accent2);
+      padding: .85rem 2.4rem; border-radius: 10px;
+      font-weight: 700; font-size: .95rem; letter-spacing: .6px;
+      transition: background .2s, transform .15s;
+    }
+    .btn-solicitar:hover { background: rgba(6,182,212,.1); transform: translateY(-2px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #a855f7);
+      color: #fff; padding: .85rem 2.4rem; border-radius: 10px;
+      font-weight: 700; font-size: .95rem; border: none; cursor: pointer;
+      box-shadow: 0 4px 20px rgba(124,58,237,.35);
+      transition: transform .15s, box-shadow .15s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(124,58,237,.5); }
+    .phone-cta { position: relative; z-index: 1; }
+    .phone-cta small { display: block; color: var(--muted); font-size: .8rem; margin-bottom: 4px; }
+    .phone-cta strong { font-size: 1.4rem; letter-spacing: 1.5px; }
+
+    /* ── STATS ── */
+    .stats {
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 40px 5%; display: flex; justify-content: center; gap: 60px; flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-num { font-size: 2rem; font-weight: 800; color: var(--accent2); }
+    .stat-lbl { font-size: .82rem; color: var(--muted); }
+
+    /* ── SECTIONS ── */
+    .section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
+    .sec-head { text-align: center; margin-bottom: 50px; }
+    .sec-head h2 { font-size: 1.9rem; font-weight: 800; margin-bottom: .5rem; }
+    .sec-head p { color: var(--muted); }
+
+    /* ── VALUE CARDS ── */
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .vcard {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 30px 26px;
+      transition: border-color .2s, transform .15s;
+    }
+    .vcard:hover { border-color: var(--accent2); transform: translateY(-3px); }
+    .vcard-icon { font-size: 2.2rem; margin-bottom: 14px; }
+    .vcard h3 { font-size: 1rem; font-weight: 700; margin-bottom: 7px; }
+    .vcard p { color: var(--muted); font-size: .88rem; line-height: 1.6; }
+
+    /* ── PRICING ── */
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .pcard {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 32px 26px; position: relative;
+    }
+    .pcard.hot {
+      border-color: var(--accent);
+      background: linear-gradient(160deg, rgba(124,58,237,.09), rgba(6,182,212,.04));
+    }
+    .pbadge {
+      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--accent), #a855f7);
+      color: #fff; font-size: .7rem; font-weight: 700;
+      padding: .28rem .9rem; border-radius: 20px; white-space: nowrap; letter-spacing: .5px;
+    }
+    .pname { font-size: .75rem; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+    .pprice { font-size: 2.4rem; font-weight: 900; margin-bottom: 4px; }
+    .pprice span { font-size: .95rem; font-weight: 400; color: var(--muted); }
+    .pdesc { color: var(--muted); font-size: .83rem; margin-bottom: 22px; }
+    .pfeats { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 26px; }
+    .pfeats li { font-size: .86rem; display: flex; gap: 9px; }
+    .pfeats li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+    .pbtn {
+      width: 100%; padding: .78rem; border-radius: 10px;
+      font-weight: 700; font-size: .9rem; cursor: pointer; transition: transform .15s, box-shadow .15s;
+    }
+    .pbtn-fill {
+      background: linear-gradient(135deg, var(--accent), #a855f7);
+      color: #fff; border: none;
+      box-shadow: 0 4px 20px rgba(124,58,237,.35);
+    }
+    .pbtn-fill:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(124,58,237,.5); }
+    .pbtn-ghost { background: transparent; border: 1px solid var(--border); color: var(--text); }
+    .pbtn-ghost:hover { border-color: var(--muted); }
+
+    /* ── HOSPITALITY ── */
+    .hosp-wrap {
+      margin: 0 5% 80px;
+      background: linear-gradient(135deg, #09182e 0%, #091e38 100%);
+      border: 1px solid rgba(6,182,212,.2);
+      border-radius: 20px; padding: 60px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+      position: relative; overflow: hidden;
+    }
+    .hosp-wrap::after {
+      content: ''; position: absolute; bottom: -80px; right: -80px;
+      width: 280px; height: 280px;
+      background: radial-gradient(circle, rgba(6,182,212,.18) 0%, transparent 70%);
+    }
+    .htag {
+      display: inline-block;
+      background: rgba(6,182,212,.1); border: 1px solid rgba(6,182,212,.3);
+      color: var(--accent2); font-size: .72rem; font-weight: 700;
+      padding: .28rem .75rem; border-radius: 20px; margin-bottom: 16px;
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+    .hosp-wrap h2 { font-size: 1.75rem; font-weight: 800; line-height: 1.2; margin-bottom: 12px; }
+    .hosp-wrap > div > p { color: var(--muted); margin-bottom: 24px; font-size: .93rem; }
+    .hfeats { display: flex; flex-direction: column; gap: 9px; }
+    .hfeat { display: flex; align-items: center; gap: 9px; font-size: .88rem; }
+    .hfeat::before { content: '✓'; color: var(--green); font-weight: 700; }
+
+    .hprice-box { position: relative; z-index: 1; }
+    .hplan { font-size: .75rem; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+    .hprice-base { font-size: 2.6rem; font-weight: 900; color: var(--text); }
+    .hprice-base span { font-size: 1rem; font-weight: 400; color: var(--muted); }
+    .hprice-off {
+      display: inline-block; margin-right: 8px;
+      background: rgba(16,185,129,.1); border: 1px solid rgba(16,185,129,.3);
+      color: var(--green); font-size: .78rem; font-weight: 700;
+      padding: .25rem .7rem; border-radius: 8px;
+    }
+    .hprice-final { color: var(--accent2); font-size: 1.5rem; font-weight: 800; }
+    .hprice-desc { color: var(--muted); font-size: .82rem; margin: 8px 0 24px; }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      margin: 0 5% 80px;
+      background: linear-gradient(135deg, var(--accent) 0%, #06b6d4 100%);
+      border-radius: 20px; padding: 70px 5%; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-banner::before {
+      content: ''; position: absolute; top: -100px; right: -80px;
+      width: 320px; height: 320px;
+      background: rgba(255,255,255,.07); border-radius: 50%;
+    }
+    .cta-banner h2 { font-size: 1.9rem; font-weight: 800; margin-bottom: .7rem; }
+    .cta-banner p { opacity: .9; margin-bottom: 1.4rem; }
+    .cta-phone { font-size: 2.2rem; font-weight: 900; letter-spacing: 2px; margin-bottom: 1.6rem; }
+    .btn-white {
+      display: inline-block;
+      background: #fff; color: var(--accent);
+      padding: .9rem 2.4rem; border-radius: 10px; font-weight: 700;
+      font-size: 1rem; border: none; cursor: pointer; transition: transform .15s;
+    }
+    .btn-white:hover { transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--surface); border-top: 1px solid var(--border);
+      padding: 32px 5%;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+    }
+    .flogo img { height: 40px; width: auto; display: block; mix-blend-mode: screen; }
+    footer p { color: var(--muted); font-size: .8rem; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hosp-wrap { grid-template-columns: 1fr; padding: 36px 28px; gap: 36px; }
+      .cta-banner { padding: 50px 28px; }
+      .cta-phone { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <img src="logo.png" alt="Parling Academy">
+  </div>
+  <div class="nav-links">
+    <a href="#metodo">Metodología</a>
+    <a href="#precios">Precios</a>
+    <a href="#hosteleria">Hostelería</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <a class="nav-cta" href="tel:5637432504">Solicitar info</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="blob-c"></div>
+  <div class="blob-a"></div>
+  <div class="blob-b"></div>
+
+  <svg class="hero-icon" viewBox="0 0 78 78" fill="none">
+    <!-- libro -->
+    <rect x="7" y="12" width="38" height="46" rx="5" fill="white" opacity=".12"/>
+    <rect x="11" y="16" width="30" height="38" rx="4" fill="white"/>
+    <line x1="18" y1="25" x2="34" y2="25" stroke="#0a0b14" stroke-width="2.2" stroke-linecap="round"/>
+    <line x1="18" y1="31" x2="34" y2="31" stroke="#0a0b14" stroke-width="2.2" stroke-linecap="round"/>
+    <line x1="18" y1="37" x2="28" y2="37" stroke="#0a0b14" stroke-width="2.2" stroke-linecap="round"/>
+    <!-- chat bubble -->
+    <rect x="38" y="32" width="30" height="22" rx="7" fill="#06b6d4"/>
+    <circle cx="46" cy="43" r="2.2" fill="white"/>
+    <circle cx="53" cy="43" r="2.2" fill="white"/>
+    <circle cx="60" cy="43" r="2.2" fill="white"/>
+    <path d="M44 54 L41 61 L51 54" fill="#06b6d4"/>
+  </svg>
+
+  <h1>Aprende el idioma<br>que quieras, de verdad</h1>
+  <p>Metodología para grupos reducidos y aprendizaje acelerado. Sin contratos largos, sin métodos anticuados.</p>
+
+  <div class="hero-actions">
+    <a class="btn-solicitar" href="tel:5637432504">SOLICITAR INFO</a>
+    <a class="btn-primary" href="#precios">Ver precios →</a>
+  </div>
+
+  <div class="phone-cta">
+    <small>Llámanos o manda WhatsApp</small>
+    <strong>56 3743 2504</strong>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">7+</div>
+    <div class="stat-lbl">Idiomas disponibles</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">Máx 6</div>
+    <div class="stat-lbl">Alumnos por grupo</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">16 hrs</div>
+    <div class="stat-lbl">De clase al mes</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">30 días</div>
+    <div class="stat-lbl">Para ver resultados</div>
+  </div>
+</div>
+
+<!-- METODOLOGÍA -->
+<div class="section" id="metodo">
+  <div class="sec-head">
+    <h2>Por qué funciona Parling</h2>
+    <p>No somos otra app. Somos una academia real con método real y grupos que no superan las 6 personas.</p>
+  </div>
+  <div class="grid-3">
+    <div class="vcard">
+      <div class="vcard-icon">👥</div>
+      <h3>Grupos reducidos</h3>
+      <p>Máximo 6 alumnos por clase. Cada sesión es tuya, no de un salón de 30 donde nadie practica.</p>
+    </div>
+    <div class="vcard">
+      <div class="vcard-icon">⚡</div>
+      <h3>Aprendizaje acelerado</h3>
+      <p>16 horas al mes de práctica real. En 60 días hablas, no solo memorizas vocabulario en una app.</p>
+    </div>
+    <div class="vcard">
+      <div class="vcard-icon">🌍</div>
+      <h3>El idioma que quieras</h3>
+      <p>Inglés, francés, alemán, italiano, portugués, chino o japonés. Con el mismo método probado.</p>
+    </div>
+    <div class="vcard">
+      <div class="vcard-icon">🤖</div>
+      <h3>IA 24/7 entre clases</h3>
+      <p>Practica conversación con IA en cualquier momento. Corrige gramática y pronunciación en tiempo real.</p>
+    </div>
+    <div class="vcard">
+      <div class="vcard-icon">📋</div>
+      <h3>Certificado CEFR</h3>
+      <p>Al terminar cada nivel obtienes certificado alineado al marco europeo, reconocido internacionalmente.</p>
+    </div>
+    <div class="vcard">
+      <div class="vcard-icon">🕐</div>
+      <h3>Horarios flexibles</h3>
+      <p>Mañana, tarde o noche. Clases diseñadas para personas que trabajan y no tienen todo el día libre.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PRECIOS -->
+<div class="section" id="precios">
+  <div class="sec-head">
+    <h2>Precios claros, sin sorpresas</h2>
+    <p>Sin inscripción oculta, sin materiales extra. Lo que ves es lo que pagas.</p>
+  </div>
+  <div class="pricing-grid">
+
+    <div class="pcard">
+      <div class="pname">Starter</div>
+      <div class="pprice">$299 <span>MXN/mes</span></div>
+      <div class="pdesc">IA + comunidad + 1 idioma</div>
+      <ul class="pfeats">
+        <li>Tutor IA 24/7 ilimitado</li>
+        <li>1 idioma completo A1 → C2</li>
+        <li>Comunidad de aprendizaje</li>
+        <li>Seguimiento de progreso</li>
+      </ul>
+      <a class="pbtn pbtn-ghost" href="tel:5637432504">Empezar</a>
+    </div>
+
+    <div class="pcard hot">
+      <div class="pbadge">⭐ Más popular</div>
+      <div class="pname">Pro</div>
+      <div class="pprice">$799 <span>MXN/mes</span></div>
+      <div class="pdesc">IA + 4 clases en vivo + 3 idiomas</div>
+      <ul class="pfeats">
+        <li>Todo lo de Starter</li>
+        <li>Hasta 3 idiomas</li>
+        <li>4 clases grupales en vivo/mes</li>
+        <li>Grupos de máx 6 personas</li>
+        <li>Badge de nivel CEFR mensual</li>
+      </ul>
+      <a class="pbtn pbtn-fill" href="tel:5637432504">Comenzar ahora</a>
+    </div>
+
+    <div class="pcard">
+      <div class="pname">Total</div>
+      <div class="pprice">$1,499 <span>MXN/mes</span></div>
+      <div class="pdesc">Todo ilimitado + clase privada</div>
+      <ul class="pfeats">
+        <li>Idiomas ilimitados</li>
+        <li>Clases grupales ilimitadas</li>
+        <li>1 clase privada/mes con nativo</li>
+        <li>Certificado CEFR oficial</li>
+        <li>Soporte prioritario</li>
+      </ul>
+      <a class="pbtn pbtn-ghost" href="tel:5637432504">Contratar</a>
+    </div>
+
+  </div>
+  <p style="text-align:center;margin-top:24px;color:var(--muted);font-size:.84rem">
+    ¿Grupos de 5 o más? Llámanos al <strong style="color:var(--text)">56 3743 2504</strong> para precio especial.
+  </p>
+</div>
+
+<!-- HOSTELERÍA -->
+<div class="hosp-wrap" id="hosteleria">
+  <div>
+    <span class="htag">🍽️ Sector Hostelería</span>
+    <h2>Inglés para meseros en Condesa, Roma y Nápoles</h2>
+    <p>Más inglés = más propinas de turistas internacionales. El resultado más directo y medible que existe. Clases antes del turno, de lunes a jueves.</p>
+    <div class="hfeats">
+      <div class="hfeat">Inglés 100% aplicado a restaurante</div>
+      <div class="hfeat">Tomar órdenes, recomendar platillos, manejar quejas</div>
+      <div class="hfeat">Resultados medibles en 30 días</div>
+      <div class="hfeat">Constancia "English for Hospitality"</div>
+      <div class="hfeat">Clases 9–11 am, antes del turno</div>
+      <div class="hfeat">Grupos desde 5 personas</div>
+    </div>
+  </div>
+  <div class="hprice-box">
+    <div class="hplan">Plan Hostelería — 16 hrs/mes</div>
+    <div class="hprice-base">$1,980 <span>MXN/mes</span></div>
+    <div style="margin-top:10px">
+      <span class="hprice-off">35% OFF meseros</span>
+      <span class="hprice-final">$1,287 MXN/mes</span>
+    </div>
+    <div class="hprice-desc">Grupos de 5 personas mínimo · 4 clases por semana · 1 hora cada una</div>
+    <a class="btn-primary" href="tel:5637432504" style="display:inline-block">Armar mi grupo →</a>
+  </div>
+</div>
+
+<!-- CTA FINAL -->
+<div class="cta-banner" id="contacto">
+  <h2>¿Listo para hablar el idioma que quieras?</h2>
+  <p>Escríbenos o llámanos. Armamos tu grupo en menos de 48 horas.</p>
+  <div class="cta-phone">56 3743 2504</div>
+  <a class="btn-white" href="tel:5637432504">SOLICITAR INFO</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="flogo">
+    <img src="logo.png" alt="Parling Academy">
+  </div>
+  <p>© 2026 Parling Academy · Metodología para grupos reducidos</p>
+  <p>56 3743 2504</p>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.logo img').forEach(img => {
+      const run = () => removeBg(img);
+      img.complete ? run() : img.addEventListener('load', run);
+    });
+  });
+  function removeBg(img) {
+    const c = document.createElement('canvas');
+    c.width = img.naturalWidth; c.height = img.naturalHeight;
+    const ctx = c.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+    const d = ctx.getImageData(0, 0, c.width, c.height), px = d.data;
+    const br = px[0], bg = px[1], bb = px[2];
+    for (let i = 0; i < px.length; i += 4) {
+      if (Math.abs(px[i]-br)+Math.abs(px[i+1]-bg)+Math.abs(px[i+2]-bb) < 120) px[i+3] = 0;
+    }
+    ctx.putImageData(d, 0, 0);
+    img.src = c.toDataURL('image/png');
+  }
+</script>
+</body>
+</html>
