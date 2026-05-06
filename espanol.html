@@ -214,6 +214,33 @@
       .cta-banner { margin: 0 0 56px; border-radius: 0; padding: 48px 24px; }
       .section-wrap { padding: 0 4% 56px; }
     }
+
+    .lang-picker { position: relative; }
+    .lang-btn {
+      display: flex; align-items: center; gap: 6px;
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--text); padding: .38rem .85rem; border-radius: 8px;
+      font-size: .85rem; font-weight: 600; cursor: pointer;
+      transition: border-color .2s;
+    }
+    .lang-btn:hover { border-color: var(--accent2); }
+    .lang-btn .arrow { font-size: .6rem; color: var(--muted); transition: transform .2s; }
+    .lang-picker.open .arrow { transform: rotate(180deg); }
+    .lang-dropdown {
+      display: none; position: absolute; top: calc(100% + 8px); right: 0;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden; min-width: 160px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.4); z-index: 200;
+    }
+    .lang-picker.open .lang-dropdown { display: block; }
+    .lang-option {
+      display: flex; align-items: center; gap: 9px;
+      padding: .6rem 1rem; font-size: .85rem; cursor: pointer;
+      transition: background .15s; border: none; background: transparent;
+      color: var(--muted); width: 100%; text-align: left; text-decoration: none;
+    }
+    .lang-option:hover { background: var(--card); color: var(--text); }
+    .lang-option.active { color: var(--accent2); font-weight: 700; }
   </style>
 </head>
 <body>
@@ -238,7 +265,26 @@
     <a href="index.html#individual">1 a 1</a>
     <a href="index.html#contacto">Contacto</a>
   </div>
+  <div style="display:flex;align-items:center;gap:12px">
+    <div class="lang-picker" id="langPicker">
+      <button class="lang-btn" id="langBtn">
+        <span>🇪🇸</span>
+        <span>ES</span>
+        <span class="arrow">▼</span>
+      </button>
+      <div class="lang-dropdown" id="langDropdown">
+        <a href="ingles.html" class="lang-option">🇬🇧 English</a>
+        <a href="espanol.html" class="lang-option active">🇪🇸 Español</a>
+        <a href="frances.html" class="lang-option">🇫🇷 Français</a>
+        <a href="aleman.html" class="lang-option">🇩🇪 Deutsch</a>
+        <a href="italiano.html" class="lang-option">🇮🇹 Italiano</a>
+        <a href="portugues.html" class="lang-option">🇧🇷 Português</a>
+        <a href="chino.html" class="lang-option">🇨🇳 中文</a>
+      </div>
+    </div>
+
   <a class="nav-cta" href="#">Empieza gratis</a>
+  </div>
 </nav>
 
 <section class="hero">
