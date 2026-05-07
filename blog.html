@@ -89,7 +89,7 @@
     .blog-section { padding: 0 5% 80px; max-width: 1100px; margin: 0 auto; }
     .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
     .blog-card {
-      background: var(--card); border: 1px solid var(--border);
+      display: block; background: var(--card); border: 1px solid var(--border);
       border-radius: var(--radius); overflow: hidden;
       transition: transform .15s, border-color .2s; cursor: pointer;
     }
@@ -161,7 +161,7 @@
 
 <section class="blog-section">
   <div class="blog-grid">
-    <article class="blog-card">
+    <a href="blog-ingles-6-meses.html" class="blog-card">
       <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=600&q=80" alt="">
       <div class="blog-card-body">
         <span class="blog-tag tag-purple">INGLÉS</span>
@@ -169,8 +169,8 @@
         <p>La hoja de ruta exacta que usamos con nuestros alumnos: desde el primer vocabulario hasta mantener una conversación fluida.</p>
         <div class="blog-meta">5 min de lectura · 12 abr 2026</div>
       </div>
-    </article>
-    <article class="blog-card">
+    </a>
+    <a href="blog-pronunciacion.html" class="blog-card">
       <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=80" alt="">
       <div class="blog-card-body">
         <span class="blog-tag tag-cyan">PRONUNCIACIÓN</span>
@@ -178,8 +178,8 @@
         <p>Errores que cometen hasta los alumnos avanzados — y cómo corregirlos con ejercicios simples de 5 minutos.</p>
         <div class="blog-meta">4 min de lectura · 8 abr 2026</div>
       </div>
-    </article>
-    <article class="blog-card">
+    </a>
+    <a href="blog-present-perfect.html" class="blog-card">
       <img src="https://images.unsplash.com/photo-1543269664-56d93c1b41a6?w=600&q=80" alt="">
       <div class="blog-card-body">
         <span class="blog-tag tag-green">GRAMÁTICA</span>
@@ -187,7 +187,7 @@
         <p>La diferencia que confunde a todos los hispanohablantes, explicada con ejemplos reales y sin tecnicismos.</p>
         <div class="blog-meta">6 min de lectura · 3 abr 2026</div>
       </div>
-    </article>
+    </a>
   </div>
 </section>
 
