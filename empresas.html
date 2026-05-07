@@ -132,6 +132,37 @@
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 8px; padding: 6px 14px; font-size: .8rem; color: var(--muted); text-align: center;
     }
+    /* ── Quote form ── */
+    .quote-section { padding: 0 5% 80px; max-width: 900px; margin: 0 auto; }
+    .quote-header { text-align: center; margin-bottom: 32px; }
+    .quote-header h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 8px; }
+    .quote-header p { color: var(--muted); font-size: .95rem; }
+    .quote-form {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 40px 36px;
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .quote-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .quote-form .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .quote-form label { font-size: .82rem; color: var(--muted); font-weight: 600; }
+    .quote-form input, .quote-form select, .quote-form textarea {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 10px 14px; color: var(--text);
+      font-family: inherit; font-size: .92rem;
+      transition: border-color .2s; outline: none; width: 100%;
+    }
+    .quote-form select option { background: var(--surface); }
+    .quote-form input:focus, .quote-form select:focus, .quote-form textarea:focus { border-color: var(--orange); }
+    .quote-form textarea { resize: vertical; min-height: 110px; }
+    .quote-submit {
+      background: var(--orange); color: #fff; border: none;
+      padding: .8rem 1.6rem; border-radius: 10px; font-weight: 700; font-size: .95rem;
+      cursor: pointer; transition: box-shadow .2s, transform .2s;
+      box-shadow: 0 4px 20px rgba(249,115,22,.35); align-self: flex-start;
+    }
+    .quote-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(249,115,22,.5); }
+    @media (max-width: 600px) { .quote-form .form-row { grid-template-columns: 1fr; } .quote-form { padding: 28px 20px; } }
+
     footer { background: var(--surface); border-top: 1px solid var(--border); padding: 30px 5%; text-align: center; }
     footer span { color: var(--muted); font-size: .85rem; }
     @media (max-width: 700px) {
@@ -221,6 +252,61 @@
   </div>
 </section>
 
+<!-- QUOTE FORM -->
+<section class="quote-section">
+  <div class="quote-header">
+    <h2>Solicitar cotización</h2>
+    <p>Cuéntanos sobre tu negocio y te enviamos una propuesta personalizada en menos de 24 horas.</p>
+  </div>
+  <form class="quote-form" onsubmit="return false;">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="q-nombre">Nombre</label>
+        <input type="text" id="q-nombre" placeholder="Tu nombre">
+      </div>
+      <div class="form-group">
+        <label for="q-empresa">Empresa / Negocio</label>
+        <input type="text" id="q-empresa" placeholder="Nombre de tu empresa">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="q-sector">Sector / Nicho</label>
+        <select id="q-sector">
+          <option value="">Selecciona tu sector</option>
+          <option value="hosteleria">🍽️ Hostelería y restaurantes</option>
+          <option value="hoteleria">🏨 Hotelería y turismo</option>
+          <option value="retail">🛍️ Retail y comercio</option>
+          <option value="salud">🏥 Salud y bienestar</option>
+          <option value="tecnologia">💻 Tecnología</option>
+          <option value="educacion">📚 Educación</option>
+          <option value="logistica">🚚 Logística y transporte</option>
+          <option value="otro">✦ Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="q-personas">Número de personas</label>
+        <select id="q-personas">
+          <option value="">Selecciona un rango</option>
+          <option value="5-10">5 – 10</option>
+          <option value="11-25">11 – 25</option>
+          <option value="26-50">26 – 50</option>
+          <option value="51+">51+</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="q-email">Email de contacto</label>
+      <input type="email" id="q-email" placeholder="tu@empresa.com">
+    </div>
+    <div class="form-group">
+      <label for="q-mensaje">¿Qué necesita tu equipo?</label>
+      <textarea id="q-mensaje" placeholder="Cuéntanos el idioma, el objetivo, la frecuencia deseada..."></textarea>
+    </div>
+    <button class="quote-submit" type="submit">Enviar solicitud →</button>
+  </form>
+</section>
+
 <footer>
   <span>© 2026 Parling Academy. Todos los derechos reservados.</span>
 </footer>
@@ -239,7 +325,18 @@
       plan_label:'Hospitality Plan — 16 hrs/month',
       price_note:'Minimum 5 people · 4 classes per week · 1 hour each',
       btn:'Build my group →',
-      tag1:'🇲🇽 Mexico City', tag2:'📍 Condesa · Roma · Nápoles', tag3:'⏰ Monday to Thursday', tag4:'👥 Groups from 5'
+      tag1:'🇲🇽 Mexico City', tag2:'📍 Condesa · Roma · Nápoles', tag3:'⏰ Monday to Thursday', tag4:'👥 Groups from 5',
+      q_h2:'Request a quote', q_p:'Tell us about your business and we\'ll send a custom proposal in less than 24 hours.',
+      q_nombre:'Name', q_empresa:'Company / Business', q_sector:'Sector / Niche', q_personas:'Number of people',
+      q_email:'Contact email', q_mensaje:'What does your team need?',
+      q_ph_nombre:'Your name', q_ph_empresa:'Your company name', q_ph_email:'you@company.com',
+      q_ph_mensaje:'Tell us the language, goal, desired frequency...',
+      q_sel_sector:'Select your sector', q_sel_personas:'Select a range',
+      q_opt_hosteleria:'🍽️ Hospitality & restaurants', q_opt_hoteleria:'🏨 Hotels & tourism',
+      q_opt_retail:'🛍️ Retail & commerce', q_opt_salud:'🏥 Health & wellness',
+      q_opt_tecnologia:'💻 Technology', q_opt_educacion:'📚 Education',
+      q_opt_logistica:'🚚 Logistics & transport', q_opt_otro:'✦ Other',
+      q_btn:'Send request →'
     },
     es: {
       nav_lang:'Idiomas', nav_comp:'Para empresas', nav_contact:'Contacto', nav_blog:'Blog', nav_cta:'Empieza gratis',
@@ -253,7 +350,18 @@
       plan_label:'Plan Hostelería — 16 hrs/mes',
       price_note:'Grupos de 5 personas mínimo · 4 clases por semana · 1 hora cada una',
       btn:'Armar mi grupo →',
-      tag1:'🇲🇽 Ciudad de México', tag2:'📍 Condesa · Roma · Nápoles', tag3:'⏰ Lunes a jueves', tag4:'👥 Grupos desde 5'
+      tag1:'🇲🇽 Ciudad de México', tag2:'📍 Condesa · Roma · Nápoles', tag3:'⏰ Lunes a jueves', tag4:'👥 Grupos desde 5',
+      q_h2:'Solicitar cotización', q_p:'Cuéntanos sobre tu negocio y te enviamos una propuesta personalizada en menos de 24 horas.',
+      q_nombre:'Nombre', q_empresa:'Empresa / Negocio', q_sector:'Sector / Nicho', q_personas:'Número de personas',
+      q_email:'Email de contacto', q_mensaje:'¿Qué necesita tu equipo?',
+      q_ph_nombre:'Tu nombre', q_ph_empresa:'Nombre de tu empresa', q_ph_email:'tu@empresa.com',
+      q_ph_mensaje:'Cuéntanos el idioma, el objetivo, la frecuencia deseada...',
+      q_sel_sector:'Selecciona tu sector', q_sel_personas:'Selecciona un rango',
+      q_opt_hosteleria:'🍽️ Hostelería y restaurantes', q_opt_hoteleria:'🏨 Hotelería y turismo',
+      q_opt_retail:'🛍️ Retail y comercio', q_opt_salud:'🏥 Salud y bienestar',
+      q_opt_tecnologia:'💻 Tecnología', q_opt_educacion:'📚 Educación',
+      q_opt_logistica:'🚚 Logística y transporte', q_opt_otro:'✦ Otro',
+      q_btn:'Enviar solicitud →'
     },
     fr: {
       nav_lang:'Langues', nav_comp:'Pour les entreprises', nav_contact:'Contact', nav_blog:'Blog', nav_cta:'Commencer gratuitement',
@@ -267,7 +375,18 @@
       plan_label:'Plan Hôtellerie — 16 h/mois',
       price_note:'Minimum 5 personnes · 4 cours par semaine · 1 heure chacun',
       btn:'Créer mon groupe →',
-      tag1:'🇲🇽 Mexico City', tag2:'📍 Condesa · Roma · Nápoles', tag3:'⏰ Lundi à jeudi', tag4:'👥 Groupes dès 5'
+      tag1:'🇲🇽 Mexico City', tag2:'📍 Condesa · Roma · Nápoles', tag3:'⏰ Lundi à jeudi', tag4:'👥 Groupes dès 5',
+      q_h2:'Demander un devis', q_p:'Parlez-nous de votre entreprise et nous vous envoyons une proposition personnalisée en moins de 24 heures.',
+      q_nombre:'Nom', q_empresa:'Entreprise / Commerce', q_sector:'Secteur / Niche', q_personas:'Nombre de personnes',
+      q_email:'Email de contact', q_mensaje:'De quoi votre équipe a-t-elle besoin ?',
+      q_ph_nombre:'Votre nom', q_ph_empresa:'Nom de votre entreprise', q_ph_email:'vous@entreprise.com',
+      q_ph_mensaje:'Dites-nous la langue, l\'objectif, la fréquence souhaitée...',
+      q_sel_sector:'Sélectionnez votre secteur', q_sel_personas:'Sélectionnez une plage',
+      q_opt_hosteleria:'🍽️ Hôtellerie & restaurants', q_opt_hoteleria:'🏨 Hôtels & tourisme',
+      q_opt_retail:'🛍️ Retail & commerce', q_opt_salud:'🏥 Santé & bien-être',
+      q_opt_tecnologia:'💻 Technologie', q_opt_educacion:'📚 Éducation',
+      q_opt_logistica:'🚚 Logistique & transport', q_opt_otro:'✦ Autre',
+      q_btn:'Envoyer la demande →'
     },
     de: {
       nav_lang:'Sprachen', nav_comp:'Für Unternehmen', nav_contact:'Kontakt', nav_blog:'Blog', nav_cta:'Kostenlos starten',
@@ -281,7 +400,18 @@
       plan_label:'Gastronomie-Plan — 16 Std./Monat',
       price_note:'Mindestens 5 Personen · 4 Kurse pro Woche · je 1 Stunde',
       btn:'Meine Gruppe zusammenstellen →',
-      tag1:'🇲🇽 Mexiko-Stadt', tag2:'📍 Condesa · Roma · Nápoles', tag3:'⏰ Montag bis Donnerstag', tag4:'👥 Gruppen ab 5'
+      tag1:'🇲🇽 Mexiko-Stadt', tag2:'📍 Condesa · Roma · Nápoles', tag3:'⏰ Montag bis Donnerstag', tag4:'👥 Gruppen ab 5',
+      q_h2:'Angebot anfordern', q_p:'Erzählen Sie uns von Ihrem Unternehmen und wir senden Ihnen in weniger als 24 Stunden ein individuelles Angebot.',
+      q_nombre:'Name', q_empresa:'Unternehmen / Geschäft', q_sector:'Branche / Nische', q_personas:'Anzahl Personen',
+      q_email:'Kontakt-E-Mail', q_mensaje:'Was braucht Ihr Team?',
+      q_ph_nombre:'Ihr Name', q_ph_empresa:'Name Ihres Unternehmens', q_ph_email:'sie@unternehmen.com',
+      q_ph_mensaje:'Nennen Sie uns Sprache, Ziel, gewünschte Häufigkeit...',
+      q_sel_sector:'Wählen Sie Ihre Branche', q_sel_personas:'Wählen Sie einen Bereich',
+      q_opt_hosteleria:'🍽️ Gastronomie & Restaurants', q_opt_hoteleria:'🏨 Hotels & Tourismus',
+      q_opt_retail:'🛍️ Einzelhandel & Handel', q_opt_salud:'🏥 Gesundheit & Wellness',
+      q_opt_tecnologia:'💻 Technologie', q_opt_educacion:'📚 Bildung',
+      q_opt_logistica:'🚚 Logistik & Transport', q_opt_otro:'✦ Sonstiges',
+      q_btn:'Anfrage senden →'
     },
     it: {
       nav_lang:'Lingue', nav_comp:'Per le aziende', nav_contact:'Contatto', nav_blog:'Blog', nav_cta:'Inizia gratis',
@@ -295,7 +425,18 @@
       plan_label:'Piano Ristorazione — 16 ore/mese',
       price_note:'Minimo 5 persone · 4 lezioni a settimana · 1 ora ciascuna',
       btn:'Crea il mio gruppo →',
-      tag1:'🇲🇽 Città del Messico', tag2:'📍 Condesa · Roma · Nápoles', tag3:'⏰ Lunedì a giovedì', tag4:'👥 Gruppi da 5'
+      tag1:'🇲🇽 Città del Messico', tag2:'📍 Condesa · Roma · Nápoles', tag3:'⏰ Lunedì a giovedì', tag4:'👥 Gruppi da 5',
+      q_h2:'Richiedere un preventivo', q_p:'Raccontaci della tua attività e ti inviamo una proposta personalizzata in meno di 24 ore.',
+      q_nombre:'Nome', q_empresa:'Azienda / Attività', q_sector:'Settore / Nicchia', q_personas:'Numero di persone',
+      q_email:'Email di contatto', q_mensaje:'Di cosa ha bisogno il tuo team?',
+      q_ph_nombre:'Il tuo nome', q_ph_empresa:'Nome della tua azienda', q_ph_email:'tu@azienda.com',
+      q_ph_mensaje:'Dicci lingua, obiettivo, frequenza desiderata...',
+      q_sel_sector:'Seleziona il tuo settore', q_sel_personas:'Seleziona un intervallo',
+      q_opt_hosteleria:'🍽️ Ristorazione & ristoranti', q_opt_hoteleria:'🏨 Hotel & turismo',
+      q_opt_retail:'🛍️ Retail & commercio', q_opt_salud:'🏥 Salute & benessere',
+      q_opt_tecnologia:'💻 Tecnologia', q_opt_educacion:'📚 Istruzione',
+      q_opt_logistica:'🚚 Logistica & trasporti', q_opt_otro:'✦ Altro',
+      q_btn:'Invia richiesta →'
     },
     pt: {
       nav_lang:'Idiomas', nav_comp:'Para empresas', nav_contact:'Contato', nav_blog:'Blog', nav_cta:'Comece grátis',
@@ -309,7 +450,18 @@
       plan_label:'Plano Hotelaria — 16 h/mês',
       price_note:'Mínimo 5 pessoas · 4 aulas por semana · 1 hora cada',
       btn:'Montar meu grupo →',
-      tag1:'🇲🇽 Cidade do México', tag2:'📍 Condesa · Roma · Nápoles', tag3:'⏰ Segunda a quinta', tag4:'👥 Grupos a partir de 5'
+      tag1:'🇲🇽 Cidade do México', tag2:'📍 Condesa · Roma · Nápoles', tag3:'⏰ Segunda a quinta', tag4:'👥 Grupos a partir de 5',
+      q_h2:'Solicitar orçamento', q_p:'Conte-nos sobre o seu negócio e enviamos uma proposta personalizada em menos de 24 horas.',
+      q_nombre:'Nome', q_empresa:'Empresa / Negócio', q_sector:'Setor / Nicho', q_personas:'Número de pessoas',
+      q_email:'Email de contato', q_mensaje:'O que sua equipe precisa?',
+      q_ph_nombre:'Seu nome', q_ph_empresa:'Nome da sua empresa', q_ph_email:'voce@empresa.com',
+      q_ph_mensaje:'Conte-nos o idioma, o objetivo, a frequência desejada...',
+      q_sel_sector:'Selecione seu setor', q_sel_personas:'Selecione um intervalo',
+      q_opt_hosteleria:'🍽️ Hotelaria & restaurantes', q_opt_hoteleria:'🏨 Hotéis & turismo',
+      q_opt_retail:'🛍️ Varejo & comércio', q_opt_salud:'🏥 Saúde & bem-estar',
+      q_opt_tecnologia:'💻 Tecnologia', q_opt_educacion:'📚 Educação',
+      q_opt_logistica:'🚚 Logística & transporte', q_opt_otro:'✦ Outro',
+      q_btn:'Enviar solicitação →'
     },
     zh: {
       nav_lang:'语言', nav_comp:'企业服务', nav_contact:'联系', nav_blog:'博客', nav_cta:'免费开始',
@@ -323,7 +475,18 @@
       plan_label:'酒店计划 — 每月16小时',
       price_note:'最少5人 · 每周4节课 · 每节1小时',
       btn:'组建我的小组 →',
-      tag1:'🇲🇽 墨西哥城', tag2:'📍 Condesa · Roma · Nápoles', tag3:'⏰ 周一至周四', tag4:'👥 最少5人小组'
+      tag1:'🇲🇽 墨西哥城', tag2:'📍 Condesa · Roma · Nápoles', tag3:'⏰ 周一至周四', tag4:'👥 最少5人小组',
+      q_h2:'申请报价', q_p:'告诉我们您的业务情况，我们将在24小时内发送定制方案。',
+      q_nombre:'姓名', q_empresa:'公司 / 企业', q_sector:'行业 / 细分', q_personas:'人数',
+      q_email:'联系邮箱', q_mensaje:'您的团队需要什么？',
+      q_ph_nombre:'您的姓名', q_ph_empresa:'公司名称', q_ph_email:'您@公司.com',
+      q_ph_mensaje:'请告诉我们语言、目标、所需频率...',
+      q_sel_sector:'选择您的行业', q_sel_personas:'选择人数范围',
+      q_opt_hosteleria:'🍽️ 餐饮业', q_opt_hoteleria:'🏨 酒店业和旅游',
+      q_opt_retail:'🛍️ 零售和商业', q_opt_salud:'🏥 健康和保健',
+      q_opt_tecnologia:'💻 科技', q_opt_educacion:'📚 教育',
+      q_opt_logistica:'🚚 物流和运输', q_opt_otro:'✦ 其他',
+      q_btn:'发送请求 →'
     }
   };
 
@@ -372,6 +535,29 @@
     if (htags[1]) htags[1].textContent = t.tag2;
     if (htags[2]) htags[2].textContent = t.tag3;
     if (htags[3]) htags[3].textContent = t.tag4;
+
+    // Quote form
+    var qH2 = document.querySelector('.quote-header h2');
+    if (qH2) qH2.textContent = t.q_h2;
+    var qP = document.querySelector('.quote-header p');
+    if (qP) qP.textContent = t.q_p;
+    var labels = document.querySelectorAll('.quote-form label');
+    var lKeys = ['q_nombre','q_empresa','q_sector','q_personas','q_email','q_mensaje'];
+    lKeys.forEach(function(k,i){ if(labels[i]) labels[i].textContent = t[k]; });
+    document.getElementById('q-nombre').placeholder  = t.q_ph_nombre;
+    document.getElementById('q-empresa').placeholder = t.q_ph_empresa;
+    document.getElementById('q-email').placeholder   = t.q_ph_email;
+    document.getElementById('q-mensaje').placeholder = t.q_ph_mensaje;
+    var sectorSel = document.getElementById('q-sector');
+    if (sectorSel) {
+      sectorSel.options[0].text = t.q_sel_sector;
+      var oKeys = ['q_opt_hosteleria','q_opt_hoteleria','q_opt_retail','q_opt_salud','q_opt_tecnologia','q_opt_educacion','q_opt_logistica','q_opt_otro'];
+      oKeys.forEach(function(k,i){ if(sectorSel.options[i+1]) sectorSel.options[i+1].text = t[k]; });
+    }
+    var personasSel = document.getElementById('q-personas');
+    if (personasSel && personasSel.options[0]) personasSel.options[0].text = t.q_sel_personas;
+    var qBtn = document.querySelector('.quote-submit');
+    if (qBtn) qBtn.textContent = t.q_btn;
 
     localStorage.setItem('parling_lang', lang);
   }
