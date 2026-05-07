@@ -19,8 +19,6 @@
       color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.6;
     }
     a { color: inherit; text-decoration: none; }
-
-    /* ── Nav ── */
     nav {
       position: sticky; top: 0; z-index: 100;
       background: rgba(13,13,18,.85); backdrop-filter: blur(14px);
@@ -85,13 +83,9 @@
       transition: box-shadow .2s, transform .2s; box-shadow: 0 4px 20px rgba(124,58,237,.35);
     }
     .nav-cta:hover { box-shadow: 0 8px 28px rgba(124,58,237,.5); transform: translateY(-2px); }
-
-    /* ── Hero ── */
     .page-hero { text-align: center; padding: 72px 5% 48px; }
     .page-hero h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 12px; }
     .page-hero p { color: var(--muted); font-size: 1.05rem; max-width: 600px; margin: 0 auto; }
-
-    /* ── Blog grid ── */
     .blog-section { padding: 0 5% 80px; max-width: 1100px; margin: 0 auto; }
     .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
     .blog-card {
@@ -109,15 +103,11 @@
     .tag-purple { background: rgba(124,58,237,.15); border: 1px solid rgba(124,58,237,.3); color: #a78bfa; }
     .tag-cyan   { background: rgba(6,182,212,.12);  border: 1px solid rgba(6,182,212,.3);  color: #67e8f9; }
     .tag-green  { background: rgba(16,185,129,.1);  border: 1px solid rgba(16,185,129,.3); color: #6ee7b7; }
-    .tag-orange { background: rgba(249,115,22,.12); border: 1px solid rgba(249,115,22,.3); color: #fdba74; }
     .blog-card-body h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; line-height: 1.35; }
     .blog-card-body p { color: var(--muted); font-size: .85rem; line-height: 1.65; }
     .blog-meta { margin-top: 16px; font-size: .75rem; color: var(--muted); }
-
-    /* ── Footer ── */
     footer { background: var(--surface); border-top: 1px solid var(--border); padding: 30px 5%; text-align: center; }
     footer span { color: var(--muted); font-size: .85rem; }
-
     @media (max-width: 600px) {
       .blog-grid { grid-template-columns: 1fr; }
       .page-hero h1 { font-size: 1.8rem; }
@@ -148,7 +138,7 @@
   <div style="display:flex;align-items:center;gap:12px">
     <div class="lang-picker" id="langPicker">
       <button class="lang-btn" id="langBtn">
-        <span>🇬🇧</span><span>EN</span><span class="arrow">▼</span>
+        <span>🇪🇸</span><span>ES</span><span class="arrow">▼</span>
       </button>
       <div class="lang-dropdown" id="langDropdown">
         <a href="ingles.html" class="lang-option">🇬🇧 English</a>
@@ -171,9 +161,8 @@
 
 <section class="blog-section">
   <div class="blog-grid">
-
     <article class="blog-card">
-      <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=600&q=80" alt="Aprender inglés">
+      <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=600&q=80" alt="">
       <div class="blog-card-body">
         <span class="blog-tag tag-purple">INGLÉS</span>
         <h3>Cómo aprender inglés en 6 meses desde cero</h3>
@@ -181,9 +170,8 @@
         <div class="blog-meta">5 min de lectura · 12 abr 2026</div>
       </div>
     </article>
-
     <article class="blog-card">
-      <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=80" alt="Pronunciación">
+      <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=80" alt="">
       <div class="blog-card-body">
         <span class="blog-tag tag-cyan">PRONUNCIACIÓN</span>
         <h3>Los 7 errores de pronunciación más comunes en inglés</h3>
@@ -191,9 +179,8 @@
         <div class="blog-meta">4 min de lectura · 8 abr 2026</div>
       </div>
     </article>
-
     <article class="blog-card">
-      <img src="https://images.unsplash.com/photo-1543269664-56d93c1b41a6?w=600&q=80" alt="Gramática">
+      <img src="https://images.unsplash.com/photo-1543269664-56d93c1b41a6?w=600&q=80" alt="">
       <div class="blog-card-body">
         <span class="blog-tag tag-green">GRAMÁTICA</span>
         <h3>Present Perfect vs Simple Past: la guía definitiva</h3>
@@ -201,7 +188,6 @@
         <div class="blog-meta">6 min de lectura · 3 abr 2026</div>
       </div>
     </article>
-
   </div>
 </section>
 
@@ -210,6 +196,160 @@
 </footer>
 
 <script>
+  var LANGS = {
+    en: {
+      nav_lang:'Languages', nav_comp:'For companies', nav_contact:'Contact', nav_blog:'Blog', nav_cta:'Start Free',
+      hero_h1:'Blog', hero_p:'Tips, methods and resources to learn languages faster.',
+      tag1:'ENGLISH', tag2:'PRONUNCIATION', tag3:'GRAMMAR',
+      art1_h:'How to learn English in 6 months from scratch',
+      art1_p:'The exact roadmap we use with our students: from the first vocabulary to holding a fluent conversation.',
+      art1_meta:'5 min read · Apr 12, 2026',
+      art2_h:'The 7 most common pronunciation mistakes in English',
+      art2_p:'Mistakes even advanced students make — and how to correct them with simple 5-minute exercises.',
+      art2_meta:'4 min read · Apr 8, 2026',
+      art3_h:'Present Perfect vs Simple Past: the definitive guide',
+      art3_p:'The difference that confuses all Spanish speakers, explained with real examples and no jargon.',
+      art3_meta:'6 min read · Apr 3, 2026'
+    },
+    es: {
+      nav_lang:'Idiomas', nav_comp:'Para empresas', nav_contact:'Contacto', nav_blog:'Blog', nav_cta:'Empieza gratis',
+      hero_h1:'Blog', hero_p:'Consejos, métodos y recursos para aprender idiomas más rápido.',
+      tag1:'INGLÉS', tag2:'PRONUNCIACIÓN', tag3:'GRAMÁTICA',
+      art1_h:'Cómo aprender inglés en 6 meses desde cero',
+      art1_p:'La hoja de ruta exacta que usamos con nuestros alumnos: desde el primer vocabulario hasta mantener una conversación fluida.',
+      art1_meta:'5 min de lectura · 12 abr 2026',
+      art2_h:'Los 7 errores de pronunciación más comunes en inglés',
+      art2_p:'Errores que cometen hasta los alumnos avanzados — y cómo corregirlos con ejercicios simples de 5 minutos.',
+      art2_meta:'4 min de lectura · 8 abr 2026',
+      art3_h:'Present Perfect vs Simple Past: la guía definitiva',
+      art3_p:'La diferencia que confunde a todos los hispanohablantes, explicada con ejemplos reales y sin tecnicismos.',
+      art3_meta:'6 min de lectura · 3 abr 2026'
+    },
+    fr: {
+      nav_lang:'Langues', nav_comp:'Pour les entreprises', nav_contact:'Contact', nav_blog:'Blog', nav_cta:'Commencer gratuitement',
+      hero_h1:'Blog', hero_p:'Conseils, méthodes et ressources pour apprendre les langues plus vite.',
+      tag1:'ANGLAIS', tag2:'PRONONCIATION', tag3:'GRAMMAIRE',
+      art1_h:"Comment apprendre l'anglais en 6 mois à partir de zéro",
+      art1_p:"La feuille de route exacte que nous utilisons avec nos élèves : du premier vocabulaire à une conversation fluide.",
+      art1_meta:'5 min de lecture · 12 avr 2026',
+      art2_h:'Les 7 erreurs de prononciation les plus courantes en anglais',
+      art2_p:'Des erreurs que font même les élèves avancés — et comment les corriger avec de simples exercices de 5 minutes.',
+      art2_meta:'4 min de lecture · 8 avr 2026',
+      art3_h:'Present Perfect vs Simple Past : le guide définitif',
+      art3_p:'La différence qui confond tous les francophones, expliquée avec des exemples réels et sans jargon.',
+      art3_meta:'6 min de lecture · 3 avr 2026'
+    },
+    de: {
+      nav_lang:'Sprachen', nav_comp:'Für Unternehmen', nav_contact:'Kontakt', nav_blog:'Blog', nav_cta:'Kostenlos starten',
+      hero_h1:'Blog', hero_p:'Tipps, Methoden und Ressourcen, um Sprachen schneller zu lernen.',
+      tag1:'ENGLISCH', tag2:'AUSSPRACHE', tag3:'GRAMMATIK',
+      art1_h:'Wie man Englisch in 6 Monaten von Grund auf lernt',
+      art1_p:'Der genaue Fahrplan, den wir mit unseren Schülern verwenden: vom ersten Vokabular bis zum flüssigen Gespräch.',
+      art1_meta:'5 Min. Lesezeit · 12. Apr. 2026',
+      art2_h:'Die 7 häufigsten Aussprachefehlern im Englischen',
+      art2_p:'Fehler, die selbst fortgeschrittene Schüler machen — und wie man sie mit einfachen 5-Minuten-Übungen korrigiert.',
+      art2_meta:'4 Min. Lesezeit · 8. Apr. 2026',
+      art3_h:'Present Perfect vs. Simple Past: der ultimative Leitfaden',
+      art3_p:'Der Unterschied, der alle Deutschsprachigen verwirrt, erklärt mit echten Beispielen und ohne Fachjargon.',
+      art3_meta:'6 Min. Lesezeit · 3. Apr. 2026'
+    },
+    it: {
+      nav_lang:'Lingue', nav_comp:'Per le aziende', nav_contact:'Contatto', nav_blog:'Blog', nav_cta:'Inizia gratis',
+      hero_h1:'Blog', hero_p:'Consigli, metodi e risorse per imparare le lingue più velocemente.',
+      tag1:'INGLESE', tag2:'PRONUNCIA', tag3:'GRAMMATICA',
+      art1_h:"Come imparare l'inglese in 6 mesi da zero",
+      art1_p:"La roadmap esatta che usiamo con i nostri studenti: dal primo vocabolario a una conversazione fluente.",
+      art1_meta:'5 min di lettura · 12 apr 2026',
+      art2_h:'I 7 errori di pronuncia più comuni in inglese',
+      art2_p:'Errori che fanno anche gli studenti avanzati — e come correggerli con semplici esercizi di 5 minuti.',
+      art2_meta:'4 min di lettura · 8 apr 2026',
+      art3_h:'Present Perfect vs Simple Past: la guida definitiva',
+      art3_p:'La differenza che confonde tutti gli italofoni, spiegata con esempi reali e senza tecnicismi.',
+      art3_meta:'6 min di lettura · 3 apr 2026'
+    },
+    pt: {
+      nav_lang:'Idiomas', nav_comp:'Para empresas', nav_contact:'Contato', nav_blog:'Blog', nav_cta:'Comece grátis',
+      hero_h1:'Blog', hero_p:'Dicas, métodos e recursos para aprender idiomas mais rápido.',
+      tag1:'INGLÊS', tag2:'PRONÚNCIA', tag3:'GRAMÁTICA',
+      art1_h:'Como aprender inglês em 6 meses do zero',
+      art1_p:'O roteiro exato que usamos com nossos alunos: do primeiro vocabulário até manter uma conversa fluente.',
+      art1_meta:'5 min de leitura · 12 abr 2026',
+      art2_h:'Os 7 erros de pronúncia mais comuns em inglês',
+      art2_p:'Erros que até alunos avançados cometem — e como corrigi-los com exercícios simples de 5 minutos.',
+      art2_meta:'4 min de leitura · 8 abr 2026',
+      art3_h:'Present Perfect vs Simple Past: o guia definitivo',
+      art3_p:'A diferença que confunde todos os falantes de português, explicada com exemplos reais e sem tecnicismos.',
+      art3_meta:'6 min de leitura · 3 abr 2026'
+    },
+    zh: {
+      nav_lang:'语言', nav_comp:'企业服务', nav_contact:'联系', nav_blog:'博客', nav_cta:'免费开始',
+      hero_h1:'博客', hero_p:'帮助您更快学习语言的技巧、方法和资源。',
+      tag1:'英语', tag2:'发音', tag3:'语法',
+      art1_h:'如何在6个月内从零开始学会英语',
+      art1_p:'我们与学生使用的精确路线图：从第一个词汇到流利对话。',
+      art1_meta:'阅读5分钟 · 2026年4月12日',
+      art2_h:'英语中最常见的7个发音错误',
+      art2_p:'连高级学生都会犯的错误——以及如何通过简单的5分钟练习来纠正它们。',
+      art2_meta:'阅读4分钟 · 2026年4月8日',
+      art3_h:'现在完成时vs简单过去时：终极指南',
+      art3_p:'让所有中文母语者困惑的区别，用真实例子解释，没有术语。',
+      art3_meta:'阅读6分钟 · 2026年4月3日'
+    }
+  };
+
+  var FLAGS = {en:'🇬🇧',es:'🇪🇸',fr:'🇫🇷',de:'🇩🇪',it:'🇮🇹',pt:'🇧🇷',zh:'🇨🇳'};
+  var CODES = {en:'EN',es:'ES',fr:'FR',de:'DE',it:'IT',pt:'PT',zh:'ZH'};
+
+  function applyLang(lang) {
+    var t = LANGS[lang];
+    if (!t) return;
+
+    var trigger = document.querySelector('.nav-lang-trigger');
+    if (trigger) trigger.innerHTML = t.nav_lang + ' <span class="nav-lang-chev">▼</span>';
+
+    var navLinks = document.querySelectorAll('.nav-links > a');
+    if (navLinks[0]) navLinks[0].textContent = t.nav_comp;
+    if (navLinks[1]) navLinks[1].textContent = t.nav_contact;
+    if (navLinks[2]) navLinks[2].textContent = t.nav_blog;
+
+    var navCta = document.querySelector('.nav-cta');
+    if (navCta) navCta.textContent = t.nav_cta;
+
+    var btnSpans = document.querySelectorAll('#langBtn span');
+    if (btnSpans[0]) btnSpans[0].textContent = FLAGS[lang] || '';
+    if (btnSpans[1]) btnSpans[1].textContent = CODES[lang] || lang.toUpperCase();
+
+    document.querySelector('.page-hero h1').textContent = t.hero_h1;
+    document.querySelector('.page-hero p').textContent = t.hero_p;
+
+    var tags = document.querySelectorAll('.blog-tag');
+    if (tags[0]) tags[0].textContent = t.tag1;
+    if (tags[1]) tags[1].textContent = t.tag2;
+    if (tags[2]) tags[2].textContent = t.tag3;
+
+    var h3s = document.querySelectorAll('.blog-card-body h3');
+    if (h3s[0]) h3s[0].textContent = t.art1_h;
+    if (h3s[1]) h3s[1].textContent = t.art2_h;
+    if (h3s[2]) h3s[2].textContent = t.art3_h;
+
+    var ps = document.querySelectorAll('.blog-card-body p');
+    if (ps[0]) ps[0].textContent = t.art1_p;
+    if (ps[1]) ps[1].textContent = t.art2_p;
+    if (ps[2]) ps[2].textContent = t.art3_p;
+
+    var metas = document.querySelectorAll('.blog-meta');
+    if (metas[0]) metas[0].textContent = t.art1_meta;
+    if (metas[1]) metas[1].textContent = t.art2_meta;
+    if (metas[2]) metas[2].textContent = t.art3_meta;
+
+    localStorage.setItem('parling_lang', lang);
+  }
+
+  var langMap = {
+    'ingles.html':'en','espanol.html':'es','frances.html':'fr',
+    'aleman.html':'de','italiano.html':'it','portugues.html':'pt','chino.html':'zh'
+  };
+
   document.getElementById('langBtn').addEventListener('click', function(e) {
     e.stopPropagation();
     document.getElementById('langPicker').classList.toggle('open');
@@ -217,6 +357,19 @@
   document.addEventListener('click', function() {
     document.getElementById('langPicker').classList.remove('open');
   });
+
+  document.querySelectorAll('.lang-option').forEach(function(opt) {
+    opt.addEventListener('click', function(e) {
+      e.preventDefault();
+      var lang = langMap[this.getAttribute('href')];
+      if (lang) { applyLang(lang); document.getElementById('langPicker').classList.remove('open'); }
+    });
+  });
+
+  (function() {
+    var saved = localStorage.getItem('parling_lang');
+    if (saved && LANGS[saved]) applyLang(saved);
+  })();
 </script>
 </body>
 </html>
