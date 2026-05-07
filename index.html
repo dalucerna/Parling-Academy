@@ -1099,7 +1099,7 @@
   };
   const FLAGS = { en:'🇬🇧', es:'🇪🇸', fr:'🇫🇷', de:'🇩🇪', it:'🇮🇹', pt:'🇧🇷', zh:'🇨🇳' };
   const CODES = { en:'EN', es:'ES', fr:'FR', de:'DE', it:'IT', pt:'PT', zh:'中文' };
-  let currentLang = localStorage.getItem('parlLang') || 'en';
+  let currentLang = localStorage.getItem('parling_lang') || 'es';
 
   function applyLang(lang) {
     const t = LANGS[lang];
@@ -1108,7 +1108,7 @@
     document.getElementById('langFlag').textContent = FLAGS[lang];
     document.getElementById('langCode').textContent = CODES[lang];
     document.querySelectorAll('.lang-option').forEach(o => o.classList.toggle('active', o.dataset.lang === lang));
-    localStorage.setItem('parlLang', lang);
+    localStorage.setItem('parling_lang', lang);
     currentLang = lang;
   }
 
