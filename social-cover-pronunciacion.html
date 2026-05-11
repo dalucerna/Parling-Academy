@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    background: linear-gradient(135deg, #0d0d12 0%, #001820 50%, #002535 100%);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    color: #f1f1f6;
+    position: relative;
+  }
+  .glow-tr {
+    position: absolute; top: -120px; right: -80px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(6,182,212,.4) 0%, transparent 65%);
+  }
+  .glow-bl {
+    position: absolute; bottom: -80px; left: -40px;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(103,232,249,.15) 0%, transparent 70%);
+  }
+  .grid-lines {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  /* Sound wave bars */
+  .waves {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 140px;
+    display: flex; align-items: flex-end; justify-content: center;
+    gap: 5px; opacity: .12; pointer-events: none;
+  }
+  .waves span {
+    display: block; width: 8px; border-radius: 4px 4px 0 0;
+    background: #06b6d4;
+  }
+  .brand {
+    position: absolute; top: 36px; left: 48px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .brand-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: linear-gradient(135deg, #06b6d4, #0ea5e9);
+  }
+  .brand-name {
+    font-size: .85rem; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: rgba(103,232,249,.7);
+  }
+  .tag {
+    position: absolute; top: 36px; right: 48px;
+    background: rgba(6,182,212,.15); border: 1px solid rgba(6,182,212,.35);
+    color: #67e8f9; font-size: .78rem; font-weight: 700;
+    letter-spacing: 2px; padding: .4rem 1rem; border-radius: 20px;
+  }
+  .center {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    z-index: 1;
+  }
+  .icon { font-size: 4.5rem; line-height: 1; margin-bottom: 8px; }
+  .big-num {
+    font-size: 18rem; font-weight: 900; color: #06b6d4; line-height: .85;
+    text-shadow: 0 0 120px rgba(6,182,212,.65), 0 0 40px rgba(6,182,212,.35);
+    letter-spacing: -12px;
+  }
+  .label {
+    font-size: 1.15rem; font-weight: 700; letter-spacing: 6px;
+    color: #67e8f9; text-transform: uppercase; margin-top: 14px;
+  }
+  .divider {
+    position: absolute; bottom: 100px; left: 48px; right: 48px;
+    height: 1px; background: rgba(6,182,212,.2);
+  }
+  .title {
+    position: absolute; bottom: 48px; left: 48px;
+    font-size: 1.55rem; font-weight: 800; color: #f1f1f6;
+    line-height: 1.3; max-width: 800px;
+  }
+  .url {
+    position: absolute; bottom: 52px; right: 48px;
+    font-size: .78rem; color: rgba(103,232,249,.5);
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+  <div class="glow-tr"></div>
+  <div class="glow-bl"></div>
+  <div class="grid-lines"></div>
+
+  <div class="waves">
+    <span style="height:35px"></span><span style="height:60px"></span>
+    <span style="height:25px"></span><span style="height:90px"></span>
+    <span style="height:45px"></span><span style="height:120px"></span>
+    <span style="height:70px"></span><span style="height:100px"></span>
+    <span style="height:50px"></span><span style="height:80px"></span>
+    <span style="height:30px"></span><span style="height:55px"></span>
+    <span style="height:95px"></span><span style="height:40px"></span>
+    <span style="height:75px"></span><span style="height:110px"></span>
+    <span style="height:60px"></span><span style="height:85px"></span>
+    <span style="height:35px"></span><span style="height:65px"></span>
+  </div>
+
+  <div class="brand">
+    <div class="brand-dot"></div>
+    <div class="brand-name">Parling Academy</div>
+  </div>
+  <div class="tag">PRONUNCIACIÓN</div>
+
+  <div class="center">
+    <div class="icon">🔊</div>
+    <div class="big-num">7</div>
+    <div class="label">errores que frenan tu inglés</div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="title">Los 7 errores de pronunciación más comunes en inglés</div>
+  <div class="url">parlingacademy.com/blog</div>
+</body>
+</html>

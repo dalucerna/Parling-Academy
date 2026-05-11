@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    background: linear-gradient(135deg, #0d0d12 0%, #001a0a 50%, #002a10 100%);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    color: #f1f1f6;
+    position: relative;
+  }
+  .glow-c {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-60%);
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(16,185,129,.28) 0%, transparent 65%);
+  }
+  .grid-lines {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .brand {
+    position: absolute; top: 36px; left: 48px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .brand-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: linear-gradient(135deg, #10b981, #34d399);
+  }
+  .brand-name {
+    font-size: .85rem; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: rgba(110,231,183,.7);
+  }
+  .tag {
+    position: absolute; top: 36px; right: 48px;
+    background: rgba(16,185,129,.12); border: 1px solid rgba(16,185,129,.3);
+    color: #6ee7b7; font-size: .78rem; font-weight: 700;
+    letter-spacing: 2px; padding: .4rem 1rem; border-radius: 20px;
+  }
+  .center {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    z-index: 1; gap: 0;
+  }
+  .vs-row {
+    display: flex; align-items: center; justify-content: center;
+    gap: 32px; margin-bottom: 28px;
+  }
+  .formula-box {
+    border-radius: 16px; padding: 28px 44px; text-align: center;
+  }
+  .formula-box.green {
+    background: rgba(16,185,129,.1); border: 1px solid rgba(16,185,129,.35);
+  }
+  .formula-box.light {
+    background: rgba(110,231,183,.06); border: 1px solid rgba(110,231,183,.2);
+  }
+  .formula {
+    font-family: 'Courier New', monospace;
+    font-size: 3.2rem; font-weight: 900; letter-spacing: 2px;
+  }
+  .formula.green { color: #10b981; }
+  .formula.light { color: #6ee7b7; }
+  .formula-sub {
+    font-size: .78rem; font-weight: 600; letter-spacing: 2px;
+    margin-top: 8px; opacity: .6; text-transform: uppercase;
+  }
+  .vs-badge {
+    font-size: 2rem; font-weight: 900; color: #8888aa;
+    background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+    border-radius: 50%; width: 64px; height: 64px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .label {
+    font-size: 1rem; font-weight: 700; letter-spacing: 5px;
+    color: #6ee7b7; text-transform: uppercase;
+  }
+  .divider {
+    position: absolute; bottom: 100px; left: 48px; right: 48px;
+    height: 1px; background: rgba(16,185,129,.2);
+  }
+  .title {
+    position: absolute; bottom: 48px; left: 48px;
+    font-size: 1.55rem; font-weight: 800; color: #f1f1f6;
+    line-height: 1.3; max-width: 800px;
+  }
+  .url {
+    position: absolute; bottom: 52px; right: 48px;
+    font-size: .78rem; color: rgba(110,231,183,.5); letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+  <div class="glow-c"></div>
+  <div class="grid-lines"></div>
+
+  <div class="brand">
+    <div class="brand-dot"></div>
+    <div class="brand-name">Parling Academy</div>
+  </div>
+  <div class="tag">GRAMÁTICA</div>
+
+  <div class="center">
+    <div class="vs-row">
+      <div class="formula-box green">
+        <div class="formula green">have + V³</div>
+        <div class="formula-sub" style="color:#10b981">Present Perfect</div>
+      </div>
+      <div class="vs-badge">vs</div>
+      <div class="formula-box light">
+        <div class="formula light">V²</div>
+        <div class="formula-sub" style="color:#6ee7b7">Simple Past</div>
+      </div>
+    </div>
+    <div class="label">La guía definitiva para hispanohablantes</div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="title">Present Perfect vs Simple Past: la guía definitiva</div>
+  <div class="url">parlingacademy.com/blog</div>
+</body>
+</html>

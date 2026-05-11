@@ -107,10 +107,7 @@
       font-size: 2.1rem; font-weight: 800; line-height: 1.25; margin-bottom: 16px;
     }
     .article-meta { color: var(--muted); font-size: .85rem; margin-bottom: 32px; }
-    .article-cover {
-      width: 100%; height: 420px; object-fit: cover;
-      border-radius: var(--radius); display: block; margin-bottom: 48px;
-    }
+    .article-cover { width: 100%; }
     .article-body {
       max-width: 720px; margin: 0 auto; padding: 0 5% 80px;
     }
@@ -214,7 +211,20 @@
   </div>
   <h1>Cómo aprender inglés en 6 meses desde cero</h1>
   <div class="article-meta">Por Parling Academy · 12 abr 2026</div>
-  <img class="article-cover" src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=1200&q=80" alt="Aprender inglés en 6 meses">
+  <div class="article-cover" style="background:linear-gradient(135deg,#0d0d12 0%,#1e0a3c 60%,#2a0f52 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border-radius:14px;margin-bottom:48px;height:420px">
+  <div style="position:absolute;top:-100px;left:-60px;width:500px;height:500px;background:radial-gradient(circle,rgba(124,58,237,.35) 0%,transparent 65%);pointer-events:none"></div>
+  <div style="position:absolute;bottom:-80px;right:-40px;width:320px;height:320px;background:radial-gradient(circle,rgba(167,139,250,.18) 0%,transparent 70%);pointer-events:none"></div>
+  <div style="text-align:center;z-index:1;padding:32px;user-select:none">
+    <div style="font-size:3.8rem;margin-bottom:6px;line-height:1">🇬🇧</div>
+    <div style="font-size:clamp(6rem,14vw,10rem);font-weight:900;color:#7c3aed;line-height:.9;text-shadow:0 0 80px rgba(124,58,237,.6);letter-spacing:-4px">6</div>
+    <div style="font-size:.95rem;font-weight:700;color:#a78bfa;letter-spacing:5px;text-transform:uppercase;margin-top:10px">MESES PARA HABLAR CON FLUIDEZ</div>
+    <div style="margin-top:18px;display:flex;align-items:center;justify-content:center;gap:6px">
+      <div style="width:28px;height:2px;background:rgba(124,58,237,.5)"></div>
+      <div style="font-size:.72rem;color:rgba(167,139,250,.6);letter-spacing:2px">PARLING ACADEMY</div>
+      <div style="width:28px;height:2px;background:rgba(124,58,237,.5)"></div>
+    </div>
+  </div>
+</div>
 </div>
 
 <article class="article-body">
