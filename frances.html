@@ -81,19 +81,8 @@
     .back-link { font-size: .85rem; color: var(--muted); transition: color .2s; }
     .back-link:hover { color: var(--accent); }
 
-    .toggle-wrap { display: flex; justify-content: center; margin: 0 0 48px; }
-    .toggle {
-      display: flex; background: var(--surface); border: 1px solid var(--border);
-      border-radius: 10px; padding: 4px; gap: 4px;
-    }
-    .toggle-btn {
-      padding: 8px 28px; border-radius: 8px; border: none; cursor: pointer;
-      font-family: inherit; font-size: .9rem; font-weight: 600;
-      background: transparent; color: var(--muted); transition: background .2s, color .2s;
-    }
-    .toggle-btn.active { background: var(--accent); color: #fff; }
-
     .section-wrap { max-width: 1100px; margin: 0 auto; padding: 0 5% 72px; }
+    .plans-title { font-size: 1.5rem; font-weight: 800; text-align: center; margin-bottom: 36px; }
 
     .cards-grid {
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-bottom: 40px;
@@ -162,22 +151,7 @@
     .chip-price span { font-size: .82rem; font-weight: 400; color: var(--muted); }
     .chip-note { font-size: .78rem; color: var(--muted); }
 
-    .individual-wrap { max-width: 480px; margin: 0 auto; padding: 0 5% 72px; }
-    .individual-card {
-      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
-      padding: 40px 36px; text-align: center;
-    }
-    .ind-price { font-size: 3rem; font-weight: 800; margin-bottom: 6px; }
-    .ind-note { color: var(--muted); font-size: .9rem; margin-bottom: 28px; }
-    .ind-includes { list-style: none; text-align: left; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
-    .ind-includes li { font-size: .88rem; color: var(--muted); display: flex; align-items: center; gap: 8px; }
-    .ind-includes li::before { content: '✓'; color: var(--green); font-weight: 700; }
-    .ind-btn {
-      display: block; padding: 13px; background: var(--accent); color: #fff;
-      border-radius: 8px; font-weight: 600; font-size: .95rem;
-      box-shadow: 0 4px 20px rgba(124,58,237,.35); transition: box-shadow .2s, transform .2s;
-    }
-    .ind-btn:hover { box-shadow: 0 8px 28px rgba(124,58,237,.5); transform: translateY(-2px); }
+
 
     .features { padding: 0 5% 80px; max-width: 1100px; margin: 0 auto; }
     .features h2 { font-size: 1.5rem; font-weight: 800; text-align: center; margin-bottom: 36px; }
@@ -297,20 +271,12 @@
   <a class="back-link" href="index.html">← Todos los idiomas</a>
 </section>
 
-<div class="toggle-wrap">
-  <div class="toggle">
-    <button class="toggle-btn active">Grupal</button>
-    <button class="toggle-btn">Personalizado</button>
-    <button class="toggle-btn">Starter</button>
-  </div>
-</div>
-
-<div id="group" class="section-wrap">
+<div class="section-wrap">
+  <h2 class="plans-title">Nuestros planes</h2>
   <div class="cards-grid">
-    <div class="price-card">
-      <div>
-        <div class="card-label">Mensual</div>
-      </div>
+
+    <div id="group" class="price-card">
+      <div class="card-label">Grupal</div>
       <div>
         <div class="card-price">$1,980<span>/mes</span></div>
         <div class="card-note">Mes a mes · sin contrato</div>
@@ -319,31 +285,42 @@
         <li>8 clases en vivo/mes</li>
         <li>Grupos máx. 8 alumnos</li>
         <li>Material incluido</li>
-        <li>Acceso plataforma</li>
-        <li>Soporte WhatsApp</li>
+        <li>Contenidos digitales</li>
+        <li>Soporte IA 24/7 (en desarrollo)</li>
       </ul>
       <button class="card-btn">Inscribirme</button>
     </div>
 
-    <div class="price-card featured">
-      <div class="card-top">
-        <div class="card-label">Anual</div>
-        <span class="badge-popular">★ Más popular</span>
-      </div>
+    <div id="individual" class="price-card featured">
+      <div class="card-label">Personalizado</div>
       <div>
-        <div class="card-price">$1,643<span>/mes</span></div>
-        <div class="card-note">Pago único anual</div>
-        <div class="card-savings">Ahorrás $4,044 al año</div>
+        <div class="card-price">$2,970<span>/mes</span></div>
+        <div class="card-note">personalizado 100% · 8 clases / mes</div>
       </div>
       <ul class="includes">
-        <li>8 clases en vivo/mes</li>
-        <li>Grupos máx. 8 alumnos</li>
-        <li>Material incluido</li>
-        <li>Acceso plataforma</li>
-        <li>Soporte WhatsApp</li>
-        <li>Clases grabadas 24hr</li>
+        <li>Clase 100% personalizada</li>
+        <li>Horario flexible</li>
+        <li>Atención exclusiva del profesor</li>
+        <li>Material adaptado a tus objetivos</li>
+        <li>Soporte IA 24/7 (en desarrollo)</li>
       </ul>
-      <button class="card-btn primary">Inscribirme</button>
+      <a class="card-btn primary" href="#">Inscribirme</a>
+    </div>
+
+    <div id="starter" class="price-card">
+      <div class="card-label">Starter</div>
+      <div>
+        <div class="card-price">$990<span>/mes</span></div>
+        <div class="card-note">plan de entrada · mensual · 2 clases / mes</div>
+      </div>
+      <ul class="includes">
+        <li>2 clases en vivo/mes</li>
+        <li>Grupos máx. 6 alumnos</li>
+        <li>Material básico incluido</li>
+        <li>Acceso a plataforma</li>
+        <li>Soporte WhatsApp</li>
+      </ul>
+      <a class="card-btn" href="#">Inscribirme</a>
     </div>
 
   </div>
@@ -368,36 +345,6 @@
       <div class="chip-price">$1,188<span>/mes</span></div>
       <div class="chip-note">Previa solicitud</div>
     </div>
-  </div>
-</div>
-
-<div id="individual" class="individual-wrap hidden">
-  <div class="individual-card">
-    <div class="ind-price">$2,970<span style="font-size:1rem;font-weight:400;color:var(--muted)">/mes</span></div>
-    <div class="ind-note">personalizado 100% · 8 clases / mes</div>
-    <ul class="ind-includes">
-      <li>Clase 100% personalizada</li>
-      <li>Horario flexible</li>
-      <li>Atención exclusiva del profesor</li>
-      <li>Material adaptado a tus objetivos</li>
-      <li>Soporte WhatsApp</li>
-    </ul>
-    <a class="ind-btn" href="#">Inscribirme</a>
-  </div>
-</div>
-
-<div id="starter" class="individual-wrap hidden">
-  <div class="individual-card">
-    <div class="ind-price">$990<span style="font-size:1rem;font-weight:400;color:var(--muted)">/mes</span></div>
-    <div class="ind-note">plan de entrada · mensual · 2 clases / mes</div>
-    <ul class="ind-includes">
-      <li>2 clases en vivo/mes</li>
-      <li>Grupos máx. 6 alumnos</li>
-      <li>Material básico incluido</li>
-      <li>Acceso a plataforma</li>
-      <li>Soporte WhatsApp</li>
-    </ul>
-    <a class="ind-btn" href="#">Inscribirme</a>
   </div>
 </div>
 
@@ -498,6 +445,7 @@
       starter_inc_4: 'Platform access',
       starter_inc_5: 'WhatsApp support',
       popular_badge: '\u2605 Most popular',
+      plans_title: 'Our plans',
       features_h2: "What's included in your plan",
       feat1_title: 'Live Classes',
       feat1_desc: 'With certified native teachers',
@@ -566,6 +514,7 @@
       starter_inc_4: 'Acceso a plataforma',
       starter_inc_5: 'Soporte WhatsApp',
       popular_badge: '\u2605 M\u00e1s popular',
+      plans_title: 'Nuestros planes',
       features_h2: 'Qu\u00e9 incluye tu plan',
       feat1_title: 'Clases en vivo',
       feat1_desc: 'Con profesores nativos certificados',
@@ -634,6 +583,7 @@
       starter_inc_4: 'Acc\u00e8s plateforme',
       starter_inc_5: 'Support WhatsApp',
       popular_badge: '\u2605 Le plus populaire',
+      plans_title: 'Nos formules',
       features_h2: 'Ce qui est inclus dans votre plan',
       feat1_title: 'Cours en direct',
       feat1_desc: 'Avec des enseignants natifs certifi\u00e9s',
@@ -702,6 +652,7 @@
       starter_inc_4: 'Plattformzugang',
       starter_inc_5: 'WhatsApp-Support',
       popular_badge: '\u2605 Am beliebtesten',
+      plans_title: 'Unsere Pläne',
       features_h2: 'Was dein Plan beinhaltet',
       feat1_title: 'Live-Kurse',
       feat1_desc: 'Mit zertifizierten Muttersprachlern',
@@ -770,6 +721,7 @@
       starter_inc_4: 'Accesso piattaforma',
       starter_inc_5: 'Supporto WhatsApp',
       popular_badge: '\u2605 Il pi\u00f9 popolare',
+      plans_title: 'I nostri piani',
       features_h2: 'Cosa include il tuo piano',
       feat1_title: 'Lezioni dal vivo',
       feat1_desc: 'Con insegnanti madrelingua certificati',
@@ -838,6 +790,7 @@
       starter_inc_4: 'Acesso \u00e0 plataforma',
       starter_inc_5: 'Suporte WhatsApp',
       popular_badge: '\u2605 Mais popular',
+      plans_title: 'Nossos planos',
       features_h2: 'O que est\u00e1 inclu\u00eddo no seu plano',
       feat1_title: 'Aulas ao vivo',
       feat1_desc: 'Com professores nativos certificados',
@@ -906,6 +859,7 @@
       starter_inc_4: '\u5e73\u53f0\u8bbf\u95ee',
       starter_inc_5: 'WhatsApp\u652f\u6301',
       popular_badge: '\u2605 \u6700\u53d7\u6b22\u8fce',
+      plans_title: '\u6211\u4eec\u7684\u8ba1\u5212',
       features_h2: '\u60a8\u7684\u8ba1\u5212\u5305\u542b\u4ec0\u4e48',
       feat1_title: '\u76f4\u64ad\u8bfe',
       feat1_desc: '\u7531\u8ba4\u8bc1\u6bcd\u8bed\u6559\u5e08\u6388\u8bfe',
@@ -983,58 +937,40 @@
     const backLink = document.querySelector('.back-link');
     if (backLink) backLink.textContent = t.back_link;
 
-    // Toggle buttons
-    const toggleBtns = document.querySelectorAll('.toggle-btn');
-    if (toggleBtns[0]) toggleBtns[0].textContent = t.toggle_group;
-    if (toggleBtns[1]) toggleBtns[1].textContent = t.toggle_individual;
-    if (toggleBtns[2]) toggleBtns[2].textContent = t.toggle_starter;
-
     // Hero
     const heroH1 = document.querySelector('.hero h1');
     if (heroH1) heroH1.textContent = p.h1;
     const heroP = document.querySelector('.hero p');
     if (heroP) heroP.textContent = p.p;
 
-    // Card labels
-    const labels = document.querySelectorAll('.card-label');
-    if (labels[0]) labels[0].textContent = t.label_monthly;
-    if (labels[1]) labels[1].textContent = t.label_annual;
-    if (labels[2]) labels[2].textContent = t.label_companies;
+    // Plan labels
+    const groupLabel = document.querySelector('#group .card-label');
+    if (groupLabel) groupLabel.textContent = t.toggle_group;
+    const indLabel = document.querySelector('#individual .card-label');
+    if (indLabel) indLabel.textContent = t.toggle_individual;
+    const starterLabel = document.querySelector('#starter .card-label');
+    if (starterLabel) starterLabel.textContent = t.toggle_starter;
 
     // Card notes
-    const notes = document.querySelectorAll('.card-note');
-    if (notes[0]) notes[0].textContent = t.note_monthly;
-    if (notes[1]) notes[1].textContent = t.note_annual;
-    if (notes[2]) notes[2].textContent = t.note_companies;
+    const groupNote = document.querySelector('#group .card-note');
+    if (groupNote) groupNote.textContent = t.note_monthly;
+    const indNote2 = document.querySelector('#individual .card-note');
+    if (indNote2) indNote2.textContent = t.ind_note;
+    const starterNote2 = document.querySelector('#starter .card-note');
+    if (starterNote2) starterNote2.textContent = t.starter_note;
 
-    // Per-month spans inside #group .card-price
-    document.querySelectorAll('#group .card-price span').forEach(function(s) {
+    // Per-month spans
+    document.querySelectorAll('.card-price span').forEach(function(s) {
       s.textContent = t.per_month;
     });
 
-    // Savings
-    const savings = document.querySelector('.card-savings');
-    if (savings) savings.textContent = t.savings;
-
-    // Popular badge
-    const popular = document.querySelector('.badge-popular');
-    if (popular) popular.textContent = t.popular_badge;
-
-    // Group cards includes
-    const groupCards = document.querySelectorAll('#group .price-card');
-    const groupIncludes = [
-      [t.inc_live, t.inc_groups, t.inc_material, t.inc_platform, t.inc_whatsapp],
-      [t.inc_live, t.inc_groups, t.inc_material, t.inc_platform, t.inc_whatsapp, t.inc_recorded],
-      [t.inc_live, t.inc_groups, t.inc_material, t.inc_platform, t.inc_whatsapp, t.inc_invoice, t.inc_private]
-    ];
-    groupCards.forEach(function(card, ci) {
-      const items = card.querySelectorAll('.includes li');
-      (groupIncludes[ci] || []).forEach(function(txt, ii) {
-        if (items[ii]) items[ii].textContent = txt;
-      });
-      const btn = card.querySelector('.card-btn');
-      if (btn) btn.textContent = ci === 2 ? t.btn_contact : t.btn_enroll;
+    // Group includes
+    const groupItems = document.querySelectorAll('#group .includes li');
+    [t.inc_live, t.inc_groups, t.inc_material, t.inc_platform, t.inc_whatsapp].forEach(function(txt, i) {
+      if (groupItems[i]) groupItems[i].textContent = txt;
     });
+    const groupBtn = document.querySelector('#group .card-btn');
+    if (groupBtn) groupBtn.textContent = t.btn_enroll;
 
     // Specials
     const specTitle = document.querySelector('.specials-title');
@@ -1055,25 +991,25 @@
       s.textContent = t.per_month;
     });
 
-    // Individual section
-    const indNote = document.querySelector('#individual .ind-note');
-    if (indNote) indNote.textContent = t.ind_note;
-    const indIncludes = [t.ind_inc_1, t.ind_inc_2, t.ind_inc_3, t.ind_inc_4, t.ind_inc_5];
-    const indItems = document.querySelectorAll('#individual .ind-includes li');
-    indIncludes.forEach(function(txt, i) { if (indItems[i]) indItems[i].textContent = txt; });
-    const indBtn = document.querySelector('#individual .ind-btn');
+    // Individual includes
+    const indItems = document.querySelectorAll('#individual .includes li');
+    [t.ind_inc_1, t.ind_inc_2, t.ind_inc_3, t.ind_inc_4, t.ind_inc_5].forEach(function(txt, i) {
+      if (indItems[i]) indItems[i].textContent = txt;
+    });
+    const indBtn = document.querySelector('#individual .card-btn');
     if (indBtn) indBtn.textContent = t.btn_enroll;
 
-    // Starter section
-    const starterNote = document.querySelector('#starter .ind-note');
-    if (starterNote) starterNote.textContent = t.starter_note;
-    const starterIncludes = [t.starter_inc_1, t.starter_inc_2, t.starter_inc_3, t.starter_inc_4, t.starter_inc_5];
-    const starterItems = document.querySelectorAll('#starter .ind-includes li');
-    starterIncludes.forEach(function(txt, i) { if (starterItems[i]) starterItems[i].textContent = txt; });
-    const starterBtn = document.querySelector('#starter .ind-btn');
+    // Starter includes
+    const starterItems = document.querySelectorAll('#starter .includes li');
+    [t.starter_inc_1, t.starter_inc_2, t.starter_inc_3, t.starter_inc_4, t.starter_inc_5].forEach(function(txt, i) {
+      if (starterItems[i]) starterItems[i].textContent = txt;
+    });
+    const starterBtn = document.querySelector('#starter .card-btn');
     if (starterBtn) starterBtn.textContent = t.btn_enroll;
 
     // Features section
+    const plansTitle = document.querySelector('.plans-title');
+    if (plansTitle) plansTitle.textContent = t.plans_title;
     const featH2 = document.querySelector('.features h2');
     if (featH2) featH2.textContent = t.features_h2;
     const featTitles = document.querySelectorAll('.feat-title');
@@ -1114,18 +1050,6 @@
 
     localStorage.setItem('parling_lang', lang);
   }
-
-  // Toggle panels
-  const panels = [document.getElementById('group'), document.getElementById('individual'), document.getElementById('starter')];
-  const toggleBtnsEl = document.querySelectorAll('.toggle-btn');
-  toggleBtnsEl.forEach(function(btn, idx) {
-    btn.addEventListener('click', function() {
-      panels.forEach(function(p) { p.classList.add('hidden'); });
-      toggleBtnsEl.forEach(function(b) { b.classList.remove('active'); });
-      panels[idx].classList.remove('hidden');
-      btn.classList.add('active');
-    });
-  });
 
   // Lang-picker open/close
   document.getElementById('langBtn').addEventListener('click', function(e) {
