@@ -6,37 +6,27 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { width: 1200px; height: 630px; overflow: hidden; }
   body {
-    background: linear-gradient(135deg, #0c2461 0%, #1368a3 50%, #06b6d4 100%);
+    background: url('https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=1200&h=630&fit=crop&q=80') center/cover no-repeat;
     font-family: 'Segoe UI', system-ui, sans-serif;
     color: #fff;
     position: relative;
   }
-  .circle-tr {
-    position: absolute; top: -140px; right: -80px;
-    width: 480px; height: 480px; border-radius: 50%;
-    background: rgba(103,232,249,.18);
-  }
-  .circle-bl {
-    position: absolute; bottom: -120px; left: -70px;
-    width: 380px; height: 380px; border-radius: 50%;
-    background: rgba(6,182,212,.28);
-  }
-  .circle-mid {
-    position: absolute; top: 160px; right: 320px;
-    width: 180px; height: 180px; border-radius: 50%;
-    background: rgba(255,255,255,.04);
-    border: 1px solid rgba(255,255,255,.07);
-  }
-  .dots {
+  .overlay {
     position: absolute; inset: 0;
-    background-image: radial-gradient(circle, rgba(255,255,255,.07) 1px, transparent 1px);
-    background-size: 30px 30px;
+    background: linear-gradient(120deg,
+      rgba(8,28,70,.93) 0%,
+      rgba(14,80,140,.82) 50%,
+      rgba(6,182,212,.6) 100%);
   }
-  /* Olas de sonido decorativas */
+  .noise {
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+    background-size: 200px 200px; opacity: .5; pointer-events: none;
+  }
   .waves {
     position: absolute; left: 0; right: 0; bottom: 115px;
     height: 60px; display: flex; align-items: flex-end;
-    justify-content: center; gap: 6px; opacity: .2; pointer-events: none;
+    justify-content: center; gap: 6px; opacity: .25; pointer-events: none; z-index: 2;
   }
   .waves span { display: block; width: 7px; border-radius: 4px 4px 0 0; background: #fff; }
   .brand {
@@ -46,11 +36,11 @@
   .brand-dot { width: 9px; height: 9px; border-radius: 50%; background: #fbbf24; }
   .brand-name {
     font-size: .8rem; font-weight: 800; letter-spacing: 3px;
-    text-transform: uppercase; color: rgba(255,255,255,.7);
+    text-transform: uppercase; color: rgba(255,255,255,.75);
   }
   .tag {
     position: absolute; top: 36px; right: 52px;
-    background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.28);
+    background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3);
     color: #fff; font-size: .78rem; font-weight: 700;
     letter-spacing: 2px; padding: .4rem 1.1rem; border-radius: 20px;
     backdrop-filter: blur(10px); z-index: 2;
@@ -59,33 +49,32 @@
     position: absolute; inset: 0 0 115px 0;
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
-    z-index: 1; gap: 6px;
+    z-index: 2; gap: 8px;
   }
   .hook {
-    font-size: 1.15rem; font-weight: 500; font-style: italic;
-    color: rgba(255,255,255,.65); letter-spacing: .5px;
+    font-size: 1.2rem; font-weight: 500; font-style: italic;
+    color: rgba(255,255,255,.7); letter-spacing: .5px;
   }
   .num-row { display: flex; align-items: center; gap: 20px; line-height: 1; }
   .big-num {
     font-size: 17rem; font-weight: 900; color: #fff;
     line-height: .85; letter-spacing: -10px;
-    text-shadow: 0 0 80px rgba(255,255,255,.25), 0 8px 40px rgba(0,0,0,.3);
+    text-shadow: 0 4px 60px rgba(0,0,0,.5);
   }
   .unit-block { display: flex; flex-direction: column; gap: 8px; }
   .unit {
     font-size: 2.6rem; font-weight: 900; color: #fbbf24;
     letter-spacing: 2px; text-transform: uppercase;
-    text-shadow: 0 0 30px rgba(251,191,36,.5);
-    line-height: 1.1;
+    text-shadow: 0 2px 20px rgba(0,0,0,.4); line-height: 1.1;
   }
-  .icon { font-size: 3.5rem; line-height: 1; }
+  .icon { font-size: 3.4rem; line-height: 1; }
   .subtitle {
-    font-size: 1.1rem; font-weight: 500;
-    color: rgba(255,255,255,.7); letter-spacing: 2px;
+    font-size: 1.05rem; font-weight: 500;
+    color: rgba(255,255,255,.72); letter-spacing: 2px;
   }
   .bottom-bar {
     position: absolute; bottom: 0; left: 0; right: 0; height: 115px;
-    background: rgba(0,0,0,.35); backdrop-filter: blur(10px);
+    background: rgba(0,0,0,.55); backdrop-filter: blur(12px);
     border-top: 1px solid rgba(255,255,255,.1);
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 52px; z-index: 2;
@@ -95,19 +84,17 @@
 </style>
 </head>
 <body>
-  <div class="circle-tr"></div>
-  <div class="circle-bl"></div>
-  <div class="circle-mid"></div>
-  <div class="dots"></div>
+  <div class="overlay"></div>
+  <div class="noise"></div>
 
   <div class="waves">
-    <span style="height:20px"></span><span style="height:38px"></span>
-    <span style="height:14px"></span><span style="height:52px"></span>
+    <span style="height:20px"></span><span style="height:40px"></span>
+    <span style="height:14px"></span><span style="height:54px"></span>
     <span style="height:28px"></span><span style="height:58px"></span>
-    <span style="height:42px"></span><span style="height:55px"></span>
+    <span style="height:44px"></span><span style="height:56px"></span>
     <span style="height:30px"></span><span style="height:48px"></span>
     <span style="height:18px"></span><span style="height:36px"></span>
-    <span style="height:50px"></span><span style="height:24px"></span>
+    <span style="height:50px"></span><span style="height:22px"></span>
     <span style="height:44px"></span><span style="height:56px"></span>
     <span style="height:32px"></span><span style="height:46px"></span>
     <span style="height:20px"></span><span style="height:38px"></span>
