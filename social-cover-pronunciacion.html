@@ -6,121 +6,131 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { width: 1200px; height: 630px; overflow: hidden; }
   body {
-    background: linear-gradient(135deg, #0d0d12 0%, #001820 50%, #002535 100%);
+    background: linear-gradient(135deg, #0c2461 0%, #1368a3 50%, #06b6d4 100%);
     font-family: 'Segoe UI', system-ui, sans-serif;
-    color: #f1f1f6;
+    color: #fff;
     position: relative;
   }
-  .glow-tr {
-    position: absolute; top: -120px; right: -80px;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(6,182,212,.4) 0%, transparent 65%);
+  .circle-tr {
+    position: absolute; top: -140px; right: -80px;
+    width: 480px; height: 480px; border-radius: 50%;
+    background: rgba(103,232,249,.18);
   }
-  .glow-bl {
-    position: absolute; bottom: -80px; left: -40px;
-    width: 360px; height: 360px;
-    background: radial-gradient(circle, rgba(103,232,249,.15) 0%, transparent 70%);
+  .circle-bl {
+    position: absolute; bottom: -120px; left: -70px;
+    width: 380px; height: 380px; border-radius: 50%;
+    background: rgba(6,182,212,.28);
   }
-  .grid-lines {
+  .circle-mid {
+    position: absolute; top: 160px; right: 320px;
+    width: 180px; height: 180px; border-radius: 50%;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.07);
+  }
+  .dots {
     position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-    background-size: 60px 60px;
+    background-image: radial-gradient(circle, rgba(255,255,255,.07) 1px, transparent 1px);
+    background-size: 30px 30px;
   }
-  /* Sound wave bars */
+  /* Olas de sonido decorativas */
   .waves {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    height: 140px;
-    display: flex; align-items: flex-end; justify-content: center;
-    gap: 5px; opacity: .12; pointer-events: none;
+    position: absolute; left: 0; right: 0; bottom: 115px;
+    height: 60px; display: flex; align-items: flex-end;
+    justify-content: center; gap: 6px; opacity: .2; pointer-events: none;
   }
-  .waves span {
-    display: block; width: 8px; border-radius: 4px 4px 0 0;
-    background: #06b6d4;
-  }
+  .waves span { display: block; width: 7px; border-radius: 4px 4px 0 0; background: #fff; }
   .brand {
-    position: absolute; top: 36px; left: 48px;
-    display: flex; align-items: center; gap: 12px;
+    position: absolute; top: 42px; left: 52px;
+    display: flex; align-items: center; gap: 10px; z-index: 2;
   }
-  .brand-dot {
-    width: 10px; height: 10px; border-radius: 50%;
-    background: linear-gradient(135deg, #06b6d4, #0ea5e9);
-  }
+  .brand-dot { width: 9px; height: 9px; border-radius: 50%; background: #fbbf24; }
   .brand-name {
-    font-size: .85rem; font-weight: 700; letter-spacing: 3px;
-    text-transform: uppercase; color: rgba(103,232,249,.7);
+    font-size: .8rem; font-weight: 800; letter-spacing: 3px;
+    text-transform: uppercase; color: rgba(255,255,255,.7);
   }
   .tag {
-    position: absolute; top: 36px; right: 48px;
-    background: rgba(6,182,212,.15); border: 1px solid rgba(6,182,212,.35);
-    color: #67e8f9; font-size: .78rem; font-weight: 700;
-    letter-spacing: 2px; padding: .4rem 1rem; border-radius: 20px;
+    position: absolute; top: 36px; right: 52px;
+    background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.28);
+    color: #fff; font-size: .78rem; font-weight: 700;
+    letter-spacing: 2px; padding: .4rem 1.1rem; border-radius: 20px;
+    backdrop-filter: blur(10px); z-index: 2;
   }
   .center {
-    position: absolute; inset: 0;
+    position: absolute; inset: 0 0 115px 0;
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
-    z-index: 1;
+    z-index: 1; gap: 6px;
   }
-  .icon { font-size: 4.5rem; line-height: 1; margin-bottom: 8px; }
+  .hook {
+    font-size: 1.15rem; font-weight: 500; font-style: italic;
+    color: rgba(255,255,255,.65); letter-spacing: .5px;
+  }
+  .num-row { display: flex; align-items: center; gap: 20px; line-height: 1; }
   .big-num {
-    font-size: 18rem; font-weight: 900; color: #06b6d4; line-height: .85;
-    text-shadow: 0 0 120px rgba(6,182,212,.65), 0 0 40px rgba(6,182,212,.35);
-    letter-spacing: -12px;
+    font-size: 17rem; font-weight: 900; color: #fff;
+    line-height: .85; letter-spacing: -10px;
+    text-shadow: 0 0 80px rgba(255,255,255,.25), 0 8px 40px rgba(0,0,0,.3);
   }
-  .label {
-    font-size: 1.15rem; font-weight: 700; letter-spacing: 6px;
-    color: #67e8f9; text-transform: uppercase; margin-top: 14px;
+  .unit-block { display: flex; flex-direction: column; gap: 8px; }
+  .unit {
+    font-size: 2.6rem; font-weight: 900; color: #fbbf24;
+    letter-spacing: 2px; text-transform: uppercase;
+    text-shadow: 0 0 30px rgba(251,191,36,.5);
+    line-height: 1.1;
   }
-  .divider {
-    position: absolute; bottom: 100px; left: 48px; right: 48px;
-    height: 1px; background: rgba(6,182,212,.2);
+  .icon { font-size: 3.5rem; line-height: 1; }
+  .subtitle {
+    font-size: 1.1rem; font-weight: 500;
+    color: rgba(255,255,255,.7); letter-spacing: 2px;
   }
-  .title {
-    position: absolute; bottom: 48px; left: 48px;
-    font-size: 1.55rem; font-weight: 800; color: #f1f1f6;
-    line-height: 1.3; max-width: 800px;
+  .bottom-bar {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 115px;
+    background: rgba(0,0,0,.35); backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255,255,255,.1);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 52px; z-index: 2;
   }
-  .url {
-    position: absolute; bottom: 52px; right: 48px;
-    font-size: .78rem; color: rgba(103,232,249,.5);
-    letter-spacing: 1px;
-  }
+  .title-text { font-size: 1.45rem; font-weight: 800; color: #fff; line-height: 1.25; }
+  .url { font-size: .75rem; color: rgba(255,255,255,.4); letter-spacing: 1px; white-space: nowrap; margin-left: 24px; }
 </style>
 </head>
 <body>
-  <div class="glow-tr"></div>
-  <div class="glow-bl"></div>
-  <div class="grid-lines"></div>
+  <div class="circle-tr"></div>
+  <div class="circle-bl"></div>
+  <div class="circle-mid"></div>
+  <div class="dots"></div>
 
   <div class="waves">
-    <span style="height:35px"></span><span style="height:60px"></span>
-    <span style="height:25px"></span><span style="height:90px"></span>
-    <span style="height:45px"></span><span style="height:120px"></span>
-    <span style="height:70px"></span><span style="height:100px"></span>
-    <span style="height:50px"></span><span style="height:80px"></span>
-    <span style="height:30px"></span><span style="height:55px"></span>
-    <span style="height:95px"></span><span style="height:40px"></span>
-    <span style="height:75px"></span><span style="height:110px"></span>
-    <span style="height:60px"></span><span style="height:85px"></span>
-    <span style="height:35px"></span><span style="height:65px"></span>
+    <span style="height:20px"></span><span style="height:38px"></span>
+    <span style="height:14px"></span><span style="height:52px"></span>
+    <span style="height:28px"></span><span style="height:58px"></span>
+    <span style="height:42px"></span><span style="height:55px"></span>
+    <span style="height:30px"></span><span style="height:48px"></span>
+    <span style="height:18px"></span><span style="height:36px"></span>
+    <span style="height:50px"></span><span style="height:24px"></span>
+    <span style="height:44px"></span><span style="height:56px"></span>
+    <span style="height:32px"></span><span style="height:46px"></span>
+    <span style="height:20px"></span><span style="height:38px"></span>
   </div>
 
-  <div class="brand">
-    <div class="brand-dot"></div>
-    <div class="brand-name">Parling Academy</div>
-  </div>
+  <div class="brand"><div class="brand-dot"></div><div class="brand-name">Parling Academy</div></div>
   <div class="tag">PRONUNCIACIÓN</div>
 
   <div class="center">
-    <div class="icon">🔊</div>
-    <div class="big-num">7</div>
-    <div class="label">errores que frenan tu inglés</div>
+    <div class="hook">¿Te está delatando el acento?</div>
+    <div class="num-row">
+      <div class="big-num">7</div>
+      <div class="unit-block">
+        <div class="unit">errores</div>
+        <div class="icon">🔊</div>
+      </div>
+    </div>
+    <div class="subtitle">que frenan tu inglés sin que lo notes</div>
   </div>
 
-  <div class="divider"></div>
-  <div class="title">Los 7 errores de pronunciación más comunes en inglés</div>
-  <div class="url">parlingacademy.com/blog</div>
+  <div class="bottom-bar">
+    <div class="title-text">Los 7 errores de pronunciación más comunes en inglés</div>
+    <div class="url">parlingacademy.com/blog</div>
+  </div>
 </body>
 </html>
