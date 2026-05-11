@@ -275,8 +275,11 @@
   <h2 class="plans-title">Nuestros planes</h2>
   <div class="cards-grid">
 
-    <div id="group" class="price-card">
-      <div class="card-label">Grupal</div>
+    <div id="group" class="price-card featured">
+      <div class="card-top">
+        <div class="card-label">Grupal</div>
+        <span class="badge-popular">★ Más popular</span>
+      </div>
       <div>
         <div class="card-price">$2,490<span>/mes</span></div>
         <div class="card-note">Mes a mes · sin contrato</div>
@@ -291,7 +294,7 @@
       <button class="card-btn">Inscribirme</button>
     </div>
 
-    <div id="individual" class="price-card featured">
+    <div id="individual" class="price-card">
       <div class="card-label">Personalizado</div>
       <div>
         <div class="card-price">$4,358<span>/mes</span></div>
@@ -946,6 +949,8 @@
     // Plan labels
     const groupLabel = document.querySelector('#group .card-label');
     if (groupLabel) groupLabel.textContent = t.toggle_group;
+    const groupBadge = document.querySelector('#group .badge-popular');
+    if (groupBadge) groupBadge.textContent = t.popular_badge;
     const indLabel = document.querySelector('#individual .card-label');
     if (indLabel) indLabel.textContent = t.toggle_individual;
     const starterLabel = document.querySelector('#starter .card-label');
