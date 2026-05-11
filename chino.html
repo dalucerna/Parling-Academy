@@ -323,7 +323,7 @@
         <li>Acceso a plataforma</li>
         <li>Soporte WhatsApp</li>
       </ul>
-      <a class="card-btn" href="#">Inscribirme</a>
+      <a class="card-btn" href="#" style="opacity:.55;cursor:default;pointer-events:none">En desarrollo</a>
     </div>
 
   </div>
@@ -449,6 +449,7 @@
       starter_inc_5: 'WhatsApp support',
       popular_badge: 'Popular',
       plans_title: 'Our plans',
+      starter_btn: 'Coming soon',
       features_h2: "What's included in your plan",
       feat1_title: 'Live Classes',
       feat1_desc: 'With certified native teachers',
@@ -518,6 +519,7 @@
       starter_inc_5: 'Soporte WhatsApp',
       popular_badge: 'Popular',
       plans_title: 'Nuestros planes',
+      starter_btn: 'En desarrollo',
       features_h2: 'Qu\u00e9 incluye tu plan',
       feat1_title: 'Clases en vivo',
       feat1_desc: 'Con profesores nativos certificados',
@@ -587,6 +589,7 @@
       starter_inc_5: 'Support WhatsApp',
       popular_badge: 'Popular',
       plans_title: 'Nos formules',
+      starter_btn: 'En d\u00e9veloppement',
       features_h2: 'Ce qui est inclus dans votre plan',
       feat1_title: 'Cours en direct',
       feat1_desc: 'Avec des enseignants natifs certifi\u00e9s',
@@ -656,6 +659,7 @@
       starter_inc_5: 'WhatsApp-Support',
       popular_badge: 'Popular',
       plans_title: 'Unsere Pläne',
+      starter_btn: 'In Entwicklung',
       features_h2: 'Was dein Plan beinhaltet',
       feat1_title: 'Live-Kurse',
       feat1_desc: 'Mit zertifizierten Muttersprachlern',
@@ -725,6 +729,7 @@
       starter_inc_5: 'Supporto WhatsApp',
       popular_badge: 'Popular',
       plans_title: 'I nostri piani',
+      starter_btn: 'In sviluppo',
       features_h2: 'Cosa include il tuo piano',
       feat1_title: 'Lezioni dal vivo',
       feat1_desc: 'Con insegnanti madrelingua certificati',
@@ -794,6 +799,7 @@
       starter_inc_5: 'Suporte WhatsApp',
       popular_badge: 'Popular',
       plans_title: 'Nossos planos',
+      starter_btn: 'Em desenvolvimento',
       features_h2: 'O que est\u00e1 inclu\u00eddo no seu plano',
       feat1_title: 'Aulas ao vivo',
       feat1_desc: 'Com professores nativos certificados',
@@ -863,6 +869,7 @@
       starter_inc_5: 'WhatsApp\u652f\u6301',
       popular_badge: 'Popular',
       plans_title: '\u6211\u4eec\u7684\u8ba1\u5212',
+      starter_btn: '\u5f00\u53d1\u4e2d',
       features_h2: '\u60a8\u7684\u8ba1\u5212\u5305\u542b\u4ec0\u4e48',
       feat1_title: '\u76f4\u64ad\u8bfe',
       feat1_desc: '\u7531\u8ba4\u8bc1\u6bcd\u8bed\u6559\u5e08\u6388\u8bfe',
@@ -1010,7 +1017,7 @@
       if (starterItems[i]) starterItems[i].textContent = txt;
     });
     const starterBtn = document.querySelector('#starter .card-btn');
-    if (starterBtn) starterBtn.textContent = t.btn_enroll;
+    if (starterBtn) starterBtn.textContent = t.starter_btn;
 
     // Features section
     const plansTitle = document.querySelector('.plans-title');
