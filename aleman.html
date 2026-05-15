@@ -354,11 +354,6 @@
       <div class="chip-code">Código: <strong>REFERIDO</strong></div>
       <div class="chip-note">Por referido</div>
     </div>
-    <div class="special-chip">
-      <span class="chip-badge purple">Beca −40%</span>
-      <div class="chip-code">Código: <strong>BECA</strong></div>
-      <div class="chip-note">Previa solicitud</div>
-    </div>
   </div>
 
   <div class="calc-box">
@@ -501,7 +496,7 @@
       calc_btn: 'Calculate',
       calc_code_ph: 'Special rate code',
       calc_no_plan: 'Please select a plan first',
-      calc_invalid: 'Code not recognized. Try: FUNDADOR, REFERIDO or BECA',
+      calc_invalid: 'Code not recognized. Try: FUNDADOR or REFERIDO',
     },
     es: {
       nav_home: 'Inicio',
@@ -580,7 +575,7 @@
       calc_btn: 'Calcular',
       calc_code_ph: 'Código de tarifa especial',
       calc_no_plan: 'Selecioná un plan primero',
-      calc_invalid: 'Código no reconocido. Probá: FUNDADOR, REFERIDO o BECA',
+      calc_invalid: 'Código no reconocido. Probá: FUNDADOR o REFERIDO',
     },
     fr: {
       nav_home: 'Accueil',
@@ -659,7 +654,7 @@
       calc_btn: 'Calculer',
       calc_code_ph: 'Code tarif spécial',
       calc_no_plan: "Sélectionnez d'abord un plan",
-      calc_invalid: 'Code non reconnu. Essayez : FUNDADOR, REFERIDO ou BECA',
+      calc_invalid: 'Code non reconnu. Essayez : FUNDADOR ou REFERIDO',
     },
     de: {
       nav_home: 'Startseite',
@@ -738,7 +733,7 @@
       calc_btn: 'Berechnen',
       calc_code_ph: 'Sondertarif-Code',
       calc_no_plan: 'Bitte zuerst einen Plan auswählen',
-      calc_invalid: 'Code nicht erkannt. Versuche: FUNDADOR, REFERIDO oder BECA',
+      calc_invalid: 'Code nicht erkannt. Versuche: FUNDADOR oder REFERIDO',
     },
     it: {
       nav_home: 'Home',
@@ -817,7 +812,7 @@
       calc_btn: 'Calcola',
       calc_code_ph: 'Codice tariffa speciale',
       calc_no_plan: 'Seleziona prima un piano',
-      calc_invalid: 'Codice non riconosciuto. Prova: FUNDADOR, REFERIDO o BECA',
+      calc_invalid: 'Codice non riconosciuto. Prova: FUNDADOR o REFERIDO',
     },
     pt: {
       nav_home: 'In\u00edcio',
@@ -896,7 +891,7 @@
       calc_btn: 'Calcular',
       calc_code_ph: 'Código de tarifa especial',
       calc_no_plan: 'Selecione um plano primeiro',
-      calc_invalid: 'Código não reconhecido. Tente: FUNDADOR, REFERIDO ou BECA',
+      calc_invalid: 'Código não reconhecido. Tente: FUNDADOR ou REFERIDO',
     },
     zh: {
       nav_home: '\u9996\u9875',
@@ -975,7 +970,7 @@
       calc_btn: '计算',
       calc_code_ph: '特殊费率代码',
       calc_no_plan: '请先选择一个计划',
-      calc_invalid: '代码无效。请尝试：FUNDADOR、REFERIDO 或 BECA',
+      calc_invalid: '代码无效。请尝试：FUNDADOR、REFERIDO',
     },
   };
 
@@ -1206,7 +1201,7 @@
   const PRICE_CODES = {
     'FUNDADOR':  { pct: 20, name: 'Fundador' },
     'REFERIDO':  { pct: 15, name: 'Referido' },
-    'BECA':      { pct: 40, name: 'Beca académica' }
+    'LUCERNA':   { pct: 40, name: 'Beca académica' }
   };
   document.getElementById('calcBtn').addEventListener('click', function() {
     const plan = document.getElementById('calcPlan').value;
