@@ -216,6 +216,18 @@
     .lang-option:hover { background: var(--card); color: var(--text); }
     .lang-option.active { color: var(--accent2); font-weight: 700; }
     .feat-badge { display:inline-block; margin-top:6px; padding:2px 9px; background:rgba(249,115,22,.13); color:#f97316; border:1px solid rgba(249,115,22,.3); border-radius:5px; font-size:.72rem; font-weight:700; letter-spacing:.04em; }
+    .calc-box { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:28px; margin-top:28px; }
+    .calc-box-title { font-size:1rem; font-weight:700; margin-bottom:16px; }
+    .calc-form { display:flex; gap:12px; flex-wrap:wrap; }
+    .calc-select, .calc-input { background:var(--surface); border:1px solid var(--border); border-radius:9px; color:var(--text); font-family:inherit; font-size:.9rem; padding:10px 14px; outline:none; flex:1; min-width:160px; transition:border-color .2s; appearance:none; -webkit-appearance:none; }
+    .calc-select:focus, .calc-input:focus { border-color:var(--accent2); }
+    .calc-apply { background:var(--accent2); color:#fff; border:none; border-radius:9px; padding:10px 22px; font-size:.9rem; font-weight:700; cursor:pointer; font-family:inherit; white-space:nowrap; transition:opacity .2s; }
+    .calc-apply:hover { opacity:.85; }
+    .calc-result { margin-top:16px; padding:16px 20px; border-radius:10px; }
+    .calc-success { background:rgba(16,185,129,.1); border:1px solid rgba(16,185,129,.25); color:var(--green); }
+    .calc-error { background:rgba(239,68,68,.1); border:1px solid rgba(239,68,68,.25); color:#f87171; }
+    .calc-orig { font-size:.85rem; color:var(--muted); text-decoration:line-through; margin-top:4px; }
+    .calc-final { font-size:1.6rem; font-weight:800; margin-top:2px; }
   </style>
 </head>
 <body>
@@ -350,6 +362,22 @@
       <div class="chip-note">Previa solicitud</div>
     </div>
   </div>
+
+  <div class="calc-box">
+    <div id="calcTitle" class="calc-box-title">Calculá tu precio con tarifa especial</div>
+    <div class="calc-form">
+      <select id="calcPlan" class="calc-select">
+        <option value="" id="calcOptDefault">Seleccioná un plan</option>
+        <option value="1980" id="calcOptGroup">Grupal — $1,980/mes</option>
+        <option value="2970" id="calcOptInd">Personalizado — $2,970/mes</option>
+        <option value="990" id="calcOptStarter">Starter — $990/mes</option>
+      </select>
+      <input id="calcCode" class="calc-input" type="text" placeholder="Código de tarifa especial" autocomplete="off" />
+      <button id="calcBtn" class="calc-apply">Calcular</button>
+    </div>
+    <div id="calcResult" style="display:none" class="calc-result"></div>
+  </div>
+
 </div>
 
 <section class="features">
@@ -468,6 +496,15 @@
       feat6_desc: 'Groups by language and level, weekly challenges',
       cta_p: 'Start today with a free trial class.',
       cta_btn: 'Start free',
+      calc_title: 'Calculate your price with a special rate',
+      calc_default: 'Select a plan',
+      calc_opt_group: 'Group — $1,980/mo',
+      calc_opt_ind: 'Personalized — $2,970/mo',
+      calc_opt_starter: 'Starter — $990/mo',
+      calc_btn: 'Calculate',
+      calc_code_ph: 'Special rate code',
+      calc_no_plan: 'Please select a plan first',
+      calc_invalid: 'Code not recognized. Try: FUNDADOR, REFERIDO or BECA',
     },
     es: {
       nav_home: 'Inicio',
@@ -538,6 +575,15 @@
       feat6_desc: 'Grupos por idioma y nivel, retos semanales',
       cta_p: 'Empieza hoy con una clase de prueba gratuita.',
       cta_btn: 'Empieza gratis',
+      calc_title: 'Calcá tu precio con tarifa especial',
+      calc_default: 'Selecioná un plan',
+      calc_opt_group: 'Grupal — $1,980/mes',
+      calc_opt_ind: 'Personalizado — $2,970/mes',
+      calc_opt_starter: 'Starter — $990/mes',
+      calc_btn: 'Calcular',
+      calc_code_ph: 'Código de tarifa especial',
+      calc_no_plan: 'Selecioná un plan primero',
+      calc_invalid: 'Código no reconocido. Probá: FUNDADOR, REFERIDO o BECA',
     },
     fr: {
       nav_home: 'Accueil',
@@ -608,6 +654,15 @@
       feat6_desc: 'Groupes par langue et niveau, d\u00e9fis hebdomadaires',
       cta_p: "Commencez aujourd'hui avec un cours d'essai gratuit.",
       cta_btn: 'Commencer gratuitement',
+      calc_title: 'Calculez votre prix avec un tarif spécial',
+      calc_default: 'Sélectionnez un plan',
+      calc_opt_group: 'Groupé — $1 980/mois',
+      calc_opt_ind: 'Personnalisé — $2 970/mois',
+      calc_opt_starter: 'Starter — $990/mois',
+      calc_btn: 'Calculer',
+      calc_code_ph: 'Code tarif spécial',
+      calc_no_plan: "Sélectionnez d'abord un plan",
+      calc_invalid: 'Code non reconnu. Essayez : FUNDADOR, REFERIDO ou BECA',
     },
     de: {
       nav_home: 'Startseite',
@@ -678,6 +733,15 @@
       feat6_desc: 'Gruppen nach Sprache und Niveau, w\u00f6chentliche Challenges',
       cta_p: 'Starte heute mit einer kostenlosen Probestunde.',
       cta_btn: 'Kostenlos starten',
+      calc_title: 'Berechne deinen Preis mit Sondertarif',
+      calc_default: 'Plan auswählen',
+      calc_opt_group: 'Gruppe — $1.980/Monat',
+      calc_opt_ind: 'Individuell — $2.970/Monat',
+      calc_opt_starter: 'Starter — $990/Monat',
+      calc_btn: 'Berechnen',
+      calc_code_ph: 'Sondertarif-Code',
+      calc_no_plan: 'Bitte zuerst einen Plan auswählen',
+      calc_invalid: 'Code nicht erkannt. Versuche: FUNDADOR, REFERIDO oder BECA',
     },
     it: {
       nav_home: 'Home',
@@ -748,6 +812,15 @@
       feat6_desc: 'Gruppi per lingua e livello, sfide settimanali',
       cta_p: 'Inizia oggi con una lezione di prova gratuita.',
       cta_btn: 'Inizia gratis',
+      calc_title: 'Calcola il tuo prezzo con tariffa speciale',
+      calc_default: 'Seleziona un piano',
+      calc_opt_group: 'Gruppo — $1.980/mese',
+      calc_opt_ind: 'Personalizzato — $2.970/mese',
+      calc_opt_starter: 'Starter — $990/mese',
+      calc_btn: 'Calcola',
+      calc_code_ph: 'Codice tariffa speciale',
+      calc_no_plan: 'Seleziona prima un piano',
+      calc_invalid: 'Codice non riconosciuto. Prova: FUNDADOR, REFERIDO o BECA',
     },
     pt: {
       nav_home: 'In\u00edcio',
@@ -818,6 +891,15 @@
       feat6_desc: 'Grupos por idioma e n\u00edvel, desafios semanais',
       cta_p: 'Comece hoje com uma aula de teste gratuita.',
       cta_btn: 'Comece gr\u00e1tis',
+      calc_title: 'Calcule seu preço com tarifa especial',
+      calc_default: 'Selecione um plano',
+      calc_opt_group: 'Grupal — $1.980/mês',
+      calc_opt_ind: 'Personalizado — $2.970/mês',
+      calc_opt_starter: 'Starter — $990/mês',
+      calc_btn: 'Calcular',
+      calc_code_ph: 'Código de tarifa especial',
+      calc_no_plan: 'Selecione um plano primeiro',
+      calc_invalid: 'Código não reconhecido. Tente: FUNDADOR, REFERIDO ou BECA',
     },
     zh: {
       nav_home: '\u9996\u9875',
@@ -888,6 +970,15 @@
       feat6_desc: '\u6309\u8bed\u8a00\u548c\u7ea7\u522b\u5206\u7ec4\uff0c\u6bcf\u5468\u6311\u6218',
       cta_p: '\u4eca\u5929\u5c31\u5f00\u59cb\u514d\u8d39\u8bd5\u542c\u8bfe\u3002',
       cta_btn: '\u514d\u8d39\u5f00\u59cb',
+      calc_title: '使用特殊费率计算价格',
+      calc_default: '选择一个计划',
+      calc_opt_group: '团体 — $1,980/月',
+      calc_opt_ind: '个性化 — $2,970/月',
+      calc_opt_starter: 'Starter — $990/月',
+      calc_btn: '计算',
+      calc_code_ph: '特殊费率代码',
+      calc_no_plan: '请先选择一个计划',
+      calc_invalid: '代码无效。请尝试：FUNDADOR、REFERIDO 或 BECA',
     },
   };
 
@@ -1039,6 +1130,22 @@
       if (featDescs[i]) featDescs[i].textContent = pair[1];
     });
 
+    // Calculator i18n
+    const ct = document.getElementById('calcTitle');
+    if (ct) ct.textContent = t.calc_title;
+    const cd = document.getElementById('calcOptDefault');
+    if (cd) cd.textContent = t.calc_default;
+    const cog = document.getElementById('calcOptGroup');
+    if (cog) cog.textContent = t.calc_opt_group;
+    const coi = document.getElementById('calcOptInd');
+    if (coi) coi.textContent = t.calc_opt_ind;
+    const cos = document.getElementById('calcOptStarter');
+    if (cos) cos.textContent = t.calc_opt_starter;
+    const cb = document.getElementById('calcBtn');
+    if (cb) cb.textContent = t.calc_btn;
+    const cc = document.getElementById('calcCode');
+    if (cc) cc.placeholder = t.calc_code_ph;
+
     // CTA banner
     const ctaH2 = document.querySelector('.cta-banner h2');
     if (ctaH2) ctaH2.textContent = p.cta_h2;
@@ -1098,6 +1205,41 @@
       applyLang(saved);
     }
   })();
+  // Price calculator
+  const PRICE_CODES = {
+    'FUNDADOR':  { pct: 30, name: 'Fundador' },
+    'REFERIDO':  { pct: 15, name: 'Referido' },
+    'BECA':      { pct: 40, name: 'Beca académica' }
+  };
+  document.getElementById('calcBtn').addEventListener('click', function() {
+    const plan = document.getElementById('calcPlan').value;
+    const code = document.getElementById('calcCode').value.trim().toUpperCase();
+    const resultEl = document.getElementById('calcResult');
+    const lang = localStorage.getItem('parling_lang') || 'es';
+    const t = LANGS[lang] || LANGS.es;
+    if (!plan) {
+      resultEl.style.display = 'block';
+      resultEl.className = 'calc-result calc-error';
+      resultEl.innerHTML = t.calc_no_plan;
+      return;
+    }
+    const discount = PRICE_CODES[code];
+    if (!discount) {
+      resultEl.style.display = 'block';
+      resultEl.className = 'calc-result calc-error';
+      resultEl.innerHTML = t.calc_invalid;
+      return;
+    }
+    const orig = parseInt(plan);
+    const final = Math.round(orig * (1 - discount.pct / 100));
+    const pm = t.per_month;
+    resultEl.style.display = 'block';
+    resultEl.className = 'calc-result calc-success';
+    resultEl.innerHTML = '<div style="font-weight:600">' + discount.name + ' &nbsp;&middot;&nbsp; <strong>&minus;' + discount.pct + '%</strong></div>'
+      + '<div class="calc-orig">$' + orig.toLocaleString() + pm + '</div>'
+      + '<div class="calc-final">$' + final.toLocaleString() + '<span style="font-size:.9rem;font-weight:400;color:var(--muted)">' + pm + '</span></div>';
+  });
+
 </script>
 </body>
 </html>
