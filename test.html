@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test de Nivel — Parling Academy</title>
+<style>
+:root {
+  --bg: #0d0d12; --surface: #16161f; --card: #1e1e2a;
+  --border: #2a2a3a; --accent: #7c3aed; --accent2: #06b6d4;
+  --green: #10b981; --text: #f1f1f6; --muted: #8888aa;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh; }
+
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(13,13,18,.85); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 64px;
+}
+.logo img { height: 80px; width: auto; display: block; }
+.nav-back { color: var(--muted); text-decoration: none; font-size: .9rem; transition: color .2s; }
+.nav-back:hover { color: var(--text); }
+
+.step { min-height: calc(100vh - 64px); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px 5%; }
+
+/* STEP 1 */
+.step-title { font-size: 2.2rem; font-weight: 800; text-align: center; margin-bottom: 12px; }
+.step-sub { color: var(--muted); text-align: center; margin-bottom: 44px; font-size: 1.05rem; line-height: 1.6; max-width: 560px; }
+
+.lang-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; width: 100%; max-width: 800px; }
+.lang-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+  padding: 28px 16px; text-align: center; cursor: pointer;
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+.lang-card:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 4px 20px rgba(124,58,237,.2); }
+.lang-card .flag { font-size: 2.4rem; display: block; margin-bottom: 10px; }
+.lang-card .lang-name { font-weight: 700; font-size: 1rem; }
+.lang-card .lang-native { font-size: .82rem; color: var(--muted); margin-top: 4px; }
+
+/* STEP 2 */
+.quiz-wrap { width: 100%; max-width: 700px; }
+.quiz-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.q-lang-label { font-size: .85rem; color: var(--muted); font-weight: 700; }
+.q-counter { font-size: .85rem; color: var(--muted); }
+
+.progress-bar-wrap { height: 6px; background: var(--border); border-radius: 99px; margin-bottom: 22px; overflow: hidden; }
+.progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 99px; transition: width .4s ease; }
+
+.badges { display: flex; gap: 8px; margin-bottom: 22px; }
+.badge { display: inline-block; padding: 3px 12px; border-radius: 6px; font-size: .78rem; font-weight: 700; }
+.badge-level { background: rgba(124,58,237,.15); color: var(--accent); border: 1px solid rgba(124,58,237,.3); }
+.badge-cat { background: rgba(6,182,212,.12); color: var(--accent2); border: 1px solid rgba(6,182,212,.25); }
+
+.question-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 32px 28px; margin-bottom: 18px; }
+.question-text { font-size: 1.12rem; font-weight: 600; line-height: 1.65; }
+
+.options-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 26px; }
+.opt-btn {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  color: var(--text); font-size: .97rem; padding: 14px 18px; text-align: left;
+  cursor: pointer; transition: border-color .2s, background .15s, transform .15s; font-family: inherit;
+}
+.opt-btn:hover:not(:disabled) { border-color: var(--accent); background: rgba(124,58,237,.08); transform: translateX(4px); }
+.opt-btn.correct { border-color: var(--green) !important; background: rgba(16,185,129,.1) !important; }
+.opt-btn.wrong { border-color: #ef4444 !important; background: rgba(239,68,68,.1) !important; }
+.opt-btn:disabled { cursor: default; transform: none; }
+
+.feedback-row { display: flex; align-items: center; gap: 10px; min-height: 38px; }
+.feedback-msg { font-size: .92rem; font-weight: 700; }
+.feedback-msg.ok { color: var(--green); }
+.feedback-msg.bad { color: #ef4444; }
+.next-btn {
+  margin-left: auto; background: var(--accent); color: #fff; border: none;
+  border-radius: 8px; padding: 9px 22px; font-size: .9rem; font-weight: 700;
+  cursor: pointer; font-family: inherit; transition: transform .15s, box-shadow .15s;
+  white-space: nowrap;
+}
+.next-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(124,58,237,.4); }
+
+/* STEP 3 */
+.result-wrap { width: 100%; max-width: 620px; text-align: center; }
+.result-level-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 108px; height: 108px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  font-size: 2.6rem; font-weight: 800;
+  box-shadow: 0 8px 32px rgba(124,58,237,.45); margin-bottom: 20px;
+}
+.result-title { font-size: 1.85rem; font-weight: 800; margin-bottom: 10px; }
+.result-desc { color: var(--muted); font-size: 1rem; margin-bottom: 36px; line-height: 1.65; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+.skill-bars { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 28px; margin-bottom: 32px; text-align: left; }
+.skill-bars h3 { font-size: .95rem; font-weight: 700; margin-bottom: 22px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; font-size: .8rem; }
+.skill-row { margin-bottom: 20px; }
+.skill-row:last-child { margin-bottom: 0; }
+.skill-label-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
+.skill-name { font-size: .92rem; font-weight: 600; }
+.skill-pct { font-size: .92rem; font-weight: 700; color: var(--accent2); }
+.skill-bar-bg { height: 8px; background: var(--border); border-radius: 99px; overflow: hidden; }
+.skill-bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--accent), var(--accent2)); width: 0%; transition: width 1.1s cubic-bezier(.4,0,.2,1); }
+
+.result-cta {
+  display: inline-block; background: var(--accent); color: #fff; text-decoration: none;
+  border-radius: 10px; padding: 15px 40px; font-weight: 700; font-size: 1rem;
+  box-shadow: 0 4px 20px rgba(124,58,237,.35); transition: transform .2s, box-shadow .2s;
+}
+.result-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(124,58,237,.5); }
+.retry-btn { display: block; margin: 16px auto 0; background: none; border: none; color: var(--muted); cursor: pointer; font-size: .88rem; font-family: inherit; }
+.retry-btn:hover { color: var(--text); text-decoration: underline; }
+
+@media (max-width: 600px) {
+  .step-title { font-size: 1.6rem; }
+  .lang-grid { grid-template-columns: repeat(2, 1fr); }
+  .question-card { padding: 20px 16px; }
+  .question-text { font-size: 1rem; }
+  .result-title { font-size: 1.4rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><a href="index.html"><img src="logo-nobg.png?v=2" alt="Parling Academy"></a></div>
+  <a href="index.html" class="nav-back">← Volver al inicio</a>
+</nav>
+
+<!-- STEP 1 -->
+<section id="step-lang" class="step">
+  <h1 class="step-title">Evaluación de Entrada</h1>
+  <p class="step-sub">Seleccioná el idioma que querés evaluar. 20 preguntas adaptativas · ~5 minutos · Resultado inmediato con desglose por habilidad</p>
+  <div class="lang-grid">
+    <div class="lang-card" onclick="startTest('en')"><span class="flag">🇺🇸</span><div class="lang-name">Inglés</div><div class="lang-native">English</div></div>
+    <div class="lang-card" onclick="startTest('es')"><span class="flag">🇪🇸</span><div class="lang-name">Español</div><div class="lang-native">Spanish</div></div>
+    <div class="lang-card" onclick="startTest('fr')"><span class="flag">🇫🇷</span><div class="lang-name">Francés</div><div class="lang-native">Français</div></div>
+    <div class="lang-card" onclick="startTest('de')"><span class="flag">🇩🇪</span><div class="lang-name">Alemán</div><div class="lang-native">Deutsch</div></div>
+    <div class="lang-card" onclick="startTest('it')"><span class="flag">🇮🇹</span><div class="lang-name">Italiano</div><div class="lang-native">Italiano</div></div>
+    <div class="lang-card" onclick="startTest('pt')"><span class="flag">🇧🇷</span><div class="lang-name">Portugués</div><div class="lang-native">Português</div></div>
+    <div class="lang-card" onclick="startTest('zh')"><span class="flag">🇨🇳</span><div class="lang-name">Chino</div><div class="lang-native">中文</div></div>
+  </div>
+</section>
+
+<!-- STEP 2 -->
+<section id="step-quiz" class="step" hidden>
+  <div class="quiz-wrap">
+    <div class="quiz-top">
+      <span id="q-lang-label" class="q-lang-label"></span>
+      <span id="q-counter" class="q-counter">Pregunta 1 de 20</span>
+    </div>
+    <div class="progress-bar-wrap"><div id="progress-fill" class="progress-bar-fill" style="width:0%"></div></div>
+    <div class="badges">
+      <span id="badge-level" class="badge badge-level">A1</span>
+      <span id="badge-cat" class="badge badge-cat">Gramática</span>
+    </div>
+    <div class="question-card">
+      <p id="question-text" class="question-text"></p>
+      <div id="options-grid" class="options-grid"></div>
+    </div>
+    <div class="feedback-row">
+      <span id="feedback-msg" class="feedback-msg"></span>
+      <button id="next-btn" class="next-btn" onclick="advance()" hidden>Siguiente →</button>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 3 -->
+<section id="step-result" class="step" hidden>
+  <div class="result-wrap">
+    <div id="result-level-badge" class="result-level-badge">B1</div>
+    <h2 id="result-title" class="result-title"></h2>
+    <p id="result-desc" class="result-desc"></p>
+    <div class="skill-bars">
+      <h3>Desglose por habilidad</h3>
+      <div class="skill-row">
+        <div class="skill-label-row"><span class="skill-name">Gramática</span><span id="pct-grammar" class="skill-pct">0%</span></div>
+        <div class="skill-bar-bg"><div id="bar-grammar" class="skill-bar-fill"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label-row"><span class="skill-name">Vocabulario</span><span id="pct-vocabulary" class="skill-pct">0%</span></div>
+        <div class="skill-bar-bg"><div id="bar-vocabulary" class="skill-bar-fill"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label-row"><span class="skill-name">Comprensión lectora</span><span id="pct-reading" class="skill-pct">0%</span></div>
+        <div class="skill-bar-bg"><div id="bar-reading" class="skill-bar-fill"></div></div>
+      </div>
+    </div>
+    <a href="contact.html" class="result-cta">Quiero empezar en mi nivel</a>
+    <button class="retry-btn" onclick="reset()">Repetir el test</button>
+  </div>
+</section>
+
+<script>
+const LEVELS = ['A1','A2','B1','B2','C1','C2'];
+const LEVEL_NAMES = ['Principiante','Básico','Intermedio','Intermedio avanzado','Avanzado','Maestría'];
+const CAT_LABELS = { grammar:'Gramática', vocabulary:'Vocabulario', reading:'Comprensión' };
+const LANG_NAMES = { en:'Inglés', es:'Español', fr:'Francés', de:'Alemán', it:'Italiano', pt:'Portugués', zh:'Chino' };
+const TOTAL_Q = 20;
+
+const RESULT_DESCS = [
+  'Estás dando tus primeros pasos. Aprenderás lo esencial desde cero con un plan diseñado para vos.',
+  'Conocés lo básico. Con práctica estructurada, pronto podrás comunicarte en situaciones cotidianas.',
+  'Podés desenvolverte en la mayoría de las situaciones. Un buen punto de partida para crecer.',
+  'Tenés un dominio sólido. Podés interactuar con fluidez y ya estás cerca de un nivel avanzado.',
+  'Tu nivel es muy alto. Podés usar el idioma con precisión, espontaneidad y matices.',
+  '¡Dominás el idioma a nivel de hablante nativo o bilingüe! Podemos desafiarte aún más.'
+];
+
+const Q = {
+  en: [
+    {l:0,c:'grammar',q:'Choose the correct form: "She ___ a student."',o:['is','are','am','be'],a:0},
+    {l:0,c:'grammar',q:'Which sentence is correct?',o:['I has two cats.','I have two cats.','I haves two cats.','I having two cats.'],a:1},
+    {l:0,c:'vocabulary',q:'What is the opposite of "big"?',o:['small','tall','fast','heavy'],a:0},
+    {l:0,c:'vocabulary',q:'Which word means "a place where you sleep"?',o:['kitchen','bedroom','office','garden'],a:1},
+    {l:0,c:'reading',q:'Read: "My name is Ana. I am 10 years old and I live in Madrid." How old is Ana?',o:['8','10','12','14'],a:1},
+    {l:1,c:'grammar',q:'"Yesterday, she ___ to the market." Choose the correct form.',o:['go','goes','went','going'],a:2},
+    {l:1,c:'grammar',q:'Which sentence uses the present perfect correctly?',o:['I have saw that film.','I have seen that film.','I has seen that film.','I seen that film.'],a:1},
+    {l:1,c:'vocabulary',q:'What does "frequently" mean?',o:['rarely','sometimes','often','never'],a:2},
+    {l:1,c:'vocabulary',q:'Which word is a synonym for "begin"?',o:['finish','start','stop','pause'],a:1},
+    {l:1,c:'reading',q:'"Sara woke up late and missed the bus. She had to walk to school." Why did Sara walk?',o:['She enjoyed walking.','The bus was crowded.','She missed the bus.','Her school was very close.'],a:2},
+    {l:2,c:'grammar',q:'"If I ___ more time, I would travel more." Choose the correct form.',o:['have','had','has','will have'],a:1},
+    {l:2,c:'grammar',q:'Which sentence is in the passive voice?',o:['The chef cooked the meal.','The meal was cooked by the chef.','The chef is cooking.','The chef had cooked the meal.'],a:1},
+    {l:2,c:'vocabulary',q:'What does "reluctant" mean?',o:['Excited','Unwilling','Confused','Determined'],a:1},
+    {l:2,c:'vocabulary',q:'Choose the best word: "The scientist made a ___ discovery that changed medicine."',o:['groundbreaking','ordinary','trivial','minor'],a:0},
+    {l:2,c:'reading',q:'"Although the film received mixed reviews, it broke box office records." What can we infer?',o:['Critics loved the film.','Many watched it despite divided opinions.','It was a commercial failure.','It screened for one weekend only.'],a:1},
+    {l:3,c:'grammar',q:'"By the time we arrived, the concert ___." Choose the correct form.',o:['already started','has already started','had already started','already starts'],a:2},
+    {l:3,c:'grammar',q:'Identify the error: "Neither the manager nor the employees was informed."',o:['Neither','nor','was','informed'],a:2},
+    {l:3,c:'vocabulary',q:'What does "ambiguous" mean?',o:['Clear and precise','Open to more than one interpretation','Completely wrong','Highly complex'],a:1},
+    {l:3,c:'vocabulary',q:'Which word means "to officially cancel or revoke"?',o:['enforce','implement','abolish','endorse'],a:2},
+    {l:3,c:'reading',q:'"The economist argued that austerity measures, while painful short-term, restore investor confidence." The main claim is:',o:['Austerity is painless.','Short-term sacrifice may lead to long-term stability.','Investors should avoid such economies.','Economic pain is always unavoidable.'],a:1},
+    {l:4,c:'grammar',q:'"Were it not for her quick thinking, the accident ___ been much worse."',o:['could have','would have','should have','might'],a:1},
+    {l:4,c:'grammar',q:'Which sentence uses the subjunctive correctly?',o:['I suggest that he goes home.','I suggest that he go home.','I suggest that he should goes home.','I suggest that he is going home.'],a:1},
+    {l:4,c:'vocabulary',q:'What does "obfuscate" mean?',o:['To clarify','To render unclear or confusing','To exaggerate','To support'],a:1},
+    {l:4,c:'vocabulary',q:'Which word best describes "unnecessarily complicated writing"?',o:['concise','lucid','convoluted','succinct'],a:2},
+    {l:4,c:'reading',q:'"The author employs irony not to mock but to illuminate the gap between societal expectation and individual reality." The irony serves to:',o:['Ridicule the characters','Reveal a social contradiction','Entertain without deeper meaning','Criticize the reader directly'],a:1},
+    {l:5,c:'grammar',q:'"Scarcely ___ he entered the room when the lights went out."',o:['did','had','has','was'],a:1},
+    {l:5,c:'grammar',q:'Which sentence is appropriate in formal academic writing?',o:['The results impacted on the conclusion.','The results had an impact on the conclusion.','The results impacted the conclusion.','The conclusion got impacted by results.'],a:2},
+    {l:5,c:'vocabulary',q:'What does "tendentious" mean?',o:['Balanced and objective','Promoting a particular point of view','Extremely detailed','Unusually brief'],a:1},
+    {l:5,c:'vocabulary',q:'Which word is closest in meaning to "pellucid"?',o:['Murky','Translucently clear','Dense','Ambiguous'],a:1},
+    {l:5,c:'reading',q:'"His prose eschews ornament, yet achieves through understatement a rhetorical power that more florid writers seldom attain." The author suggests:',o:['Simple writing is always best','Restraint can be more persuasive than elaboration','Flowery writing is most effective','Good writing needs complex vocabulary'],a:1},
+  ],
+  es: [
+    {l:0,c:'grammar',q:'¿Cuál es la forma correcta? "Ella ___ estudiante."',o:['es','son','soy','eres'],a:0},
+    {l:0,c:'grammar',q:'¿Qué oración es correcta?',o:['Yo tiene un gato.','Yo tengo un gato.','Yo tienes un gato.','Yo tenemos un gato.'],a:1},
+    {l:0,c:'vocabulary',q:'¿Cuál es lo opuesto de "grande"?',o:['pequeño','alto','rápido','pesado'],a:0},
+    {l:0,c:'vocabulary',q:'¿Qué significa "comer"?',o:['dormir','correr','ingerir alimentos','estudiar'],a:2},
+    {l:0,c:'reading',q:'Lee: "Me llamo Ana. Tengo 10 años y vivo en Madrid." ¿Cuántos años tiene Ana?',o:['8','10','12','14'],a:1},
+    {l:1,c:'grammar',q:'"Ayer, ella ___ al mercado." Elige la forma correcta.',o:['va','fue','iba','irá'],a:1},
+    {l:1,c:'grammar',q:'¿Cuál oración usa el pretérito perfecto correctamente?',o:['Yo he visto esa película.','Yo haber visto esa película.','Yo ha visto esa película.','Yo he ver esa película.'],a:0},
+    {l:1,c:'vocabulary',q:'¿Qué significa "frecuentemente"?',o:['raramente','a veces','a menudo','nunca'],a:2},
+    {l:1,c:'vocabulary',q:'¿Cuál es un sinónimo de "comenzar"?',o:['terminar','iniciar','parar','pausar'],a:1},
+    {l:1,c:'reading',q:'"Sara se despertó tarde y perdió el autobús. Tuvo que caminar a la escuela." ¿Por qué caminó Sara?',o:['Le gustaba caminar.','El autobús estaba lleno.','Perdió el autobús.','Su escuela estaba cerca.'],a:2},
+    {l:2,c:'grammar',q:'"Si yo ___ más tiempo, viajaría más." Elige la forma correcta.',o:['tengo','tuviera','tendré','tiene'],a:1},
+    {l:2,c:'grammar',q:'¿Cuál oración está en voz pasiva?',o:['El chef cocinó la comida.','La comida fue cocinada por el chef.','El chef está cocinando.','El chef había cocinado la comida.'],a:1},
+    {l:2,c:'vocabulary',q:'¿Qué significa "renuente"?',o:['Emocionado','No dispuesto','Confundido','Determinado'],a:1},
+    {l:2,c:'vocabulary',q:'Elige la mejor palabra: "El científico hizo un descubrimiento ___ que cambió la medicina."',o:['revolucionario','ordinario','trivial','menor'],a:0},
+    {l:2,c:'reading',q:'"Aunque la película recibió críticas mixtas, batió récords de taquilla." ¿Qué podemos inferir?',o:['Los críticos la adoraron.','Mucha gente la vio pese a las opiniones divididas.','Fue un fracaso comercial.','Solo se proyectó un fin de semana.'],a:1},
+    {l:3,c:'grammar',q:'"Para cuando llegamos, el concierto ___ ya." Elige la forma correcta.',o:['ha empezado','empezó','había empezado','empezará'],a:2},
+    {l:3,c:'grammar',q:'Identifica el error: "Ni el gerente ni los empleados fue informado del cambio."',o:['Ni','ni','fue','informado'],a:2},
+    {l:3,c:'vocabulary',q:'¿Qué significa "ambiguo"?',o:['Claro y preciso','Que admite más de una interpretación','Completamente incorrecto','Muy complejo'],a:1},
+    {l:3,c:'vocabulary',q:'¿Qué palabra significa "suprimir oficialmente"?',o:['reforzar','implementar','abolir','respaldar'],a:2},
+    {l:3,c:'reading',q:'"El economista argumentó que las medidas de austeridad, aunque dolorosas, son necesarias para restaurar la confianza." La tesis principal es:',o:['La austeridad no duele.','El sacrificio a corto plazo puede generar estabilidad.','Los inversores deben evitar economías austeras.','El dolor económico es inevitable.'],a:1},
+    {l:4,c:'grammar',q:'"De no haber sido por su intervención, el accidente ___ mucho peor."',o:['habría sido','sería','hubiera sido','fuera'],a:0},
+    {l:4,c:'grammar',q:'¿Cuál oración usa el subjuntivo correctamente?',o:['Sugiero que él va a casa.','Sugiero que él vaya a casa.','Sugiero que él debería va a casa.','Sugiero que él está yendo a casa.'],a:1},
+    {l:4,c:'vocabulary',q:'¿Qué significa "ofuscar"?',o:['Aclarar','Confundir u oscurecer','Exagerar','Apoyar'],a:1},
+    {l:4,c:'vocabulary',q:'¿Qué palabra describe mejor "una escritura innecesariamente complicada"?',o:['concisa','lúcida','enrevesada','sucinta'],a:2},
+    {l:4,c:'reading',q:'"El autor emplea la ironía no para burlarse, sino para iluminar la brecha entre la expectativa social y la realidad individual." La ironía sirve para:',o:['Ridiculizar a los personajes','Revelar una contradicción social','Entretener sin profundidad','Criticar directamente al lector'],a:1},
+    {l:5,c:'grammar',q:'"Apenas ___ entrado al cuarto cuando se fueron las luces."',o:['había','ha','haya','hubiese'],a:0},
+    {l:5,c:'grammar',q:'¿Cuál oración es apropiada en la escritura académica formal?',o:['Los resultados impactaron en la conclusión.','Los resultados tuvieron un impacto en la conclusión.','Los resultados impactaron la conclusión.','La conclusión fue impactada por los resultados.'],a:1},
+    {l:5,c:'vocabulary',q:'¿Qué significa "tendencioso"?',o:['Equilibrado y objetivo','Que promueve un punto de vista particular','Extremadamente detallado','Inusualmente breve'],a:1},
+    {l:5,c:'vocabulary',q:'¿Qué palabra es más cercana a "diáfano"?',o:['Turbio','Cristalino y claro','Denso','Ambiguo'],a:1},
+    {l:5,c:'reading',q:'"Su prosa rehúye el ornamento, pero logra mediante la subestimación un poder retórico que escritores más floridos raramente alcanzan." El autor sugiere que:',o:['La escritura simple es siempre mejor.','La contención puede ser más persuasiva que la elaboración.','La escritura florida es más efectiva.','Una buena escritura requiere vocabulario complejo.'],a:1},
+  ],
+  fr: [
+    {l:0,c:'grammar',q:'Choisissez la bonne forme : "Elle ___ étudiante."',o:['est','es','suis','êtes'],a:0},
+    {l:0,c:'vocabulary',q:'Quel est le contraire de "grand" ?',o:['petit','haut','rapide','lourd'],a:0},
+    {l:0,c:'reading',q:'Lisez : "Je m\'appelle Ana. J\'ai 10 ans et j\'habite à Madrid." Quel âge a Ana ?',o:['8','10','12','14'],a:1},
+    {l:1,c:'grammar',q:'"Hier, elle ___ au marché." Choisissez la bonne forme.',o:['va','est allée','ira','allait'],a:1},
+    {l:1,c:'grammar',q:'Quelle phrase utilise le passé composé correctement ?',o:['J\'ai vu ce film.','J\'ai voir ce film.','J\'avais vu ce film hier.','Je suis vu ce film.'],a:0},
+    {l:1,c:'vocabulary',q:'Que signifie "fréquemment" ?',o:['rarement','parfois','souvent','jamais'],a:2},
+    {l:1,c:'reading',q:'"Sara s\'est réveillée tard et a raté le bus. Elle a dû marcher à l\'école." Pourquoi a-t-elle marché ?',o:['Elle aimait marcher.','Le bus était plein.','Elle a raté le bus.','Son école était très proche.'],a:2},
+    {l:2,c:'grammar',q:'"Si j\'___ plus de temps, je voyagerais davantage." Choisissez la bonne forme.',o:['ai','avais','aurai','avais eu'],a:1},
+    {l:2,c:'vocabulary',q:'Que signifie "réticent" ?',o:['Enthousiaste','Peu disposé à faire quelque chose','Confus','Déterminé'],a:1},
+    {l:2,c:'reading',q:'"Bien que le film ait reçu des avis mitigés, il a battu des records au box-office." Qu\'est-ce qu\'on peut déduire ?',o:['Les critiques ont adoré.','Beaucoup l\'ont vu malgré les avis partagés.','Ce fut un échec commercial.','Il n\'a été projeté qu\'un seul week-end.'],a:1},
+    {l:3,c:'grammar',q:'"Quand nous sommes arrivés, le concert ___ déjà commencé." Choisissez.',o:['a','avait','était','aura'],a:1},
+    {l:3,c:'vocabulary',q:'Que signifie "ambigu" ?',o:['Clair et précis','Pouvant avoir plusieurs interprétations','Complètement faux','Très complexe'],a:1},
+    {l:3,c:'reading',q:'"L\'économiste a soutenu que les mesures d\'austérité, bien que douloureuses, sont nécessaires." La thèse principale est :',o:['L\'austérité ne fait pas mal.','Le sacrifice à court terme peut mener à la stabilité.','Les investisseurs doivent éviter l\'austérité.','La douleur économique est inévitable.'],a:1},
+    {l:4,c:'grammar',q:'"N\'eût été son intervention rapide, l\'accident ___ bien plus grave."',o:['aurait été','serait','était','soit'],a:0},
+    {l:4,c:'grammar',q:'Quelle phrase utilise le subjonctif correctement ?',o:['Je suggère qu\'il va.','Je suggère qu\'il aille.','Je suggère qu\'il soit allé.','Je suggère qu\'il allait.'],a:1},
+    {l:4,c:'vocabulary',q:'Que signifie "obfusquer" ?',o:['Clarifier','Rendre obscur ou confus','Exagérer','Soutenir'],a:1},
+    {l:4,c:'reading',q:'"L\'auteur emploie l\'ironie non pour se moquer, mais pour éclairer l\'écart entre l\'attente sociale et la réalité individuelle." L\'ironie sert à :',o:['Ridiculiser les personnages','Révéler une contradiction sociale','Divertir sans profondeur','Critiquer directement le lecteur'],a:1},
+    {l:5,c:'grammar',q:'Laquelle de ces phrases est correcte en français soutenu ?',o:['Il faut qu\'il va.','Il faut qu\'il aille.','Il faut qu\'il soit aller.','Il faut qu\'il allait.'],a:1},
+    {l:5,c:'vocabulary',q:'Quel mot est proche de "pellucide" ?',o:['Trouble','Translucide et clair','Dense','Ambigu'],a:1},
+    {l:5,c:'reading',q:'"Sa prose fuit l\'ornement mais atteint, par la litote, une puissance rhétorique que les auteurs plus fleuris atteignent rarement." L\'auteur suggère que :',o:['La simplicité est toujours meilleure.','La retenue peut être plus persuasive que l\'élaboration.','L\'écriture fleurie est plus efficace.','Bien écrire nécessite un vocabulaire complexe.'],a:1},
+  ],
+  de: [
+    {l:0,c:'grammar',q:'Wählen Sie die richtige Form: "Sie ___ Studentin."',o:['ist','sind','bin','seid'],a:0},
+    {l:0,c:'vocabulary',q:'Was ist das Gegenteil von "groß"?',o:['klein','hoch','schnell','schwer'],a:0},
+    {l:0,c:'reading',q:'Lesen Sie: "Ich heiße Ana. Ich bin 10 Jahre alt und wohne in Madrid." Wie alt ist Ana?',o:['8','10','12','14'],a:1},
+    {l:1,c:'grammar',q:'"Gestern ___ sie zum Markt gegangen." Wählen Sie die richtige Form.',o:['geht','ist','hat','wird'],a:1},
+    {l:1,c:'grammar',q:'Welcher Satz ist korrekt?',o:['Ich habe das Film gesehen.','Ich habe den Film gesehen.','Ich hab den Film gesehen.','Ich habe das Film geseht.'],a:1},
+    {l:1,c:'vocabulary',q:'Was bedeutet "häufig"?',o:['selten','manchmal','oft','nie'],a:2},
+    {l:1,c:'reading',q:'"Sara wachte spät auf und verpasste den Bus. Sie musste zur Schule laufen." Warum lief Sara?',o:['Sie ging gerne.','Der Bus war voll.','Sie verpasste den Bus.','Ihre Schule war nah.'],a:2},
+    {l:2,c:'grammar',q:'"Wenn ich mehr Zeit ___, würde ich mehr reisen." Wählen Sie die richtige Form.',o:['habe','hätte','hatte','haben'],a:1},
+    {l:2,c:'vocabulary',q:'Was bedeutet "zögerlich"?',o:['Begeistert','Ungern bereit','Verwirrt','Entschlossen'],a:1},
+    {l:2,c:'reading',q:'"Obwohl der Film gemischte Kritiken erhielt, brach er Kassenrekorde." Was kann man schließen?',o:['Kritiker liebten ihn.','Viele sahen ihn trotz geteilter Meinungen.','Er war ein Misserfolg.','Er lief nur ein Wochenende.'],a:1},
+    {l:3,c:'grammar',q:'"Als wir ankamen, hatte das Konzert schon ___." Wählen Sie die richtige Form.',o:['begonnen','beginnt','beginnen','begann'],a:0},
+    {l:3,c:'vocabulary',q:'Was bedeutet "mehrdeutig"?',o:['Klar und präzise','Mehrere Deutungen zulassend','Völlig falsch','Sehr komplex'],a:1},
+    {l:3,c:'reading',q:'"Der Ökonom argumentierte, dass Sparmaßnahmen kurzfristig schmerzhaft, aber notwendig sind." Die Hauptthese ist:',o:['Sparen tut nicht weh.','Kurzfristiges Opfer kann zu Stabilität führen.','Investoren meiden Sparwirtschaften.','Wirtschaftlicher Schmerz ist unvermeidlich.'],a:1},
+    {l:4,c:'grammar',q:'"Wäre es nicht für ihren Eingriff gewesen, der Unfall ___ viel schlimmer gewesen."',o:['wäre','würde','sei','hatte'],a:0},
+    {l:4,c:'grammar',q:'Welcher Satz verwendet den Konjunktiv korrekt?',o:['Er schlägt vor, dass er geht.','Er schlägt vor, dass er gehe.','Er schlägt vor, dass er gegangen.','Er schlägt vor, dass er geht immer.'],a:1},
+    {l:4,c:'vocabulary',q:'Was bedeutet "verschleiern"?',o:['Klären','Unklar oder verwirrend machen','Übertreiben','Unterstützen'],a:1},
+    {l:4,c:'reading',q:'"Der Autor setzt Ironie ein, nicht um zu spotten, sondern um die Lücke zwischen sozialer Erwartung und individueller Realität zu beleuchten." Die Ironie dient dazu:',o:['Die Figuren lächerlich zu machen','Einen gesellschaftlichen Widerspruch aufzuzeigen','Ohne Tiefe zu unterhalten','Den Leser direkt zu kritisieren'],a:1},
+    {l:5,c:'grammar',q:'Welcher Satz ist in der formellen Schriftsprache korrekt?',o:['Ich schlage vor, dass er geht.','Ich schlage vor, dass er gehe.','Ich schlage vor, dass er gegangen ist.','Ich schlage vor, dass er gehen soll.'],a:1},
+    {l:5,c:'vocabulary',q:'Welches Wort ist am nächsten an "tendenziös"?',o:['Ausgewogen','Einen bestimmten Standpunkt fördernd','Sehr detailliert','Ungewöhnlich kurz'],a:1},
+    {l:5,c:'reading',q:'"Seine Prosa meidet Ornament, erreicht jedoch durch Untertreibung rhetorische Kraft, die blumenreichere Autoren selten erzielen." Der Autor meint:',o:['Einfache Sprache ist immer besser.','Zurückhaltung kann überzeugender sein als Ausarbeitung.','Blumige Sprache ist effektiver.','Gutes Schreiben braucht komplexes Vokabular.'],a:1},
+  ],
+  it: [
+    {l:0,c:'grammar',q:'Scegli la forma corretta: "Lei ___ studentessa."',o:['è','sono','sei','siete'],a:0},
+    {l:0,c:'vocabulary',q:'Qual è il contrario di "grande"?',o:['piccolo','alto','veloce','pesante'],a:0},
+    {l:0,c:'reading',q:'Leggi: "Mi chiamo Ana. Ho 10 anni e vivo a Madrid." Quanti anni ha Ana?',o:['8','10','12','14'],a:1},
+    {l:1,c:'grammar',q:'"Ieri, lei ___ al mercato." Scegli la forma corretta.',o:['va','è andata','andrà','andava'],a:1},
+    {l:1,c:'vocabulary',q:'Cosa significa "frequentemente"?',o:['raramente','a volte','spesso','mai'],a:2},
+    {l:1,c:'reading',q:'"Sara si è svegliata tardi e ha perso il bus. Ha dovuto camminare a scuola." Perché ha camminato?',o:['Le piaceva camminare.','Il bus era pieno.','Ha perso il bus.','La scuola era vicina.'],a:2},
+    {l:2,c:'grammar',q:'"Se ___ più tempo, viaggerei di più." Scegli la forma corretta.',o:['ho','avessi','avrò','avevo'],a:1},
+    {l:2,c:'vocabulary',q:'Cosa significa "riluttante"?',o:['Entusiasta','Non disposto','Confuso','Determinato'],a:1},
+    {l:2,c:'reading',q:'"Nonostante le recensioni contrastanti, il film ha battuto record al botteghino." Cosa si può dedurre?',o:['I critici lo hanno amato.','Molti lo hanno visto nonostante le opinioni divise.','Fu un fallimento commerciale.','È stato proiettato solo un weekend.'],a:1},
+    {l:3,c:'grammar',q:'"Quando siamo arrivati, il concerto ___ già iniziato." Scegli la forma corretta.',o:['è','era','ha','aveva'],a:3},
+    {l:3,c:'vocabulary',q:'Cosa significa "ambiguo"?',o:['Chiaro e preciso','Che ammette più interpretazioni','Completamente sbagliato','Molto complesso'],a:1},
+    {l:3,c:'reading',q:'"L\'economista sostenne che le misure di austerità, seppur dolorose, sono necessarie." La tesi principale è:',o:['L\'austerità non fa male.','Il sacrificio a breve può portare stabilità.','Gli investitori devono evitare tali economie.','Il dolore economico è inevitabile.'],a:1},
+    {l:4,c:'grammar',q:'"Se non fosse stato per il suo intervento, l\'incidente ___ molto peggio."',o:['sarebbe stato','era stato','fosse stato','è stato'],a:0},
+    {l:4,c:'vocabulary',q:'Cosa significa "offuscare"?',o:['Chiarire','Rendere oscuro o confuso','Esagerare','Sostenere'],a:1},
+    {l:4,c:'reading',q:'"L\'autore usa l\'ironia non per schernire, ma per illuminare il divario tra aspettativa sociale e realtà individuale." L\'ironia serve per:',o:['Ridicolizzare i personaggi','Rivelare una contraddizione sociale','Intrattenere senza profondità','Criticare direttamente il lettore'],a:1},
+    {l:5,c:'grammar',q:'Quale frase usa correttamente il congiuntivo?',o:['Suggerisco che va a casa.','Suggerisco che vada a casa.','Suggerisco che andrebbe a casa.','Suggerisco che è andato a casa.'],a:1},
+    {l:5,c:'vocabulary',q:'Quale parola è più vicina a "tendenzioso"?',o:['Equilibrato','Che promuove un punto di vista particolare','Molto dettagliato','Insolentemente breve'],a:1},
+    {l:5,c:'reading',q:'"La sua prosa rifugge l\'ornamento ma raggiunge, tramite la litote, un potere retorico che gli scrittori più fioriti raramente ottengono." L\'autore suggerisce che:',o:['La semplicità è sempre migliore.','La moderazione può essere più persuasiva dell\'elaborazione.','La scrittura florida è più efficace.','Una buona scrittura richiede vocabolario complesso.'],a:1},
+  ],
+  pt: [
+    {l:0,c:'grammar',q:'Escolha a forma correta: "Ela ___ estudante."',o:['é','são','sou','és'],a:0},
+    {l:0,c:'vocabulary',q:'Qual é o oposto de "grande"?',o:['pequeno','alto','rápido','pesado'],a:0},
+    {l:0,c:'reading',q:'Leia: "Meu nome é Ana. Tenho 10 anos e moro em Madrid." Quantos anos tem Ana?',o:['8','10','12','14'],a:1},
+    {l:1,c:'grammar',q:'"Ontem, ela ___ ao mercado." Escolha a forma correta.',o:['vai','foi','irá','ia'],a:1},
+    {l:1,c:'vocabulary',q:'O que significa "frequentemente"?',o:['raramente','às vezes','com frequência','nunca'],a:2},
+    {l:1,c:'reading',q:'"Sara acordou tarde e perdeu o ônibus. Teve que caminhar para a escola." Por que Sara caminhou?',o:['Ela gostava de caminhar.','O ônibus estava lotado.','Ela perdeu o ônibus.','Sua escola era perto.'],a:2},
+    {l:2,c:'grammar',q:'"Se eu ___ mais tempo, viajaria mais." Escolha a forma correta.',o:['tenho','tivesse','terei','tinha'],a:1},
+    {l:2,c:'vocabulary',q:'O que significa "relutante"?',o:['Entusiasmado','Não disposto','Confuso','Determinado'],a:1},
+    {l:2,c:'reading',q:'"Embora o filme tenha recebido críticas mistas, bateu recordes de bilheteria." O que podemos inferir?',o:['Os críticos adoraram.','Muitos assistiram apesar das opiniões divididas.','Foi um fracasso comercial.','Só ficou em cartaz um fim de semana.'],a:1},
+    {l:3,c:'grammar',q:'"Quando chegamos, o concerto ___ já começado." Escolha a forma correta.',o:['tinha','tem','havia','tivesse'],a:2},
+    {l:3,c:'vocabulary',q:'O que significa "ambíguo"?',o:['Claro e preciso','Que admite mais de uma interpretação','Completamente errado','Muito complexo'],a:1},
+    {l:3,c:'reading',q:'"O economista argumentou que as medidas de austeridade, embora dolorosas, são necessárias." A tese principal é:',o:['A austeridade não dói.','O sacrifício a curto prazo pode gerar estabilidade.','Investidores devem evitar tais economias.','A dor econômica é inevitável.'],a:1},
+    {l:4,c:'grammar',q:'"Se não fosse pela sua intervenção, o acidente ___ muito pior."',o:['teria sido','seria','fosse','estivesse'],a:0},
+    {l:4,c:'grammar',q:'Qual frase usa o subjuntivo corretamente?',o:['Sugiro que ele vai para casa.','Sugiro que ele vá para casa.','Sugiro que ele deveria ir.','Sugiro que ele está indo.'],a:1},
+    {l:4,c:'vocabulary',q:'O que significa "ofuscar"?',o:['Esclarecer','Tornar obscuro ou confuso','Exagerar','Apoiar'],a:1},
+    {l:4,c:'reading',q:'"O autor usa a ironia não para zombar, mas para iluminar o abismo entre expectativa social e realidade individual." A ironia serve para:',o:['Ridicularizar os personagens','Revelar uma contradição social','Entreter sem profundidade','Criticar diretamente o leitor'],a:1},
+    {l:5,c:'grammar',q:'Qual frase é adequada na escrita acadêmica formal?',o:['Os resultados impactaram na conclusão.','Os resultados tiveram um impacto na conclusão.','Os resultados impactaram a conclusão.','A conclusão foi impactada pelos resultados.'],a:1},
+    {l:5,c:'vocabulary',q:'Qual palavra está mais próxima de "tendencioso"?',o:['Equilibrado','Que promove um ponto de vista particular','Extremamente detalhado','Incomumente breve'],a:1},
+    {l:5,c:'reading',q:'"Sua prosa foge ao ornamento, mas alcança pelo eufemismo um poder retórico que escritores mais floridos raramente atingem." O autor sugere:',o:['A simplicidade é sempre melhor.','A contenção pode ser mais persuasiva que a elaboração.','A escrita florida é mais eficaz.','Boa escrita requer vocabulário complexo.'],a:1},
+  ],
+  zh: [
+    {l:0,c:'grammar',q:'选择正确的形式："她___学生。"',o:['是','有','在','做'],a:0},
+    {l:0,c:'vocabulary',q:'"大"的反义词是什么？',o:['小','高','快','重'],a:0},
+    {l:0,c:'reading',q:'阅读："我叫安娜，我今年10岁，住在马德里。" 安娜几岁？',o:['8岁','10岁','12岁','14岁'],a:1},
+    {l:1,c:'grammar',q:'"昨天，她___去了市场。" 选择正确的形式。',o:['去','去过了','要去','正在去'],a:1},
+    {l:1,c:'vocabulary',q:'"经常"的意思是什么？',o:['很少','有时','频繁地','从不'],a:2},
+    {l:1,c:'reading',q:'"萨拉起床晚了，错过了公共汽车，不得不走路去学校。" 她为什么走路？',o:['她喜欢走路。','公共汽车太拥挤了。','她错过了公共汽车。','她的学校很近。'],a:2},
+    {l:2,c:'grammar',q:'"如果我___更多时间，我会多旅行。" 选择正确的形式。',o:['有','有了','将有','已有'],a:0},
+    {l:2,c:'vocabulary',q:'"勉强"的意思是什么？',o:['热情的','不情愿的','困惑的','坚定的'],a:1},
+    {l:2,c:'reading',q:'"尽管这部电影收到了褒贬不一的评价，但它打破了票房纪录。" 我们可以推断什么？',o:['评论家喜欢这部电影。','尽管评价不一，许多人还是去看了。','这是一次商业失败。','它只放映了一个周末。'],a:1},
+    {l:3,c:'grammar',q:'"我们到达时，音乐会___已经开始了。" 选择正确的形式。',o:['早已','将','已经','就'],a:2},
+    {l:3,c:'vocabulary',q:'"模糊"的意思是什么？',o:['清晰而精确','可以有多种解释','完全错误','非常复杂'],a:1},
+    {l:3,c:'reading',q:'"经济学家认为，紧缩措施虽然短期内很痛苦，但对于恢复投资者信心是必要的。" 主要观点是：',o:['紧缩不会痛苦。','短期牺牲可能带来长期稳定。','投资者应避免紧缩经济体。','经济痛苦是不可避免的。'],a:1},
+    {l:4,c:'grammar',q:'"如果不是她的及时干预，事故___会更糟糕。"',o:['可能','将会','本来可能','必须'],a:2},
+    {l:4,c:'vocabulary',q:'"晦涩"的意思是什么？',o:['清晰','难以理解或混乱','夸张','支持'],a:1},
+    {l:4,c:'reading',q:'"作者运用反讽，不是为了嘲弄，而是为了揭示社会期待与个人现实之间的差距。" 反讽的作用是：',o:['嘲弄人物','揭示社会矛盾','娱乐而无深度','直接批评读者'],a:1},
+    {l:5,c:'grammar',q:'以下哪个句子在正式学术写作中是正确的？',o:['这项研究对该领域产生了影响。','这项研究影响了该领域的走向。','这项研究对该领域产生了深远而持久的影响。','该领域受到了这项研究的影响。'],a:2},
+    {l:5,c:'vocabulary',q:'"隐晦"一词最接近以下哪个词的意思？',o:['清晰透明','故意含糊或模糊','非常详细','出奇地简短'],a:1},
+    {l:5,c:'reading',q:'"他的文章避免华丽辞藻，却通过低调陈述达到了更具说服力的修辞效果。" 作者认为：',o:['简单写作总是更好。','含蓄比详细阐述更具说服力。','华丽的写作更有效。','好文章需要复杂的词汇。'],a:1},
+  ]
+};
+
+// ── State ──
+let activeLang, difficulty, questionNum, usedIdx, scores, diffSum, diffCount, currentQ;
+
+function show(id) {
+  ['step-lang','step-quiz','step-result'].forEach(s => document.getElementById(s).hidden = s !== id);
+}
+
+function startTest(lang) {
+  activeLang = lang;
+  difficulty = 1;
+  questionNum = 0;
+  usedIdx = new Set();
+  scores = { grammar:{c:0,t:0}, vocabulary:{c:0,t:0}, reading:{c:0,t:0} };
+  diffSum = 0; diffCount = 0;
+  document.getElementById('q-lang-label').textContent = LANG_NAMES[lang];
+  show('step-quiz');
+  renderQuestion();
+}
+
+function getNextQ() {
+  const pool = Q[activeLang];
+  for (let delta = 0; delta <= 5; delta++) {
+    for (const d of [difficulty, difficulty - delta, difficulty + delta]) {
+      if (d < 0 || d > 5) continue;
+      const candidates = pool.map((q, i) => ({q, i})).filter(({q, i}) => q.l === d && !usedIdx.has(i));
+      if (candidates.length) {
+        const pick = candidates[Math.floor(Math.random() * candidates.length)];
+        usedIdx.add(pick.i);
+        return pick.q;
+      }
+    }
+  }
+  return null;
+}
+
+function renderQuestion() {
+  currentQ = getNextQ();
+  if (!currentQ) { showResults(); return; }
+  questionNum++;
+
+  document.getElementById('q-counter').textContent = `Pregunta ${questionNum} de ${TOTAL_Q}`;
+  document.getElementById('progress-fill').style.width = `${(questionNum - 1) / TOTAL_Q * 100}%`;
+  document.getElementById('badge-level').textContent = LEVELS[currentQ.l];
+  document.getElementById('badge-cat').textContent = CAT_LABELS[currentQ.c];
+  document.getElementById('question-text').textContent = currentQ.q;
+  document.getElementById('feedback-msg').textContent = '';
+  document.getElementById('next-btn').hidden = true;
+
+  const grid = document.getElementById('options-grid');
+  grid.innerHTML = '';
+  currentQ.o.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    btn.textContent = opt;
+    btn.onclick = () => onAnswer(i);
+    grid.appendChild(btn);
+  });
+}
+
+function onAnswer(chosen) {
+  const isCorrect = chosen === currentQ.a;
+  scores[currentQ.c].t++;
+  if (isCorrect) { scores[currentQ.c].c++; diffSum += currentQ.l; diffCount++; }
+  difficulty = isCorrect ? Math.min(5, difficulty + 1) : Math.max(0, difficulty - 1);
+
+  document.querySelectorAll('.opt-btn').forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === currentQ.a) btn.classList.add('correct');
+    else if (i === chosen && !isCorrect) btn.classList.add('wrong');
+  });
+
+  const fb = document.getElementById('feedback-msg');
+  fb.textContent = isCorrect ? '✓ Correcto' : '✗ Incorrecto';
+  fb.className = 'feedback-msg ' + (isCorrect ? 'ok' : 'bad');
+
+  const nb = document.getElementById('next-btn');
+  nb.hidden = false;
+  nb.textContent = questionNum >= TOTAL_Q ? 'Ver resultados →' : 'Siguiente →';
+}
+
+function advance() {
+  if (questionNum >= TOTAL_Q) showResults();
+  else renderQuestion();
+}
+
+function showResults() {
+  document.getElementById('progress-fill').style.width = '100%';
+  show('step-result');
+
+  const finalLevel = diffCount > 0 ? Math.round(diffSum / diffCount) : 0;
+  document.getElementById('result-level-badge').textContent = LEVELS[finalLevel];
+  document.getElementById('result-title').textContent = `Tu nivel es ${LEVELS[finalLevel]} — ${LEVEL_NAMES[finalLevel]}`;
+  document.getElementById('result-desc').textContent = RESULT_DESCS[finalLevel];
+
+  setTimeout(() => {
+    ['grammar','vocabulary','reading'].forEach(cat => {
+      const pct = scores[cat].t > 0 ? Math.round(scores[cat].c / scores[cat].t * 100) : 0;
+      document.getElementById('pct-' + cat).textContent = pct + '%';
+      document.getElementById('bar-' + cat).style.width = pct + '%';
+    });
+  }, 120);
+}
+
+function reset() { show('step-lang'); }
+</script>
+</body>
+</html>
