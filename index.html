@@ -392,6 +392,7 @@
       font-size: clamp(.8rem, 1.2vw, 1.05rem);
       font-weight: 700; color: #fff; line-height: 1.3;
       text-shadow: 0 2px 12px rgba(0,0,0,.5);
+      transition: opacity .4s ease;
     }
 
     @media (max-width: 900px) {
@@ -649,7 +650,7 @@
         <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=900&q=80');filter:brightness(1.1) saturate(1.2)"></div>
         <div class="tint"></div>
         <div class="content" style="justify-content:center;align-items:center;text-align:center">
-          <p class="collage-phrase">"The world is waiting.<br>Go speak its language."</p>
+          <p class="collage-phrase" id="colPhrase1">"The world is waiting.<br>Go speak its language."</p>
         </div>
       </div>
       <div class="collage-cell">
@@ -668,7 +669,7 @@
         <div class="bg" style="background-image:url('https://images.pexels.com/photos/7149169/pexels-photo-7149169.jpeg?auto=compress&cs=tinysrgb&w=700');filter:brightness(1.2) saturate(1.5)"></div>
         <div class="tint" style="background:linear-gradient(to top,rgba(249,115,22,.2) 0%,transparent 70%)"></div>
         <div class="content">
-          <p class="collage-phrase" style="font-size:.85rem">"Be here. Be now."</p>
+          <p class="collage-phrase" id="colPhrase2" style="font-size:.85rem">"Be here. Be now."</p>
         </div>
       </div>
     </div>
@@ -1162,6 +1163,39 @@
         el.style.transform = 'translateY(0)';
       }, 400);
     }, 3000);
+  })();
+
+  /* ── Collage phrase rotator (7 languages, every 5 s) ── */
+  (function() {
+    const P1 = [
+      '"The world is waiting.<br>Go speak its language."',
+      '"El mundo te espera.<br>Ve a hablar su idioma."',
+      '"Le monde t\'attend.<br>Va parler sa langue."',
+      '"Die Welt wartet auf dich.<br>Geh, sprich ihre Sprache."',
+      '"Il mondo ti aspetta.<br>Vai a parlare la sua lingua."',
+      '"O mundo está esperando.<br>Vai falar a língua dele."',
+      '"世界在等你。<br>去说它的语言吧。"'
+    ];
+    const P2 = [
+      '"Be here. Be now."',
+      '"Estar aquí. Estar ahora."',
+      '"Sois ici. Sois présent."',
+      '"Sei hier. Sei jetzt."',
+      '"Sii qui. Sii presente."',
+      '"Esteja aqui. Esteja presente."',
+      '"在这里。在当下。"'
+    ];
+    const e1 = document.getElementById('colPhrase1');
+    const e2 = document.getElementById('colPhrase2');
+    let i = 0;
+    setInterval(function() {
+      i = (i + 1) % P1.length;
+      e1.style.opacity = '0'; e2.style.opacity = '0';
+      setTimeout(function() {
+        e1.innerHTML = P1[i]; e2.innerHTML = P2[i];
+        e1.style.opacity = '1'; e2.style.opacity = '1';
+      }, 400);
+    }, 5000);
   })();
 </script>
 </body>
