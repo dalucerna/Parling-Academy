@@ -627,12 +627,15 @@
   <!-- LEFT: text -->
   <div class="collage-text">
     <h2 style="color:#fff" data-i18n-html="collage_h2"><span style="color:#f97316">Disfruta</span> ese viaje,<br><span style="color:#f97316">ríete</span> de ese chiste y <span style="color:#f97316">siéntete</span> natural desde el primer día.</h2>
-    <ul class="cl-langs">
+    <ul class="cl-langs" id="clLangs">
       <li><a href="ingles.html">🇬🇧 English</a></li>
       <li><a href="frances.html">🇫🇷 Français</a></li>
       <li><a href="aleman.html">🇩🇪 Deutsch</a></li>
       <li><a href="italiano.html">🇮🇹 Italiano</a></li>
-      <li class="cl-more">+ 3 more languages</li>
+      <li class="cl-extra" style="display:none"><a href="espanol.html">🇪🇸 Español</a></li>
+      <li class="cl-extra" style="display:none"><a href="portugues.html">🇧🇷 Português</a></li>
+      <li class="cl-extra" style="display:none"><a href="chino.html">🇨🇳 中文</a></li>
+      <li class="cl-more" id="clMore" onclick="(function(){document.querySelectorAll('.cl-extra').forEach(e=>e.style.display='flex');document.getElementById('clMore').style.display='none';})()">+ 3 more languages</li>
     </ul>
     <a href="contact.html#formulario" class="btn-primary" style="display:block;text-decoration:none;text-align:center;width:100%;padding:1.2rem 2rem;font-size:1.25rem" data-i18n="nav_cta">Inicia ahora</a>
   </div>
