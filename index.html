@@ -573,27 +573,6 @@
     .faq-item.open .faq-chev { transform: rotate(180deg); }
     .faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding-bottom .35s ease; font-size: .88rem; color: var(--muted); line-height: 1.7; padding: 0 24px; padding-bottom: 0; }
     .faq-item.open .faq-a { max-height: 300px; padding-bottom: 20px; }
-
-    /* ── NIVEL SECTION ── */
-    .nivel-section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
-    .nivel-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
-    .nivel-tag { font-size: .72rem; font-weight: 700; letter-spacing: .12em; color: var(--accent2); text-transform: uppercase; margin-bottom: 14px; }
-    .nivel-text h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; line-height: 1.2; margin-bottom: 16px; }
-    .nivel-text p { color: var(--muted); line-height: 1.7; margin-bottom: 8px; }
-    .nivel-levels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    .nivel-card {
-      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
-      padding: 18px 16px; display: flex; flex-direction: column; gap: 6px;
-      transition: border-color .2s, transform .2s;
-    }
-    .nivel-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-    .nivel-badge { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; font-size: 1rem; font-weight: 900; margin-bottom: 4px; }
-    .nivel-name { font-size: .88rem; font-weight: 700; }
-    .nivel-desc { font-size: .78rem; color: var(--muted); line-height: 1.4; }
-    @media (max-width: 768px) {
-      .nivel-inner { grid-template-columns: 1fr; gap: 36px; }
-      .nivel-levels { grid-template-columns: repeat(2, 1fr); }
-    }
   </style>
 </head>
 <body>
@@ -696,53 +675,6 @@
 
   </div>
 
-</section>
-
-<!-- NIVEL -->
-<section class="nivel-section">
-  <div class="nivel-inner">
-
-    <div class="nivel-text">
-      <div class="nivel-tag" data-i18n="nivel_tag">TEST GRATUITO · 5 MIN</div>
-      <h2 data-i18n="nivel_h2">¿En qué nivel estás?</h2>
-      <p data-i18n="nivel_p">Antes de empezar, sabé exactamente desde dónde partís. Nuestro test de nivel te ubica en la escala internacional MCER y te recomienda el camino ideal.</p>
-      <a href="test.html" class="btn-primary" style="display:inline-block;text-decoration:none;margin-top:8px" data-i18n="nivel_cta">Evaluar mi nivel gratis →</a>
-    </div>
-
-    <div class="nivel-levels">
-      <div class="nivel-card">
-        <span class="nivel-badge" style="background:rgba(16,185,129,.15);color:#10b981">A1</span>
-        <div class="nivel-name" data-i18n="nivel_a1">Principiante</div>
-        <div class="nivel-desc" data-i18n="nivel_a1d">Primeras palabras y frases básicas.</div>
-      </div>
-      <div class="nivel-card">
-        <span class="nivel-badge" style="background:rgba(6,182,212,.15);color:#06b6d4">A2</span>
-        <div class="nivel-name" data-i18n="nivel_a2">Elemental</div>
-        <div class="nivel-desc" data-i18n="nivel_a2d">Conversaciones cotidianas simples.</div>
-      </div>
-      <div class="nivel-card">
-        <span class="nivel-badge" style="background:rgba(124,58,237,.15);color:#a78bfa">B1</span>
-        <div class="nivel-name" data-i18n="nivel_b1">Intermedio</div>
-        <div class="nivel-desc" data-i18n="nivel_b1d">Te defendés en situaciones reales.</div>
-      </div>
-      <div class="nivel-card">
-        <span class="nivel-badge" style="background:rgba(168,85,247,.15);color:#c084fc">B2</span>
-        <div class="nivel-name" data-i18n="nivel_b2">Intermedio alto</div>
-        <div class="nivel-desc" data-i18n="nivel_b2d">Fluido en trabajo y viajes.</div>
-      </div>
-      <div class="nivel-card">
-        <span class="nivel-badge" style="background:rgba(245,158,11,.15);color:#fbbf24">C1</span>
-        <div class="nivel-name" data-i18n="nivel_c1">Avanzado</div>
-        <div class="nivel-desc" data-i18n="nivel_c1d">Expresión compleja y matizada.</div>
-      </div>
-      <div class="nivel-card">
-        <span class="nivel-badge" style="background:rgba(249,115,22,.15);color:#fb923c">C2</span>
-        <div class="nivel-name" data-i18n="nivel_c2">Maestría</div>
-        <div class="nivel-desc" data-i18n="nivel_c2d">Dominio total, casi nativo.</div>
-      </div>
-    </div>
-
-  </div>
 </section>
 
 <!-- STATS -->
