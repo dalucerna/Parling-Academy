@@ -497,6 +497,7 @@
       calc_code_ph: 'Special rate code',
       calc_no_plan: 'Please select a plan first',
       calc_invalid: 'Code not recognized. Try: FUNDADOR or REFERIDO',
+      calc_grupal_only: 'This code is only valid for the Group plan.',
     },
     es: {
       nav_home: 'Inicio',
@@ -576,6 +577,7 @@
       calc_code_ph: 'Código de tarifa especial',
       calc_no_plan: 'Selecioná un plan primero',
       calc_invalid: 'Código no reconocido. Probá: FUNDADOR o REFERIDO',
+      calc_grupal_only: 'Este código solo aplica al plan Grupal.',
     },
     fr: {
       nav_home: 'Accueil',
@@ -655,6 +657,7 @@
       calc_code_ph: 'Code tarif spécial',
       calc_no_plan: "Sélectionnez d'abord un plan",
       calc_invalid: 'Code non reconnu. Essayez : FUNDADOR ou REFERIDO',
+      calc_grupal_only: 'Ce code est uniquement valable pour le plan Groupé.',
     },
     de: {
       nav_home: 'Startseite',
@@ -734,6 +737,7 @@
       calc_code_ph: 'Sondertarif-Code',
       calc_no_plan: 'Bitte zuerst einen Plan auswählen',
       calc_invalid: 'Code nicht erkannt. Versuche: FUNDADOR oder REFERIDO',
+      calc_grupal_only: 'Dieser Code gilt nur für den Gruppen-Plan.',
     },
     it: {
       nav_home: 'Home',
@@ -813,6 +817,7 @@
       calc_code_ph: 'Codice tariffa speciale',
       calc_no_plan: 'Seleziona prima un piano',
       calc_invalid: 'Codice non riconosciuto. Prova: FUNDADOR o REFERIDO',
+      calc_grupal_only: 'Questo codice è valido solo per il piano Grupal.',
     },
     pt: {
       nav_home: 'In\u00edcio',
@@ -892,6 +897,7 @@
       calc_code_ph: 'Código de tarifa especial',
       calc_no_plan: 'Selecione um plano primeiro',
       calc_invalid: 'Código não reconhecido. Tente: FUNDADOR ou REFERIDO',
+      calc_grupal_only: 'Este código é válido apenas para o plano Grupal.',
     },
     zh: {
       nav_home: '\u9996\u9875',
@@ -971,6 +977,7 @@
       calc_code_ph: '特殊费率代码',
       calc_no_plan: '请先选择一个计划',
       calc_invalid: '代码无效。请尝试：FUNDADOR、REFERIDO',
+      calc_grupal_only: '此代码仅适用于团体计划。',
     },
   };
 
@@ -1202,9 +1209,9 @@
     'FUNDADOR':  { pct: 20, name: 'Fundador' },
     'REFERIDO':  { pct: 10, name: 'Referido' },
     'LUCERNA':   { pct: 40, name: 'Beca académica' },
-    'PANDORA-ROOF': { pct: 35, name: 'Meseros' },
-    'TOSCO':        { pct: 25, name: 'Tosco' },
-    'PANDORA-HOUSE': { pct: 35, name: 'Pandora House' }
+    'PANDORA-ROOF':  { pct: 35, name: 'Meseros',      grupalOnly: true },
+    'TOSCO':         { pct: 25, name: 'Tosco',         grupalOnly: true },
+    'PANDORA-HOUSE': { pct: 35, name: 'Pandora House', grupalOnly: true }
   };
   document.getElementById('calcBtn').addEventListener('click', function() {
     const plan = document.getElementById('calcPlan').value;
@@ -1223,6 +1230,12 @@
       resultEl.style.display = 'block';
       resultEl.className = 'calc-result calc-error';
       resultEl.innerHTML = t.calc_invalid;
+      return;
+    }
+    if (discount.grupalOnly && plan !== '1980') {
+      resultEl.style.display = 'block';
+      resultEl.className = 'calc-result calc-error';
+      resultEl.innerHTML = t.calc_grupal_only;
       return;
     }
     const orig = parseInt(plan);
