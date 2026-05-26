@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Para Empresas — Parling Academy</title>
+  <script async src="https://tally.so/widgets/embed.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -124,36 +125,23 @@
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 8px; padding: 6px 14px; font-size: .8rem; color: var(--muted); text-align: center;
     }
-    /* ── Quote form ── */
     .quote-section { padding: 0 5% 80px; max-width: 900px; margin: 0 auto; }
-    .quote-header { text-align: center; margin-bottom: 32px; }
-    .quote-header h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 8px; }
-    .quote-header p { color: var(--muted); font-size: .95rem; }
-    .quote-form {
+    .quote-cta-card {
       background: var(--card); border: 1px solid var(--border);
-      border-radius: 16px; padding: 40px 36px;
-      display: flex; flex-direction: column; gap: 20px;
+      border-radius: 16px; padding: 48px 40px;
+      display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center;
     }
-    .quote-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-    .quote-form .form-group { display: flex; flex-direction: column; gap: 6px; }
-    .quote-form label { font-size: .82rem; color: var(--muted); font-weight: 600; }
-    .quote-form input, .quote-form select, .quote-form textarea {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 8px; padding: 10px 14px; color: var(--text);
-      font-family: inherit; font-size: .92rem;
-      transition: border-color .2s; outline: none; width: 100%;
+    .quote-cta-card h2 { font-size: 1.6rem; font-weight: 800; margin-bottom: 10px; }
+    .quote-cta-card p { color: var(--muted); font-size: .95rem; line-height: 1.65; }
+    .quote-btn {
+      background: var(--orange); color: #fff; border: none; cursor: pointer;
+      padding: .85rem 1.8rem; border-radius: 10px; font-weight: 700; font-size: .95rem;
+      font-family: inherit; white-space: nowrap;
+      transition: box-shadow .2s, transform .2s;
+      box-shadow: 0 4px 20px rgba(249,115,22,.35);
     }
-    .quote-form select option { background: var(--surface); }
-    .quote-form input:focus, .quote-form select:focus, .quote-form textarea:focus { border-color: var(--orange); }
-    .quote-form textarea { resize: vertical; min-height: 110px; }
-    .quote-submit {
-      background: var(--orange); color: #fff; border: none;
-      padding: .8rem 1.6rem; border-radius: 10px; font-weight: 700; font-size: .95rem;
-      cursor: pointer; transition: box-shadow .2s, transform .2s;
-      box-shadow: 0 4px 20px rgba(249,115,22,.35); align-self: flex-start;
-    }
-    .quote-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(249,115,22,.5); }
-    @media (max-width: 600px) { .quote-form .form-row { grid-template-columns: 1fr; } .quote-form { padding: 28px 20px; } }
+    .quote-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(249,115,22,.5); }
+    @media (max-width: 600px) { .quote-cta-card { grid-template-columns: 1fr; padding: 32px 24px; } .quote-btn { width: 100%; } }
 
     footer { background: var(--surface); border-top: 1px solid var(--border); padding: 30px 5%; text-align: center; }
     footer span { color: var(--muted); font-size: .85rem; }
@@ -242,59 +230,14 @@
   </div>
 </section>
 
-<!-- QUOTE FORM -->
 <section class="quote-section">
-  <div class="quote-header">
-    <h2>Solicitar cotización</h2>
-    <p>Cuéntanos sobre tu negocio y te enviamos una propuesta personalizada en menos de 24 horas.</p>
+  <div class="quote-cta-card">
+    <div>
+      <h2 id="q-h2">Solicitar cotización</h2>
+      <p id="q-p">Cuéntanos sobre tu negocio y te enviamos una propuesta personalizada en menos de 24 horas.</p>
+    </div>
+    <button class="quote-btn" id="quoteBtn" data-tally-open="obkYQM" data-tally-layout="popover" data-tally-width="420">Solicitar cotización →</button>
   </div>
-  <form class="quote-form" onsubmit="return false;">
-    <div class="form-row">
-      <div class="form-group">
-        <label for="q-nombre">Nombre</label>
-        <input type="text" id="q-nombre" placeholder="Tu nombre">
-      </div>
-      <div class="form-group">
-        <label for="q-empresa">Empresa / Negocio</label>
-        <input type="text" id="q-empresa" placeholder="Nombre de tu empresa">
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label for="q-sector">Sector / Nicho</label>
-        <select id="q-sector">
-          <option value="">Selecciona tu sector</option>
-          <option value="hosteleria">🍽️ Hostelería y restaurantes</option>
-          <option value="hoteleria">🏨 Hotelería y turismo</option>
-          <option value="retail">🛍️ Retail y comercio</option>
-          <option value="salud">🏥 Salud y bienestar</option>
-          <option value="tecnologia">💻 Tecnología</option>
-          <option value="educacion">📚 Educación</option>
-          <option value="logistica">🚚 Logística y transporte</option>
-          <option value="otro">✦ Otro</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="q-personas">Número de personas</label>
-        <select id="q-personas">
-          <option value="">Selecciona un rango</option>
-          <option value="5-10">5 – 10</option>
-          <option value="11-25">11 – 25</option>
-          <option value="26-50">26 – 50</option>
-          <option value="51+">51+</option>
-        </select>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="q-email">Email de contacto</label>
-      <input type="email" id="q-email" placeholder="tu@empresa.com">
-    </div>
-    <div class="form-group">
-      <label for="q-mensaje">¿Qué necesita tu equipo?</label>
-      <textarea id="q-mensaje" placeholder="Cuéntanos el idioma, el objetivo, la frecuencia deseada..."></textarea>
-    </div>
-    <button class="quote-submit" type="submit">Enviar solicitud →</button>
-  </form>
 </section>
 
 <footer>
@@ -324,8 +267,7 @@
       q_opt_hosteleria:'🍽️ Hospitality & restaurants', q_opt_hoteleria:'🏨 Hotels & tourism',
       q_opt_retail:'🛍️ Retail & commerce', q_opt_salud:'🏥 Health & wellness',
       q_opt_tecnologia:'💻 Technology', q_opt_educacion:'📚 Education',
-      q_opt_logistica:'🚚 Logistics & transport', q_opt_otro:'✦ Other',
-      q_
+      q_opt_logistica:'🚚 Logistics & transport', q_opt_otro:'✦ Other', q_btn:'Request a quote →'
     },
     es: {
       nav_lang:'Idiomas', nav_comp:'Para empresas', nav_contact:'Contacto', nav_blog:'Blog', nav_cta:'Empieza gratis',
@@ -348,8 +290,7 @@
       q_opt_hosteleria:'🍽️ Hostelería y restaurantes', q_opt_hoteleria:'🏨 Hotelería y turismo',
       q_opt_retail:'🛍️ Retail y comercio', q_opt_salud:'🏥 Salud y bienestar',
       q_opt_tecnologia:'💻 Tecnología', q_opt_educacion:'📚 Educación',
-      q_opt_logistica:'🚚 Logística y transporte', q_opt_otro:'✦ Otro',
-      q_
+      q_opt_logistica:'🚚 Logística y transporte', q_opt_otro:'✦ Otro', q_btn:'Solicitar cotización →'
     },
     fr: {
       nav_lang:'Langues', nav_comp:'Pour les entreprises', nav_contact:'Contact', nav_blog:'Blog', nav_cta:'Commencer gratuitement',
@@ -372,8 +313,7 @@
       q_opt_hosteleria:'🍽️ Hôtellerie & restaurants', q_opt_hoteleria:'🏨 Hôtels & tourisme',
       q_opt_retail:'🛍️ Retail & commerce', q_opt_salud:'🏥 Santé & bien-être',
       q_opt_tecnologia:'💻 Technologie', q_opt_educacion:'📚 Éducation',
-      q_opt_logistica:'🚚 Logistique & transport', q_opt_otro:'✦ Autre',
-      q_
+      q_opt_logistica:'🚚 Logistique & transport', q_opt_otro:'✦ Autre', q_btn:'Demander un devis →'
     },
     de: {
       nav_lang:'Sprachen', nav_comp:'Für Unternehmen', nav_contact:'Kontakt', nav_blog:'Blog', nav_cta:'Kostenlos starten',
@@ -396,8 +336,7 @@
       q_opt_hosteleria:'🍽️ Gastronomie & Restaurants', q_opt_hoteleria:'🏨 Hotels & Tourismus',
       q_opt_retail:'🛍️ Einzelhandel & Handel', q_opt_salud:'🏥 Gesundheit & Wellness',
       q_opt_tecnologia:'💻 Technologie', q_opt_educacion:'📚 Bildung',
-      q_opt_logistica:'🚚 Logistik & Transport', q_opt_otro:'✦ Sonstiges',
-      q_
+      q_opt_logistica:'🚚 Logistik & Transport', q_opt_otro:'✦ Sonstiges', q_btn:'Angebot anfordern →'
     },
     it: {
       nav_lang:'Lingue', nav_comp:'Per le aziende', nav_contact:'Contatto', nav_blog:'Blog', nav_cta:'Inizia gratis',
@@ -420,8 +359,7 @@
       q_opt_hosteleria:'🍽️ Ristorazione & ristoranti', q_opt_hoteleria:'🏨 Hotel & turismo',
       q_opt_retail:'🛍️ Retail & commercio', q_opt_salud:'🏥 Salute & benessere',
       q_opt_tecnologia:'💻 Tecnologia', q_opt_educacion:'📚 Istruzione',
-      q_opt_logistica:'🚚 Logistica & trasporti', q_opt_otro:'✦ Altro',
-      q_
+      q_opt_logistica:'🚚 Logistica & trasporti', q_opt_otro:'✦ Altro', q_btn:'Richiedi un preventivo →'
     },
     pt: {
       nav_lang:'Idiomas', nav_comp:'Para empresas', nav_contact:'Contato', nav_blog:'Blog', nav_cta:'Comece grátis',
@@ -444,8 +382,7 @@
       q_opt_hosteleria:'🍽️ Hotelaria & restaurantes', q_opt_hoteleria:'🏨 Hotéis & turismo',
       q_opt_retail:'🛍️ Varejo & comércio', q_opt_salud:'🏥 Saúde & bem-estar',
       q_opt_tecnologia:'💻 Tecnologia', q_opt_educacion:'📚 Educação',
-      q_opt_logistica:'🚚 Logística & transporte', q_opt_otro:'✦ Outro',
-      q_
+      q_opt_logistica:'🚚 Logística & transporte', q_opt_otro:'✦ Outro', q_btn:'Solicitar orçamento →'
     },
     zh: {
       nav_lang:'语言', nav_comp:'企业服务', nav_contact:'联系', nav_blog:'博客', nav_cta:'免费开始',
@@ -468,8 +405,7 @@
       q_opt_hosteleria:'🍽️ 餐饮业', q_opt_hoteleria:'🏨 酒店业和旅游',
       q_opt_retail:'🛍️ 零售和商业', q_opt_salud:'🏥 健康和保健',
       q_opt_tecnologia:'💻 科技', q_opt_educacion:'📚 教育',
-      q_opt_logistica:'🚚 物流和运输', q_opt_otro:'✦ 其他',
-      q_
+      q_opt_logistica:'🚚 物流和运输', q_opt_otro:'✦ 其他', q_btn:'申请报价 →'
     }
   };
 
@@ -518,27 +454,11 @@
     if (htags[2]) htags[2].textContent = t.tag3;
     if (htags[3]) htags[3].textContent = t.tag4;
 
-    // Quote form
-    var qH2 = document.querySelector('.quote-header h2');
+    var qH2 = document.getElementById('q-h2');
+    var qP  = document.getElementById('q-p');
+    var qBtn = document.getElementById('quoteBtn');
     if (qH2) qH2.textContent = t.q_h2;
-    var qP = document.querySelector('.quote-header p');
-    if (qP) qP.textContent = t.q_p;
-    var labels = document.querySelectorAll('.quote-form label');
-    var lKeys = ['q_nombre','q_empresa','q_sector','q_personas','q_email','q_mensaje'];
-    lKeys.forEach(function(k,i){ if(labels[i]) labels[i].textContent = t[k]; });
-    document.getElementById('q-nombre').placeholder  = t.q_ph_nombre;
-    document.getElementById('q-empresa').placeholder = t.q_ph_empresa;
-    document.getElementById('q-email').placeholder   = t.q_ph_email;
-    document.getElementById('q-mensaje').placeholder = t.q_ph_mensaje;
-    var sectorSel = document.getElementById('q-sector');
-    if (sectorSel) {
-      sectorSel.options[0].text = t.q_sel_sector;
-      var oKeys = ['q_opt_hosteleria','q_opt_hoteleria','q_opt_retail','q_opt_salud','q_opt_tecnologia','q_opt_educacion','q_opt_logistica','q_opt_otro'];
-      oKeys.forEach(function(k,i){ if(sectorSel.options[i+1]) sectorSel.options[i+1].text = t[k]; });
-    }
-    var personasSel = document.getElementById('q-personas');
-    if (personasSel && personasSel.options[0]) personasSel.options[0].text = t.q_sel_personas;
-    var qBtn = document.querySelector('.quote-submit');
+    if (qP)  qP.textContent  = t.q_p;
     if (qBtn) qBtn.textContent = t.q_btn;
 
     localStorage.setItem('parling_lang', lang);
