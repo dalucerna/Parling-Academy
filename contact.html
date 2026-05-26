@@ -119,13 +119,14 @@
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .form-group { display: flex; flex-direction: column; gap: 6px; }
     .form-group label { font-size: .82rem; color: var(--muted); font-weight: 600; }
-    .form-group input, .form-group textarea {
+    .form-group input, .form-group textarea, .form-group select {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 8px; padding: 10px 14px; color: var(--text);
       font-family: inherit; font-size: .92rem;
       transition: border-color .2s; outline: none;
     }
-    .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
+    .form-group select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238888aa' d='M1 1l5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--accent); }
     .form-group textarea { resize: vertical; min-height: 120px; }
     .form-submit {
       background: var(--accent); color: #fff; border: none;
@@ -215,7 +216,7 @@
 </section>
 
 <section class="contact-section" id="formulario">
-  <h2>Escribinos</h2>
+  <h2>¿Listo para aprender? ¿Más preguntas?</h2>
   <p class="sub">Te respondemos en menos de 24 horas.</p>
   <form class="contact-form" onsubmit="return false;">
     <div class="form-row">
@@ -231,6 +232,20 @@
     <div class="form-group">
       <label for="asunto">Asunto</label>
       <input type="text" id="asunto" placeholder="¿En qué te podemos ayudar?">
+    </div>
+    <div class="form-group">
+      <label for="curso">Curso de interés</label>
+      <select id="curso">
+        <option value="" disabled selected>Seleccioná un curso</option>
+        <option value="survival-spanish">Survival Spanish Course</option>
+        <option value="young-learners">Young Learners (Ages 5–12)</option>
+        <option value="business-english">Business English</option>
+        <option value="professional-english">Professional English</option>
+        <option value="study-abroad">Study Abroad</option>
+        <option value="chinese-business">Chinese for Business (Mandarin)</option>
+        <option value="portuguese-vacation">Portuguese for Vacation</option>
+        <option value="french-paris">French — Find Your Way Around Paris</option>
+      </select>
     </div>
     <div class="form-group">
       <label for="mensaje">Mensaje</label>
@@ -255,10 +270,10 @@
       bio_david:'International Commerce specialist. Lived and studied in the United States, where he gained a global perspective on business and education.',
       tag_c1:'🇫🇷 France', tag_c2:'International Relations',
       tag_d1:'🇺🇸 USA', tag_d2:'International Commerce',
-      form_h2:'Write to us', form_sub:'We respond in less than 24 hours.',
+      form_h2:'Ready to learn? Got questions?', form_sub:'We respond in less than 24 hours.',
       label_nombre:'Name', label_email:'Email', label_asunto:'Subject', label_mensaje:'Message',
       ph_nombre:'Your name', ph_email:'you@email.com', ph_asunto:'How can we help you?', ph_mensaje:'Write your message here...',
-      btn_submit:'Send message'
+      btn_submit:'Send message', label_curso:'Course of interest', ph_curso:'Select a course'
     },
     es: {
       nav_lang:'Idiomas', nav_comp:'Para empresas', nav_contact:'Contacto', nav_blog:'Blog', nav_cta:'Empieza gratis',
@@ -269,10 +284,10 @@
       bio_david:'Especialista en Comercio Internacional. Vivió y estudió en Estados Unidos, donde adquirió una perspectiva global del mundo de los negocios y la educación.',
       tag_c1:'🇫🇷 Francia', tag_c2:'Relaciones Internacionales',
       tag_d1:'🇺🇸 EE.UU.', tag_d2:'Comercio Internacional',
-      form_h2:'Escribinos', form_sub:'Te respondemos en menos de 24 horas.',
+      form_h2:'¿Listo para aprender? ¿Más preguntas?', form_sub:'Te respondemos en menos de 24 horas.',
       label_nombre:'Nombre', label_email:'Email', label_asunto:'Asunto', label_mensaje:'Mensaje',
       ph_nombre:'Tu nombre', ph_email:'tu@email.com', ph_asunto:'¿En qué te podemos ayudar?', ph_mensaje:'Escribí tu mensaje acá...',
-      btn_submit:'Enviar mensaje'
+      btn_submit:'Enviar mensaje', label_curso:'Curso de interés', ph_curso:'Seleccioná un curso'
     },
     fr: {
       nav_lang:'Langues', nav_comp:'Pour les entreprises', nav_contact:'Contact', nav_blog:'Blog', nav_cta:'Commencer gratuitement',
@@ -283,10 +298,10 @@
       bio_david:"Spécialiste en Commerce International. Il a vécu et étudié aux États-Unis, où il a acquis une perspective mondiale sur le monde des affaires et de l'éducation.",
       tag_c1:'🇫🇷 France', tag_c2:'Relations Internationales',
       tag_d1:'🇺🇸 États-Unis', tag_d2:'Commerce International',
-      form_h2:'Écrivez-nous', form_sub:'Nous répondons en moins de 24 heures.',
+      form_h2:'Prêt à apprendre ? Des questions ?', form_sub:'Nous répondons en moins de 24 heures.',
       label_nombre:'Nom', label_email:'Email', label_asunto:'Sujet', label_mensaje:'Message',
       ph_nombre:'Votre nom', ph_email:'vous@email.com', ph_asunto:'Comment pouvons-nous vous aider ?', ph_mensaje:'Écrivez votre message ici...',
-      btn_submit:'Envoyer le message'
+      btn_submit:'Envoyer le message', label_curso:'Cours souhaité', ph_curso:'Choisissez un cours'
     },
     de: {
       nav_lang:'Sprachen', nav_comp:'Für Unternehmen', nav_contact:'Kontakt', nav_blog:'Blog', nav_cta:'Kostenlos starten',
@@ -297,10 +312,10 @@
       bio_david:'Spezialist für Internationalen Handel. Er lebte und studierte in den USA, wo er eine globale Perspektive auf Wirtschaft und Bildung gewann.',
       tag_c1:'🇫🇷 Frankreich', tag_c2:'Internationale Beziehungen',
       tag_d1:'🇺🇸 USA', tag_d2:'Internationaler Handel',
-      form_h2:'Schreiben Sie uns', form_sub:'Wir antworten in weniger als 24 Stunden.',
+      form_h2:'Bereit zu lernen? Noch Fragen?', form_sub:'Wir antworten in weniger als 24 Stunden.',
       label_nombre:'Name', label_email:'E-Mail', label_asunto:'Betreff', label_mensaje:'Nachricht',
       ph_nombre:'Ihr Name', ph_email:'sie@email.com', ph_asunto:'Wie können wir Ihnen helfen?', ph_mensaje:'Schreiben Sie Ihre Nachricht hier...',
-      btn_submit:'Nachricht senden'
+      btn_submit:'Nachricht senden', label_curso:'Gewünschter Kurs', ph_curso:'Kurs auswählen'
     },
     it: {
       nav_lang:'Lingue', nav_comp:'Per le aziende', nav_contact:'Contatto', nav_blog:'Blog', nav_cta:'Inizia gratis',
@@ -311,10 +326,10 @@
       bio_david:"Specialista in Commercio Internazionale. Ha vissuto e studiato negli Stati Uniti, dove ha acquisito una prospettiva globale sul mondo degli affari e dell'istruzione.",
       tag_c1:'🇫🇷 Francia', tag_c2:'Relazioni Internazionali',
       tag_d1:'🇺🇸 USA', tag_d2:'Commercio Internazionale',
-      form_h2:'Scrivici', form_sub:'Rispondiamo in meno di 24 ore.',
+      form_h2:'Pronto a imparare? Hai domande?', form_sub:'Rispondiamo in meno di 24 ore.',
       label_nombre:'Nome', label_email:'Email', label_asunto:'Oggetto', label_mensaje:'Messaggio',
       ph_nombre:'Il tuo nome', ph_email:'tu@email.com', ph_asunto:'Come possiamo aiutarti?', ph_mensaje:'Scrivi qui il tuo messaggio...',
-      btn_submit:'Invia messaggio'
+      btn_submit:'Invia messaggio', label_curso:'Corso di interesse', ph_curso:'Seleziona un corso'
     },
     pt: {
       nav_lang:'Idiomas', nav_comp:'Para empresas', nav_contact:'Contato', nav_blog:'Blog', nav_cta:'Comece grátis',
@@ -325,10 +340,10 @@
       bio_david:'Especialista em Comércio Internacional. Viveu e estudou nos Estados Unidos, onde adquiriu uma perspectiva global sobre o mundo dos negócios e da educação.',
       tag_c1:'🇫🇷 França', tag_c2:'Relações Internacionais',
       tag_d1:'🇺🇸 EUA', tag_d2:'Comércio Internacional',
-      form_h2:'Escreva para nós', form_sub:'Respondemos em menos de 24 horas.',
+      form_h2:'Pronto para aprender? Tem perguntas?', form_sub:'Respondemos em menos de 24 horas.',
       label_nombre:'Nome', label_email:'Email', label_asunto:'Assunto', label_mensaje:'Mensagem',
       ph_nombre:'Seu nome', ph_email:'voce@email.com', ph_asunto:'Como podemos te ajudar?', ph_mensaje:'Escreva sua mensagem aqui...',
-      btn_submit:'Enviar mensagem'
+      btn_submit:'Enviar mensagem', label_curso:'Curso de interesse', ph_curso:'Selecione um curso'
     },
     zh: {
       nav_lang:'语言', nav_comp:'企业服务', nav_contact:'联系', nav_blog:'博客', nav_cta:'免费开始',
@@ -339,10 +354,10 @@
       bio_david:'国际商务专家。曾在美国生活和学习，在那里获得了对商业和教育的全球视角。',
       tag_c1:'🇫🇷 法国', tag_c2:'国际关系',
       tag_d1:'🇺🇸 美国', tag_d2:'国际商务',
-      form_h2:'给我们写信', form_sub:'我们在24小时内回复。',
+      form_h2:'准备好学习了吗？还有问题吗？', form_sub:'我们在24小时内回复。',
       label_nombre:'姓名', label_email:'电子邮件', label_asunto:'主题', label_mensaje:'留言',
       ph_nombre:'您的姓名', ph_email:'您@邮箱.com', ph_asunto:'我们能为您做什么？', ph_mensaje:'在这里写下您的留言...',
-      btn_submit:'发送消息'
+      btn_submit:'发送消息', label_curso:'感兴趣的课程', ph_curso:'选择课程'
     }
   };
 
@@ -408,6 +423,11 @@
     document.getElementById('mensaje').placeholder = t.ph_mensaje;
 
     document.querySelector('.form-submit').textContent = t.btn_submit;
+
+    var lblCurso = document.querySelector('label[for="curso"]');
+    if (lblCurso) lblCurso.textContent = t.label_curso;
+    var selCurso = document.getElementById('curso');
+    if (selCurso && selCurso.options[0]) selCurso.options[0].textContent = t.ph_curso;
 
     localStorage.setItem('parling_lang', lang);
   }
