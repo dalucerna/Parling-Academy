@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contacto — Parling Academy</title>
+  <script async src="https://tally.so/widgets/embed.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -218,7 +219,7 @@
 <section class="contact-section" id="formulario">
   <h2>¿Listo para aprender? ¿Más preguntas?</h2>
   <p class="sub">Te respondemos en menos de 24 horas.</p>
-  <form class="contact-form" onsubmit="return false;">
+  <form class="contact-form" onsubmit="return false;" id="contactForm">
     <div class="form-row">
       <div class="form-group">
         <label for="nombre">Nombre</label>
@@ -251,7 +252,7 @@
       <label for="mensaje">Mensaje</label>
       <textarea id="mensaje" placeholder="Escribí tu mensaje acá..."></textarea>
     </div>
-    <button class="form-submit" type="submit">Enviar mensaje</button>
+    <button class="form-submit" type="button" id="tallyBtn">Enviar mensaje</button>
   </form>
 </section>
 
@@ -260,6 +261,14 @@
 </footer>
 
 <script>
+  document.getElementById('tallyBtn').addEventListener('click', function() {
+    if (window.Tally) {
+      Tally.openPopup('rjkb6R', { width: 500, overlay: true, emoji: { text: '✉️', animation: 'wave' } });
+    } else {
+      window.open('https://tally.so/r/rjkb6R', '_blank');
+    }
+  });
+
   var LANGS = {
     en: {
       nav_lang:'Languages', nav_comp:'For companies', nav_contact:'Contact', nav_blog:'Blog', nav_cta:'Start Free',
