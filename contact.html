@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contacto — Parling Academy</title>
+  <script async src="https://tally.so/widgets/embed.js"></script>
 <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -107,7 +108,17 @@
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 6px; padding: 5px 12px; font-size: .78rem; color: var(--muted);
     }
-footer { background: var(--surface); border-top: 1px solid var(--border); padding: 30px 5%; text-align: center; }
+    .contact-cta { text-align: center; padding: 0 5% 80px; }
+    .contact-cta h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 10px; }
+    .contact-cta p { color: var(--muted); font-size: 1rem; margin-bottom: 28px; }
+    .contact-cta-btn {
+      background: var(--accent); color: #fff; border: none; cursor: pointer;
+      padding: .85rem 2rem; border-radius: 8px; font-weight: 700; font-size: 1rem;
+      font-family: inherit; transition: box-shadow .2s, transform .2s;
+      box-shadow: 0 4px 20px rgba(124,58,237,.35);
+    }
+    .contact-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(124,58,237,.5); }
+    footer { background: var(--surface); border-top: 1px solid var(--border); padding: 30px 5%; text-align: center; }
     footer span { color: var(--muted); font-size: .85rem; }
     @media (max-width: 640px) {
       .page-hero h1 { font-size: 2rem; }
@@ -187,6 +198,12 @@ footer { background: var(--surface); border-top: 1px solid var(--border); paddin
   </div>
 </section>
 
+<section class="contact-cta">
+  <h2 data-i18n="cta_contact_h2">¿Listo para dar el primer paso?</h2>
+  <p data-i18n="cta_contact_p">Te respondemos en menos de 24 horas. Sin compromiso.</p>
+  <button class="contact-cta-btn" data-tally-open="rjkb6R" data-tally-layout="popover" data-tally-width="380" data-i18n="cta_contact_btn">Escribinos</button>
+</section>
+
 <footer>
   <span>© 2026 Parling Academy. Todos los derechos reservados.</span>
 </footer>
@@ -205,7 +222,7 @@ footer { background: var(--surface); border-top: 1px solid var(--border); paddin
       form_h2:'Ready to learn? Got questions?', form_sub:'We respond in less than 24 hours.',
       label_nombre:'Name', label_email:'Email', label_asunto:'Subject', label_mensaje:'Message',
       ph_nombre:'Your name', ph_email:'you@email.com', ph_asunto:'How can we help you?', ph_mensaje:'Write your message here...',
-      btn_submit:'Send message', label_curso:'Course of interest', ph_curso:'Select a course'
+      btn_submit:'Send message', label_curso:'Course of interest', ph_curso:'Select a course', cta_contact_h2:'Ready to take the first step?', cta_contact_p:'We respond in less than 24 hours. No commitment.', cta_contact_btn:'Contact us'
     },
     es: {
       nav_lang:'Idiomas', nav_comp:'Para empresas', nav_contact:'Contacto', nav_blog:'Blog', nav_cta:'Empieza gratis',
@@ -219,7 +236,7 @@ footer { background: var(--surface); border-top: 1px solid var(--border); paddin
       form_h2:'¿Listo para aprender? ¿Más preguntas?', form_sub:'Te respondemos en menos de 24 horas.',
       label_nombre:'Nombre', label_email:'Email', label_asunto:'Asunto', label_mensaje:'Mensaje',
       ph_nombre:'Tu nombre', ph_email:'tu@email.com', ph_asunto:'¿En qué te podemos ayudar?', ph_mensaje:'Escribí tu mensaje acá...',
-      btn_submit:'Enviar mensaje', label_curso:'Curso de interés', ph_curso:'Seleccioná un curso'
+      btn_submit:'Enviar mensaje', label_curso:'Curso de interés', ph_curso:'Seleccioná un curso', cta_contact_h2:'¿Listo para dar el primer paso?', cta_contact_p:'Te respondemos en menos de 24 horas. Sin compromiso.', cta_contact_btn:'Escribinos'
     },
     fr: {
       nav_lang:'Langues', nav_comp:'Pour les entreprises', nav_contact:'Contact', nav_blog:'Blog', nav_cta:'Commencer gratuitement',
@@ -233,7 +250,7 @@ footer { background: var(--surface); border-top: 1px solid var(--border); paddin
       form_h2:'Prêt à apprendre ? Des questions ?', form_sub:'Nous répondons en moins de 24 heures.',
       label_nombre:'Nom', label_email:'Email', label_asunto:'Sujet', label_mensaje:'Message',
       ph_nombre:'Votre nom', ph_email:'vous@email.com', ph_asunto:'Comment pouvons-nous vous aider ?', ph_mensaje:'Écrivez votre message ici...',
-      btn_submit:'Envoyer le message', label_curso:'Cours souhaité', ph_curso:'Choisissez un cours'
+      btn_submit:'Envoyer le message', label_curso:'Cours souhaité', ph_curso:'Choisissez un cours', cta_contact_h2:'Prêt à franchir le premier pas ?', cta_contact_p:'Nous répondons en moins de 24 heures. Sans engagement.', cta_contact_btn:'Nous contacter'
     },
     de: {
       nav_lang:'Sprachen', nav_comp:'Für Unternehmen', nav_contact:'Kontakt', nav_blog:'Blog', nav_cta:'Kostenlos starten',
@@ -247,7 +264,7 @@ footer { background: var(--surface); border-top: 1px solid var(--border); paddin
       form_h2:'Bereit zu lernen? Noch Fragen?', form_sub:'Wir antworten in weniger als 24 Stunden.',
       label_nombre:'Name', label_email:'E-Mail', label_asunto:'Betreff', label_mensaje:'Nachricht',
       ph_nombre:'Ihr Name', ph_email:'sie@email.com', ph_asunto:'Wie können wir Ihnen helfen?', ph_mensaje:'Schreiben Sie Ihre Nachricht hier...',
-      btn_submit:'Nachricht senden', label_curso:'Gewünschter Kurs', ph_curso:'Kurs auswählen'
+      btn_submit:'Nachricht senden', label_curso:'Gewünschter Kurs', ph_curso:'Kurs auswählen', cta_contact_h2:'Bereit für den ersten Schritt?', cta_contact_p:'Wir antworten in weniger als 24 Stunden. Ohne Verpflichtung.', cta_contact_btn:'Schreib uns'
     },
     it: {
       nav_lang:'Lingue', nav_comp:'Per le aziende', nav_contact:'Contatto', nav_blog:'Blog', nav_cta:'Inizia gratis',
@@ -261,7 +278,7 @@ footer { background: var(--surface); border-top: 1px solid var(--border); paddin
       form_h2:'Pronto a imparare? Hai domande?', form_sub:'Rispondiamo in meno di 24 ore.',
       label_nombre:'Nome', label_email:'Email', label_asunto:'Oggetto', label_mensaje:'Messaggio',
       ph_nombre:'Il tuo nome', ph_email:'tu@email.com', ph_asunto:'Come possiamo aiutarti?', ph_mensaje:'Scrivi qui il tuo messaggio...',
-      btn_submit:'Invia messaggio', label_curso:'Corso di interesse', ph_curso:'Seleziona un corso'
+      btn_submit:'Invia messaggio', label_curso:'Corso di interesse', ph_curso:'Seleziona un corso', cta_contact_h2:'Pronto a fare il primo passo?', cta_contact_p:'Rispondiamo in meno di 24 ore. Senza impegno.', cta_contact_btn:'Scrivici'
     },
     pt: {
       nav_lang:'Idiomas', nav_comp:'Para empresas', nav_contact:'Contato', nav_blog:'Blog', nav_cta:'Comece grátis',
@@ -275,7 +292,7 @@ footer { background: var(--surface); border-top: 1px solid var(--border); paddin
       form_h2:'Pronto para aprender? Tem perguntas?', form_sub:'Respondemos em menos de 24 horas.',
       label_nombre:'Nome', label_email:'Email', label_asunto:'Assunto', label_mensaje:'Mensagem',
       ph_nombre:'Seu nome', ph_email:'voce@email.com', ph_asunto:'Como podemos te ajudar?', ph_mensaje:'Escreva sua mensagem aqui...',
-      btn_submit:'Enviar mensagem', label_curso:'Curso de interesse', ph_curso:'Selecione um curso'
+      btn_submit:'Enviar mensagem', label_curso:'Curso de interesse', ph_curso:'Selecione um curso', cta_contact_h2:'Pronto para dar o primeiro passo?', cta_contact_p:'Respondemos em menos de 24 horas. Sem compromisso.', cta_contact_btn:'Fale conosco'
     },
     zh: {
       nav_lang:'语言', nav_comp:'企业服务', nav_contact:'联系', nav_blog:'博客', nav_cta:'免费开始',
@@ -289,7 +306,7 @@ footer { background: var(--surface); border-top: 1px solid var(--border); paddin
       form_h2:'准备好学习了吗？还有问题吗？', form_sub:'我们在24小时内回复。',
       label_nombre:'姓名', label_email:'电子邮件', label_asunto:'主题', label_mensaje:'留言',
       ph_nombre:'您的姓名', ph_email:'您@邮箱.com', ph_asunto:'我们能为您做什么？', ph_mensaje:'在这里写下您的留言...',
-      btn_submit:'发送消息', label_curso:'感兴趣的课程', ph_curso:'选择课程'
+      btn_submit:'发送消息', label_curso:'感兴趣的课程', ph_curso:'选择课程', cta_contact_h2:'准备好迈出第一步了吗？', cta_contact_p:'我们在24小时内回复。无需承诺。', cta_contact_btn:'联系我们'
     }
   };
 
@@ -336,6 +353,13 @@ footer { background: var(--surface); border-top: 1px solid var(--border); paddin
       if (dTags[0]) dTags[0].textContent = t.tag_d1;
       if (dTags[1]) dTags[1].textContent = t.tag_d2;
     }
+
+    var ctaH2 = document.querySelector('.contact-cta h2');
+    var ctaP  = document.querySelector('.contact-cta p');
+    var ctaBtn = document.querySelector('.contact-cta-btn');
+    if (ctaH2) ctaH2.textContent = t.cta_contact_h2;
+    if (ctaP)  ctaP.textContent  = t.cta_contact_p;
+    if (ctaBtn) ctaBtn.textContent = t.cta_contact_btn;
 
     localStorage.setItem('parling_lang', lang);
   }
