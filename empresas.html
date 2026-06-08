@@ -125,6 +125,43 @@
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 8px; padding: 6px 14px; font-size: .8rem; color: var(--muted); text-align: center;
     }
+    .empresa-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 40px;
+      display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: start;
+      transition: border-color .2s; margin-top: 24px;
+    }
+    .empresa-card.consultoria:hover { border-color: var(--accent); }
+    .empresa-card.expansion:hover { border-color: var(--accent2); }
+    .empresa-card h2 { font-size: 1.9rem; font-weight: 800; margin-bottom: 6px; line-height: 1.2; }
+    .empresa-card .card-subtitle { color: var(--muted); font-size: .93rem; font-style: italic; margin-bottom: 20px; line-height: 1.5; }
+    .empresa-card .desc { color: var(--muted); font-size: .95rem; margin-bottom: 24px; line-height: 1.65; }
+    .badge-purple {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(124,58,237,.12); border: 1px solid rgba(124,58,237,.35);
+      color: var(--accent); font-size: .75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px;
+      padding: 5px 12px; border-radius: 999px; margin-bottom: 20px; margin-right: 8px;
+    }
+    .badge-cyan {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(6,182,212,.12); border: 1px solid rgba(6,182,212,.35);
+      color: var(--accent2); font-size: .75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px;
+      padding: 5px 12px; border-radius: 999px; margin-bottom: 20px; margin-right: 8px;
+    }
+    .badge-recommended {
+      display: inline-flex; align-items: center;
+      background: linear-gradient(135deg, #7c3aed, #a855f7);
+      color: #fff; font-size: .72rem; font-weight: 700;
+      padding: 4px 11px; border-radius: 999px; letter-spacing: .4px; margin-bottom: 20px;
+    }
+    .empresa-icon-col { display: flex; flex-direction: column; align-items: center; gap: 16px; padding-top: 8px; }
+    .empresa-icon { font-size: 5rem; line-height: 1; }
+    @media (max-width: 700px) {
+      .empresa-card { grid-template-columns: 1fr; }
+      .empresa-icon-col { display: none; }
+    }
     .tarifas-section { padding: 0 5% 60px; max-width: 900px; margin: 0 auto; }
     .tarifas-section h3 { font-size: 1.1rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
     .tarifas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
@@ -240,6 +277,59 @@
         <div class="htag">📍 Condesa · Roma · Nápoles</div>
         <div class="htag">⏰ Lunes a jueves</div>
         <div class="htag">👥 Grupos desde 5</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Consultoría -->
+  <div class="empresa-card consultoria">
+    <div>
+      <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:20px;">
+        <span class="badge-purple">💼 Enfoque de Consultoría</span>
+        <span class="badge-recommended">⭐ La más recomendada</span>
+      </div>
+      <h2>Global Business Communication</h2>
+      <p class="card-subtitle">Consultoría en comunicación bilingüe y desarrollo de talento ejecutivo.</p>
+      <p class="desc">En lugar de vender "clases", ofreces una solución de comunicación. Este enfoque te permite cobrar tarifas corporativas altas y justifica perfectamente las facturas de consultoría.</p>
+      <ul class="check-list">
+        <li>Solución de comunicación, no solo clases</li>
+        <li>Facturas de consultoría corporativa justificadas</li>
+        <li>Ideal para áreas de RR.HH. y directivos</li>
+        <li>Resultados medibles para el negocio</li>
+        <li>Constancia "Global Business Communication"</li>
+      </ul>
+    </div>
+    <div class="empresa-icon-col">
+      <div class="empresa-icon">💼</div>
+      <div class="hosteleria-tags">
+        <div class="htag">🏆 Alta rentabilidad</div>
+        <div class="htag">📋 Facturación corporativa</div>
+        <div class="htag">👔 Ejecutivos y RR.HH.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Expansión -->
+  <div class="empresa-card expansion">
+    <div>
+      <span class="badge-cyan">🌎 Enfoque de Expansión</span>
+      <h2>Link Global Training</h2>
+      <p class="card-subtitle">Capacitación lingüística estratégica para empresas con visión internacional.</p>
+      <p class="desc">Atrae a empresas mexicanas que están creciendo hacia Estados Unidos o Europa. Encaja con el perfil de transnacionales que necesitan equipos listos para negociar en inglés.</p>
+      <ul class="check-list">
+        <li>Preparación para reuniones y negociaciones en inglés</li>
+        <li>Enfocado en exportación a EE.UU. y Europa</li>
+        <li>Ideal para empresas mexicanas en expansión</li>
+        <li>Perfil corporativo para transnacionales</li>
+        <li>Constancia "Link Global Training"</li>
+      </ul>
+    </div>
+    <div class="empresa-icon-col">
+      <div class="empresa-icon">🌎</div>
+      <div class="hosteleria-tags">
+        <div class="htag">🇺🇸 Expansión a EE.UU.</div>
+        <div class="htag">🇪🇺 Crecimiento a Europa</div>
+        <div class="htag">🤝 Negociación internacional</div>
       </div>
     </div>
   </div>
