@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>15 slangs americanos que los jóvenes usan todos los días — Parling Academy</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d0d12; --surface: #16161f; --card: #1e1e2a; --border: #2a2a3a;
+      --accent: #7c3aed; --accent2: #06b6d4; --green: #10b981;
+      --text: #f1f1f6; --muted: #8888aa; --radius: 14px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--bg);
+      background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,13,18,.85); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 64px;
+    }
+    .logo a { display: block; line-height: 0; }
+    .logo img { height: 104px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 2rem; font-size: .9rem; color: var(--muted); align-items: center; }
+    .nav-links a:hover { color: var(--text); transition: color .2s; }
+    .nav-lang-menu { position: relative; }
+    .nav-lang-trigger {
+      display: flex; align-items: center; gap: 4px; cursor: pointer;
+      color: var(--muted); font-size: .9rem; background: none; border: none;
+      padding: 0; font-family: inherit; transition: color .2s;
+    }
+    .nav-lang-trigger:hover { color: var(--text); }
+    .nav-lang-chev { font-size: .6rem; transition: transform .2s; display: inline-block; margin-left: 2px; }
+    .nav-lang-menu:hover .nav-lang-chev { transform: rotate(180deg); }
+    .nav-lang-panel {
+      position: absolute; top: 100%; left: -12px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px 6px 6px; min-width: 220px;
+      opacity: 0; pointer-events: none; transform: translateY(-8px);
+      transition: opacity .18s, transform .18s; z-index: 200;
+      box-shadow: 0 12px 40px rgba(0,0,0,.55);
+    }
+    .nav-lang-menu:hover .nav-lang-panel { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-lang-panel a {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 12px; border-radius: 8px;
+      color: var(--text); font-size: .88rem; transition: background .15s, color .15s;
+    }
+    .nav-lang-panel a:hover { background: var(--card); color: var(--accent); }
+    .lang-picker { position: relative; }
+    .lang-btn {
+      display: flex; align-items: center; gap: 6px;
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--text); padding: .38rem .85rem; border-radius: 8px;
+      font-size: .85rem; font-weight: 600; cursor: pointer; transition: border-color .2s;
+    }
+    .lang-btn:hover { border-color: var(--accent2); }
+    .lang-btn .arrow { font-size: .6rem; color: var(--muted); transition: transform .2s; }
+    .lang-picker.open .arrow { transform: rotate(180deg); }
+    .lang-dropdown {
+      display: none; position: absolute; top: calc(100% + 8px); right: 0;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden; min-width: 160px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.4); z-index: 200;
+    }
+    .lang-picker.open .lang-dropdown { display: block; }
+    .lang-option {
+      display: flex; align-items: center; gap: 9px;
+      padding: .6rem 1rem; font-size: .85rem;
+      background: transparent; color: var(--muted); width: 100%; text-align: left; text-decoration: none;
+    }
+    .lang-option:hover { background: var(--card); color: var(--text); }
+    .nav-cta {
+      background: var(--accent2); color: #fff;
+      padding: .5rem 1.2rem; border-radius: 8px; font-weight: 600; font-size: .88rem;
+      transition: box-shadow .2s, transform .2s; box-shadow: 0 4px 20px rgba(6,182,212,.35);
+    }
+    .nav-cta:hover { box-shadow: 0 8px 28px rgba(6,182,212,.5); transform: translateY(-2px); }
+
+    /* Article layout */
+    .article-hero {
+      max-width: 720px; margin: 0 auto; padding: 56px 5% 0;
+    }
+    .back-to-blog {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--muted); font-size: .85rem; margin-bottom: 28px;
+      transition: color .2s;
+    }
+    .back-to-blog:hover { color: var(--accent2); }
+    .article-meta-top {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+    }
+    .blog-tag {
+      display: inline-block; font-size: .7rem; font-weight: 700;
+      padding: .25rem .7rem; border-radius: 20px; letter-spacing: .5px;
+    }
+    .tag-cyan { background: rgba(6,182,212,.12); border: 1px solid rgba(6,182,212,.3); color: #67e8f9; }
+    .article-read-time { color: var(--muted); font-size: .82rem; }
+    .article-hero h1 {
+      font-size: 2.1rem; font-weight: 800; line-height: 1.25; margin-bottom: 16px;
+    }
+    .article-meta { color: var(--muted); font-size: .85rem; margin-bottom: 32px; }
+    .article-cover { width: 100%; }
+    .article-body {
+      max-width: 720px; margin: 0 auto; padding: 0 5% 80px;
+    }
+    .article-body h2 {
+      font-size: 1.35rem; font-weight: 800; margin: 40px 0 14px;
+      color: var(--text);
+    }
+    .article-body p { color: var(--muted); margin-bottom: 16px; font-size: .97rem; line-height: 1.75; }
+    .article-body ul, .article-body ol {
+      color: var(--muted); padding-left: 1.5rem; margin-bottom: 16px;
+    }
+    .article-body li { margin-bottom: 8px; font-size: .97rem; line-height: 1.7; }
+    .article-body strong { color: var(--text); }
+    .highlight-box {
+      background: var(--card); border: 1px solid rgba(6,182,212,.3);
+      border-radius: var(--radius); padding: 20px 24px; margin: 28px 0;
+    }
+    .highlight-box p { margin-bottom: 0; }
+    .error-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 22px 24px; margin: 20px 0;
+      border-left: 3px solid var(--accent2);
+    }
+    .error-card h3 {
+      font-size: 1.25rem; font-weight: 800; margin-bottom: 6px;
+      color: var(--accent2);
+    }
+    .error-card .slang-meaning {
+      font-size: .82rem; font-weight: 700; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .5px; margin-bottom: 12px;
+    }
+    .error-card .slang-example {
+      background: var(--card); border-radius: 8px; padding: 12px 16px;
+      margin: 10px 0; font-size: .93rem;
+    }
+    .error-card .slang-example em { color: var(--text); font-style: normal; font-weight: 600; }
+    .error-card .slang-context {
+      font-size: .85rem; color: var(--muted); margin-bottom: 0; margin-top: 8px;
+    }
+    .error-card p { margin-bottom: 8px; }
+    .error-card p:last-child { margin-bottom: 0; }
+    .cta-banner {
+      background: linear-gradient(135deg, rgba(6,182,212,.18) 0%, rgba(14,165,233,.15) 100%);
+      border: 1px solid rgba(6,182,212,.3);
+      border-radius: var(--radius); padding: 32px 28px; margin-top: 48px; text-align: center;
+    }
+    .cta-banner h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 10px; }
+    .cta-banner p { margin-bottom: 20px; }
+    .cta-banner a {
+      display: inline-block; background: var(--accent2); color: #fff;
+      padding: .7rem 2rem; border-radius: 8px; font-weight: 700;
+      box-shadow: 0 4px 20px rgba(6,182,212,.35); transition: box-shadow .2s, transform .2s;
+    }
+    .cta-banner a:hover { box-shadow: 0 8px 28px rgba(6,182,212,.5); transform: translateY(-2px); }
+    footer { background: var(--surface); border-top: 1px solid var(--border); padding: 30px 5%; text-align: center; }
+    footer span { color: var(--muted); font-size: .85rem; }
+    @media (max-width: 600px) {
+      .article-hero h1 { font-size: 1.55rem; }
+      .article-cover { height: 240px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><a href="index.html"><img src="logo-nobg.png?v=2" alt="Parling Academy"></a></div>
+  <div class="nav-links">
+    <div class="nav-lang-menu">
+      <button class="nav-lang-trigger">Idiomas <span class="nav-lang-chev">▼</span></button>
+      <div class="nav-lang-panel">
+        <a href="ingles.html">🇬🇧 Inglés · English</a>
+        <a href="espanol.html">🇪🇸 Español</a>
+        <a href="frances.html">🇫🇷 Francés · Français</a>
+        <a href="aleman.html">🇩🇪 Alemán · Deutsch</a>
+        <a href="italiano.html">🇮🇹 Italiano</a>
+        <a href="portugues.html">🇧🇷 Portugués · Português</a>
+        <a href="chino.html">🇨🇳 Chino · 中文</a>
+      </div>
+    </div>
+    <a href="empresas.html">Para empresas</a>
+    <a href="contact.html">Contacto</a>
+    <a href="blog.html" style="color:#1a7abf">Blog</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:12px">
+    <div class="lang-picker" id="langPicker">
+      <button class="lang-btn" id="langBtn">
+        <span>🇪🇸</span><span>ES</span><span class="arrow">▼</span>
+      </button>
+      <div class="lang-dropdown" id="langDropdown">
+        <a href="ingles.html" class="lang-option">🇬🇧 English</a>
+        <a href="espanol.html" class="lang-option">🇪🇸 Español</a>
+        <a href="frances.html" class="lang-option">🇫🇷 Français</a>
+        <a href="aleman.html" class="lang-option">🇩🇪 Deutsch</a>
+        <a href="italiano.html" class="lang-option">🇮🇹 Italiano</a>
+        <a href="portugues.html" class="lang-option">🇧🇷 Português</a>
+        <a href="chino.html" class="lang-option">🇨🇳 中文</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="article-hero">
+  <a href="blog.html" class="back-to-blog">← Volver al blog</a>
+  <div class="article-meta-top">
+    <span class="blog-tag tag-cyan">SLANG</span>
+    <span class="article-read-time">4 min de lectura</span>
+  </div>
+  <h1>15 slangs americanos que los jóvenes usan todos los días</h1>
+  <div class="article-meta">Por Parling Academy · 10 may 2026</div>
+  <div class="article-cover" style="position:relative;overflow:hidden;border-radius:14px;margin-bottom:48px;height:420px">
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(2,44,60,.97) 0%,rgba(6,100,120,.88) 50%,rgba(6,182,212,.65) 100%)"></div>
+    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;user-select:none">
+      <div style="text-align:center;padding:32px">
+        <div style="font-size:5rem;line-height:1.1;margin-bottom:12px">🇺🇸</div>
+        <div style="font-size:clamp(3rem,8vw,5.5rem);font-weight:900;color:#fff;line-height:.95;text-shadow:0 4px 60px rgba(0,0,0,.5);letter-spacing:-2px">SLANG</div>
+        <div style="font-size:.95rem;font-weight:700;color:#67e8f9;letter-spacing:5px;text-transform:uppercase;margin-top:14px">SLANG 2025</div>
+        <div style="margin-top:18px;display:flex;align-items:center;justify-content:center;gap:6px">
+          <div style="width:28px;height:2px;background:rgba(255,255,255,.3)"></div>
+          <div style="font-size:.72rem;color:rgba(255,255,255,.5);letter-spacing:2px">PARLING ACADEMY</div>
+          <div style="width:28px;height:2px;background:rgba(255,255,255,.3)"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<article class="article-body">
+
+  <h2>¿Por qué aprender slang?</h2>
+  <p>El inglés de los libros de texto te prepara para los exámenes. El slang te prepara para la vida real. Si consumes series de Netflix, escuchas música en inglés, juegas videojuegos online o simplemente quieres entender lo que dicen los jóvenes americanos en redes sociales, necesitas conocer el vocabulario informal que no aparece en ningún manual.</p>
+  <p>El slang no es solo una cuestión de comprensión: es una señal de integración cultural. Cuando entiendes una referencia o usas una expresión en el momento correcto, la conversación fluye de manera distinta. Y en el entorno laboral americano, donde la comunicación informal es parte del día a día, conocer estas expresiones puede marcar la diferencia.</p>
+
+  <h2>Los 10 slangs que más vas a escuchar</h2>
+
+  <div class="error-card">
+    <h3>Lit</h3>
+    <div class="slang-meaning">Significado en español: increíble / emocionante</div>
+    <div class="slang-example"><em>"This party is lit!"</em> — ¡Esta fiesta está increíble!</div>
+    <p class="slang-context">Se usa para describir algo muy divertido o emocionante: una fiesta, un concierto, un ambiente. También puede describir a alguien que está muy animado o «encendido». Originalmente venía del mundo del hip-hop.</p>
+  </div>
+
+  <div class="error-card">
+    <h3>No cap</h3>
+    <div class="slang-meaning">Significado en español: sin mentira / en serio / te lo juro</div>
+    <div class="slang-example"><em>"No cap, that was the best meal I've ever had."</em> — En serio, fue la mejor comida que he probado en mi vida.</div>
+    <p class="slang-context">"Cap" significa mentira en el slang americano, así que "no cap" es «sin mentira». Se usa para reforzar que lo que dices es completamente verdad. También se dice simplemente «fr» (for real) con el mismo sentido.</p>
+  </div>
+
+  <div class="error-card">
+    <h3>Vibe</h3>
+    <div class="slang-meaning">Significado en español: ambiente / onda / vibra</div>
+    <div class="slang-example"><em>"This place has such a good vibe."</em> — Este lugar tiene muy buena onda.</div>
+    <p class="slang-context">Puede usarse como sustantivo («the vibe here is amazing») o como verbo («we were just vibing» = estábamos pasándola bien, relajados). También se dice «vibes» en plural para describir la sensación general que transmite algo o alguien.</p>
+  </div>
+
+  <div class="error-card">
+    <h3>Ghosting</h3>
+    <div class="slang-meaning">Significado en español: desaparecer / ignorar / fantasmear</div>
+    <div class="slang-example"><em>"He ghosted me after two dates."</em> — Desapareció / me dejó en visto después de dos citas.</div>
+    <p class="slang-context">Viene de "ghost" (fantasma). Ocurre cuando alguien deja de responder mensajes sin ninguna explicación, como si se hubiera convertido en un fantasma. Se usa principalmente en contextos de relaciones románticas, pero también en el ámbito laboral o de amistad.</p>
+  </div>
+
+  <div class="error-card">
+    <h3>Lowkey</h3>
+    <div class="slang-meaning">Significado en español: un poco / discretamente / en secreto</div>
+    <div class="slang-example"><em>"I'm lowkey obsessed with this show."</em> — La verdad es que estoy un poco obsesionado con esta serie.</div>
+    <p class="slang-context">Se usa para suavizar una afirmación o para indicar algo que no se dice en voz alta. Su opuesto, "highkey", intensifica la afirmación: «I'm highkey obsessed» = estoy completamente obsesionado, sin vergüenza.</p>
+  </div>
+
+  <div class="error-card">
+    <h3>Slay</h3>
+    <div class="slang-meaning">Significado en español: brillar / lucir perfecto / triunfar</div>
+    <div class="slang-example"><em>"She slayed that presentation."</em> — Estuvo increíble en esa presentación.</div>
+    <p class="slang-context">Originalmente venía de la cultura drag y ballroom. Hoy es de uso masivo: significa hacerlo excepcionalmente bien, lucir genial o ejecutar algo con maestría. "You're slaying!" es un cumplido muy poderoso en el inglés actual.</p>
+  </div>
+
+  <div class="error-card">
+    <h3>Bussin</h3>
+    <div class="slang-meaning">Significado en español: delicioso / buenísimo (comida)</div>
+    <div class="slang-example"><em>"This taco is bussin!"</em> — ¡Este taco está buenísimo!</div>
+    <p class="slang-context">Surgió en comunidades afroamericanas del sur de EE. UU. Se usa casi exclusivamente para describir comida que está excepcional. A veces se intensifica con «bussin bussin» para enfatizar lo bueno que está algo.</p>
+  </div>
+
+  <div class="error-card">
+    <h3>Extra</h3>
+    <div class="slang-meaning">Significado en español: exagerado / dramático / que se pasa</div>
+    <div class="slang-example"><em>"She's so extra with her outfits."</em> — Es tan exagerada con su ropa.</div>
+    <p class="slang-context">Describe a alguien o algo que hace las cosas de forma excesiva o dramática, más de lo necesario. Puede usarse de forma afectuosa o crítica según el contexto. «Don't be so extra» = no exageres / no te pases.</p>
+  </div>
+
+  <div class="error-card">
+    <h3>Drip</h3>
+    <div class="slang-meaning">Significado en español: estilo / ropa de moda / swag</div>
+    <div class="slang-example"><em>"His drip is on point today."</em> — Hoy lleva un estilo impecable.</div>
+    <p class="slang-context">Se refiere al estilo de vestir de alguien, especialmente cuando es elegante, llamativo o de marca. «Dripping» o «drip check» son variantes comunes. Viene del mundo del rap y la moda urbana.</p>
+  </div>
+
+  <div class="error-card">
+    <h3>Goated</h3>
+    <div class="slang-meaning">Significado en español: el mejor de todos / una leyenda</div>
+    <div class="slang-example"><em>"That player is goated."</em> — Ese jugador es el mejor de todos.</div>
+    <p class="slang-context">Viene de GOAT (Greatest Of All Time). «Goated» significa que alguien ha alcanzado el estatus de GOAT en su campo. Se usa para deportes, música, juegos y prácticamente cualquier área. «This album is goated» = este álbum es una obra maestra.</p>
+  </div>
+
+  <h2>Cómo usarlos sin sonar forzado</h2>
+  <div class="highlight-box">
+    <p><strong>1. Úsalos en contexto, no de forma forzada.</strong> El slang tiene que salir de forma natural. Si tienes que pensar mucho en si encaja, probablemente aún no es el momento de usarlo. Primero entiéndelo, luego úsalo cuando se dé la situación.</p>
+    <p style="margin-top:10px"><strong>2. No abuses.</strong> Meter slang en cada frase resulta igual de raro que no usarlo nunca. Los nativos combinan registro formal e informal de manera fluida. La clave es saber cuándo activar y cuándo desactivar el modo informal.</p>
+    <p style="margin-top:10px"><strong>3. Conoce tu audiencia.</strong> Muchos de estos términos son perfectos con amigos de tu edad, pero sonarían extraños en una entrevista de trabajo o en una reunión con clientes. El slang tiene un registro; aprender a calibrarlo es parte del dominio real del idioma.</p>
+    <p style="margin-top:10px"><strong>4. El slang envejece rápido.</strong> Algunas expresiones de hace tres años ya suenan desfasadas. La mejor fuente para mantenerse actualizado son las redes sociales americanas: TikTok, Twitter/X e Instagram son donde nace el slang antes de que llegue a cualquier guía.</p>
+  </div>
+
+  <div class="cta-banner">
+    <h3>Aprende inglés americano con profesores que conocen la cultura</h3>
+    <p>En Parling Academy practicamos el inglés real, el que se habla en la calle, en las series y en el trabajo.</p>
+    <a href="ingles.html">Ver clases de inglés</a>
+  </div>
+
+</article>
+
+<footer>
+  <span>© 2026 Parling Academy. Todos los derechos reservados.</span>
+</footer>
+
+<script>
+  var LANGS = {
+    en: { nav_lang:'Languages', nav_comp:'For companies', nav_contact:'Contact', nav_blog:'Blog', nav_cta:'Start Free' },
+    es: { nav_lang:'Idiomas', nav_comp:'Para empresas', nav_contact:'Contacto', nav_blog:'Blog', nav_cta:'Empieza gratis' },
+    fr: { nav_lang:'Langues', nav_comp:'Pour les entreprises', nav_contact:'Contact', nav_blog:'Blog', nav_cta:'Commencer gratuitement' },
+    de: { nav_lang:'Sprachen', nav_comp:'Für Unternehmen', nav_contact:'Kontakt', nav_blog:'Blog', nav_cta:'Kostenlos starten' },
+    it: { nav_lang:'Lingue', nav_comp:'Per le aziende', nav_contact:'Contatto', nav_blog:'Blog', nav_cta:'Inizia gratis' },
+    pt: { nav_lang:'Idiomas', nav_comp:'Para empresas', nav_contact:'Contato', nav_blog:'Blog', nav_cta:'Comece grátis' },
+    zh: { nav_lang:'语言', nav_comp:'企业服务', nav_contact:'联系', nav_blog:'博客', nav_cta:'免费开始' }
+  };
+  var FLAGS = {en:'🇬🇧',es:'🇪🇸',fr:'🇫🇷',de:'🇩🇪',it:'🇮🇹',pt:'🇧🇷',zh:'🇨🇳'};
+  var CODES = {en:'EN',es:'ES',fr:'FR',de:'DE',it:'IT',pt:'PT',zh:'ZH'};
+
+  function applyLang(lang) {
+    var t = LANGS[lang];
+    if (!t) return;
+    var trigger = document.querySelector('.nav-lang-trigger');
+    if (trigger) trigger.innerHTML = t.nav_lang + ' <span class="nav-lang-chev">▼</span>';
+    var navLinks = document.querySelectorAll('.nav-links > a');
+    if (navLinks[0]) navLinks[0].textContent = t.nav_comp;
+    if (navLinks[1]) navLinks[1].textContent = t.nav_contact;
+    if (navLinks[2]) navLinks[2].textContent = t.nav_blog;
+    var navCta = document.querySelector('.nav-cta');
+    if (navCta) navCta.textContent = t.nav_cta;
+    var btnSpans = document.querySelectorAll('#langBtn span');
+    if (btnSpans[0]) btnSpans[0].textContent = FLAGS[lang] || '';
+    if (btnSpans[1]) btnSpans[1].textContent = CODES[lang] || lang.toUpperCase();
+    localStorage.setItem('parling_lang', lang);
+  }
+
+  var langMap = {
+    'ingles.html':'en','espanol.html':'es','frances.html':'fr',
+    'aleman.html':'de','italiano.html':'it','portugues.html':'pt','chino.html':'zh'
+  };
+
+  document.getElementById('langBtn').addEventListener('click', function(e) {
+    e.stopPropagation();
+    document.getElementById('langPicker').classList.toggle('open');
+  });
+  document.addEventListener('click', function() {
+    document.getElementById('langPicker').classList.remove('open');
+  });
+  document.querySelectorAll('.lang-option').forEach(function(opt) {
+    opt.addEventListener('click', function(e) {
+      e.preventDefault();
+      var lang = langMap[this.getAttribute('href')];
+      if (lang) { applyLang(lang); document.getElementById('langPicker').classList.remove('open'); }
+    });
+  });
+
+  (function() {
+    var saved = localStorage.getItem('parling_lang');
+    if (saved && LANGS[saved]) applyLang(saved);
+  })();
+</script>
+</body>
+</html>

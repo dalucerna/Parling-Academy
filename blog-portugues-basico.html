@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portugués básico: primeras palabras y frases para hispanohablantes — Parling Academy</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d0d12; --surface: #16161f; --card: #1e1e2a; --border: #2a2a3a;
+      --accent: #7c3aed; --accent2: #06b6d4; --green: #10b981;
+      --text: #f1f1f6; --muted: #8888aa; --radius: 14px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--bg);
+      background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,13,18,.85); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 64px;
+    }
+    .logo a { display: block; line-height: 0; }
+    .logo img { height: 104px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 2rem; font-size: .9rem; color: var(--muted); align-items: center; }
+    .nav-links a:hover { color: var(--text); transition: color .2s; }
+    .nav-lang-menu { position: relative; }
+    .nav-lang-trigger {
+      display: flex; align-items: center; gap: 4px; cursor: pointer;
+      color: var(--muted); font-size: .9rem; background: none; border: none;
+      padding: 0; font-family: inherit; transition: color .2s;
+    }
+    .nav-lang-trigger:hover { color: var(--text); }
+    .nav-lang-chev { font-size: .6rem; transition: transform .2s; display: inline-block; margin-left: 2px; }
+    .nav-lang-menu:hover .nav-lang-chev { transform: rotate(180deg); }
+    .nav-lang-panel {
+      position: absolute; top: 100%; left: -12px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px 6px 6px; min-width: 220px;
+      opacity: 0; pointer-events: none; transform: translateY(-8px);
+      transition: opacity .18s, transform .18s; z-index: 200;
+      box-shadow: 0 12px 40px rgba(0,0,0,.55);
+    }
+    .nav-lang-menu:hover .nav-lang-panel { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-lang-panel a {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 12px; border-radius: 8px;
+      color: var(--text); font-size: .88rem; transition: background .15s, color .15s;
+    }
+    .nav-lang-panel a:hover { background: var(--card); color: var(--accent); }
+    .lang-picker { position: relative; }
+    .lang-btn {
+      display: flex; align-items: center; gap: 6px;
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--text); padding: .38rem .85rem; border-radius: 8px;
+      font-size: .85rem; font-weight: 600; cursor: pointer; transition: border-color .2s;
+    }
+    .lang-btn:hover { border-color: var(--accent2); }
+    .lang-btn .arrow { font-size: .6rem; color: var(--muted); transition: transform .2s; }
+    .lang-picker.open .arrow { transform: rotate(180deg); }
+    .lang-dropdown {
+      display: none; position: absolute; top: calc(100% + 8px); right: 0;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden; min-width: 160px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.4); z-index: 200;
+    }
+    .lang-picker.open .lang-dropdown { display: block; }
+    .lang-option {
+      display: flex; align-items: center; gap: 9px;
+      padding: .6rem 1rem; font-size: .85rem;
+      background: transparent; color: var(--muted); width: 100%; text-align: left; text-decoration: none;
+    }
+    .lang-option:hover { background: var(--card); color: var(--text); }
+    .nav-cta {
+      background: var(--accent2); color: #fff;
+      padding: .5rem 1.2rem; border-radius: 8px; font-weight: 600; font-size: .88rem;
+      transition: box-shadow .2s, transform .2s; box-shadow: 0 4px 20px rgba(6,182,212,.35);
+    }
+    .nav-cta:hover { box-shadow: 0 8px 28px rgba(6,182,212,.5); transform: translateY(-2px); }
+
+    /* Article layout */
+    .article-hero {
+      max-width: 720px; margin: 0 auto; padding: 56px 5% 0;
+    }
+    .back-to-blog {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--muted); font-size: .85rem; margin-bottom: 28px;
+      transition: color .2s;
+    }
+    .back-to-blog:hover { color: var(--accent2); }
+    .article-meta-top {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+    }
+    .blog-tag {
+      display: inline-block; font-size: .7rem; font-weight: 700;
+      padding: .25rem .7rem; border-radius: 20px; letter-spacing: .5px;
+    }
+    .tag-cyan { background: rgba(6,182,212,.12); border: 1px solid rgba(6,182,212,.3); color: #67e8f9; }
+    .article-read-time { color: var(--muted); font-size: .82rem; }
+    .article-hero h1 {
+      font-size: 2.1rem; font-weight: 800; line-height: 1.25; margin-bottom: 16px;
+    }
+    .article-meta { color: var(--muted); font-size: .85rem; margin-bottom: 32px; }
+    .article-cover { width: 100%; }
+    .article-body {
+      max-width: 720px; margin: 0 auto; padding: 0 5% 80px;
+    }
+    .article-body h2 {
+      font-size: 1.35rem; font-weight: 800; margin: 40px 0 14px;
+      color: var(--text);
+    }
+    .article-body p { color: var(--muted); margin-bottom: 16px; font-size: .97rem; line-height: 1.75; }
+    .article-body ul, .article-body ol {
+      color: var(--muted); padding-left: 1.5rem; margin-bottom: 16px;
+    }
+    .article-body li { margin-bottom: 8px; font-size: .97rem; line-height: 1.7; }
+    .article-body strong { color: var(--text); }
+    .highlight-box {
+      background: var(--card); border: 1px solid rgba(6,182,212,.3);
+      border-radius: var(--radius); padding: 20px 24px; margin: 28px 0;
+    }
+    .highlight-box p { margin-bottom: 0; }
+    .error-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 22px 24px; margin: 20px 0;
+      border-left: 3px solid #10b981;
+    }
+    .error-num {
+      color: var(--accent2); font-size: .78rem; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px;
+    }
+    .error-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; }
+    .error-card p { margin-bottom: 8px; }
+    .error-card p:last-child { margin-bottom: 0; }
+    .phonetic { font-family: monospace; font-size: .95rem; color: var(--accent2); }
+    .word-pair {
+      display: inline-flex; gap: 8px; align-items: center;
+      background: var(--card); border-radius: 6px; padding: 4px 10px; margin: 4px 4px 4px 0;
+      font-size: .9rem;
+    }
+    .word-pair .sep { color: var(--muted); }
+    .cta-banner {
+      background: linear-gradient(135deg, rgba(6,182,212,.18) 0%, rgba(124,58,237,.15) 100%);
+      border: 1px solid rgba(6,182,212,.3);
+      border-radius: var(--radius); padding: 32px 28px; margin-top: 48px; text-align: center;
+    }
+    .cta-banner h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 10px; }
+    .cta-banner p { margin-bottom: 20px; }
+    .cta-banner a {
+      display: inline-block; background: var(--accent2); color: #fff;
+      padding: .7rem 2rem; border-radius: 8px; font-weight: 700;
+      box-shadow: 0 4px 20px rgba(6,182,212,.35); transition: box-shadow .2s, transform .2s;
+    }
+    .cta-banner a:hover { box-shadow: 0 8px 28px rgba(6,182,212,.5); transform: translateY(-2px); }
+    footer { background: var(--surface); border-top: 1px solid var(--border); padding: 30px 5%; text-align: center; }
+    footer span { color: var(--muted); font-size: .85rem; }
+    @media (max-width: 600px) {
+      .article-hero h1 { font-size: 1.55rem; }
+      .article-cover { height: 240px; }
+    }
+
+    .tag-orange { background: rgba(249,115,22,.12); border: 1px solid rgba(249,115,22,.35); color: #fb923c; }
+    .tag-green-lang { background: rgba(16,185,129,.1); border: 1px solid rgba(16,185,129,.3); color: #6ee7b7; }
+    .tag-yellow { background: rgba(251,191,36,.1); border: 1px solid rgba(251,191,36,.3); color: #fbbf24; }
+    .compare-row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin: 6px 0; }
+    .lang-pill { background: var(--card); border: 1px solid var(--border); border-radius:6px; padding: 4px 12px; font-size:.9rem; }
+    .lang-pill.fr { border-color: rgba(6,182,212,.4); color: #67e8f9; }
+    .lang-pill.pt { border-color: rgba(16,185,129,.4); color: #6ee7b7; }
+    .lang-pill.es { border-color: rgba(251,191,36,.4); color: #fbbf24; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><a href="index.html"><img src="logo-nobg.png?v=2" alt="Parling Academy"></a></div>
+  <div class="nav-links">
+    <div class="nav-lang-menu">
+      <button class="nav-lang-trigger">Idiomas <span class="nav-lang-chev">▼</span></button>
+      <div class="nav-lang-panel">
+        <a href="ingles.html">🇬🇧 Inglés · English</a>
+        <a href="espanol.html">🇪🇸 Español</a>
+        <a href="frances.html">🇫🇷 Francés · Français</a>
+        <a href="aleman.html">🇩🇪 Alemán · Deutsch</a>
+        <a href="italiano.html">🇮🇹 Italiano</a>
+        <a href="portugues.html">🇧🇷 Portugués · Português</a>
+        <a href="chino.html">🇨🇳 Chino · 中文</a>
+      </div>
+    </div>
+    <a href="empresas.html">Para empresas</a>
+    <a href="contact.html">Contacto</a>
+    <a href="blog.html" style="color:#1a7abf">Blog</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:12px">
+    <div class="lang-picker" id="langPicker">
+      <button class="lang-btn" id="langBtn">
+        <span>🇪🇸</span><span>ES</span><span class="arrow">▼</span>
+      </button>
+      <div class="lang-dropdown" id="langDropdown">
+        <a href="ingles.html" class="lang-option">🇬🇧 English</a>
+        <a href="espanol.html" class="lang-option">🇪🇸 Español</a>
+        <a href="frances.html" class="lang-option">🇫🇷 Français</a>
+        <a href="aleman.html" class="lang-option">🇩🇪 Deutsch</a>
+        <a href="italiano.html" class="lang-option">🇮🇹 Italiano</a>
+        <a href="portugues.html" class="lang-option">🇧🇷 Português</a>
+        <a href="chino.html" class="lang-option">🇨🇳 中文</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="article-hero">
+  <a href="blog.html" class="back-to-blog">← Volver al blog</a>
+  <div class="article-meta-top">
+    <span class="blog-tag tag-green-lang">PORTUGUÉS</span>
+    <span class="article-read-time">4 min de lectura</span>
+  </div>
+  <h1>Portugués básico: primeras palabras y frases para hispanohablantes</h1>
+  <div class="article-meta">Por Parling Academy · 1 jun 2026</div>
+  <div class="article-cover" style="position:relative;overflow:hidden;border-radius:14px;margin-bottom:48px;height:420px">
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(5,46,22,.97) 0%,rgba(6,78,59,.9) 50%,rgba(4,120,87,.8) 100%)"></div>
+    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;user-select:none">
+      <div style="text-align:center;padding:32px">
+        <div style="font-size:clamp(5rem,12vw,8rem);line-height:1;margin-bottom:12px">🇧🇷</div>
+        <div style="font-size:.95rem;font-weight:700;color:#6ee7b7;letter-spacing:5px;text-transform:uppercase;margin-bottom:8px">NIVEL A1</div>
+        <div style="font-size:1.15rem;font-weight:700;color:rgba(255,255,255,.75);letter-spacing:2px">PARA HISPANOHABLANTES</div>
+        <div style="margin-top:18px;display:flex;align-items:center;justify-content:center;gap:6px">
+          <div style="width:28px;height:2px;background:rgba(255,255,255,.3)"></div>
+          <div style="font-size:.72rem;color:rgba(255,255,255,.5);letter-spacing:2px">PARLING ACADEMY</div>
+          <div style="width:28px;height:2px;background:rgba(255,255,255,.3)"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<article class="article-body">
+
+  <h2>La ventaja del hispanohablante</h2>
+  <div class="error-card">
+    <div class="error-num">Punto 01</div>
+    <h3>El idioma hermano que ya casi sabes</h3>
+    <p>El español y el portugués comparten aproximadamente el <strong>89% del vocabulario</strong>. Esto significa que, antes de estudiar una sola lección, ya tienes acceso a miles de palabras. Muchas son idénticas o casi idénticas:</p>
+    <div class="compare-row">
+      <span class="lang-pill es">ES: casa</span><span style="color:var(--muted)">→</span><span class="lang-pill pt">PT: casa</span>
+    </div>
+    <div class="compare-row">
+      <span class="lang-pill es">ES: libro</span><span style="color:var(--muted)">→</span><span class="lang-pill pt">PT: livro</span>
+    </div>
+    <div class="compare-row">
+      <span class="lang-pill es">ES: tiempo</span><span style="color:var(--muted)">→</span><span class="lang-pill pt">PT: tempo</span>
+    </div>
+    <div class="compare-row">
+      <span class="lang-pill es">ES: hablar</span><span style="color:var(--muted)">→</span><span class="lang-pill pt">PT: falar</span>
+    </div>
+    <div class="compare-row">
+      <span class="lang-pill es">ES: bueno</span><span style="color:var(--muted)">→</span><span class="lang-pill pt">PT: bom</span>
+    </div>
+    <p>El reto principal no es el vocabulario, sino la <strong>pronunciación</strong>: el portugués tiene sonidos que no existen en español, y dominarlos es lo que marcará la diferencia entre sonar como un principiante o sonar natural.</p>
+  </div>
+
+  <h2>Los 5 sonidos que debes dominar</h2>
+  <div class="error-card">
+    <div class="error-num">Punto 02</div>
+    <h3>La pronunciación que cambia todo</h3>
+    <p>Estos cinco sonidos son los que más cuesta a los hispanohablantes. Dedicarles tiempo desde el principio acelera enormemente el aprendizaje:</p>
+    <ul>
+      <li>
+        <strong>ão</strong> — vocal nasal que no existe en español. Se pronuncia como una "a" resonando en la nariz, seguida de un cierre labial breve.
+        <div class="compare-row" style="margin-top:6px">
+          <span class="lang-pill pt">não</span>
+          <span class="lang-pill pt">mão</span>
+          <span class="lang-pill pt">irmão</span>
+        </div>
+      </li>
+      <li>
+        <strong>lh</strong> — equivale a la LL del español rioplatense o la GL del italiano. La lengua toca el paladar como en "lluvia".
+        <div class="compare-row" style="margin-top:6px">
+          <span class="lang-pill pt">filho</span>
+          <span class="lang-pill pt">mulher</span>
+          <span class="lang-pill pt">trabalho</span>
+        </div>
+      </li>
+      <li>
+        <strong>nh</strong> — equivale a la Ñ del español. Completamente familiar para el hispanohablante.
+        <div class="compare-row" style="margin-top:6px">
+          <span class="lang-pill pt">vinho</span>
+          <span class="lang-pill pt">manhã</span>
+          <span class="lang-pill pt">anha</span>
+        </div>
+      </li>
+      <li>
+        <strong>-r- intervocálica</strong> — suave, casi como una "d" fricativa suave. En <em>caro</em> y <em>para</em> la R no vibra con fuerza como en español.
+        <div class="compare-row" style="margin-top:6px">
+          <span class="lang-pill pt">caro</span>
+          <span class="lang-pill pt">para</span>
+          <span class="lang-pill pt">parar</span>
+        </div>
+      </li>
+      <li>
+        <strong>-rr- / R inicial</strong> — fuerte, similar a la J española o incluso a una H aspirada según la región. En São Paulo suena a J, en Rio a H.
+        <div class="compare-row" style="margin-top:6px">
+          <span class="lang-pill pt">carro</span>
+          <span class="lang-pill pt">Rio</span>
+          <span class="lang-pill pt">Roma</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <h2>Saludos esenciales</h2>
+  <div class="error-card">
+    <div class="error-num">Punto 03</div>
+    <h3>Las primeras palabras de cada día</h3>
+    <ul>
+      <li><strong>Olá / Oi</strong> — Hola (Oi es más informal y muy común en Brasil)</li>
+      <li><strong>Bom dia</strong> — Buenos días <span class="lang-pill pt">bon JI-a</span></li>
+      <li><strong>Boa tarde</strong> — Buenas tardes <span class="lang-pill pt">BOA TAR-ji</span></li>
+      <li><strong>Boa noite</strong> — Buenas noches <span class="lang-pill pt">BOA NOY-chi</span></li>
+      <li><strong>Como vai você? / Tudo bem?</strong> — ¿Cómo estás? / ¿Todo bien?</li>
+      <li><strong>Obrigado / Obrigada</strong> — Gracias (masculino / femenino — el hablante concuerda con su propio género)</li>
+      <li><strong>Por favor</strong> — Por favor (idéntico al español)</li>
+      <li><strong>Com licença</strong> — Con permiso / Disculpe</li>
+      <li><strong>Não entendo</strong> — No entiendo</li>
+    </ul>
+  </div>
+
+  <h2>Español vs. Portugués: trampas frecuentes</h2>
+  <div class="error-card">
+    <div class="error-num">Punto 04</div>
+    <h3>Los falsos amigos que confunden a todos</h3>
+    <p>La similitud entre los dos idiomas también genera trampas. Estas palabras parecen iguales pero significan cosas distintas:</p>
+    <ul>
+      <li><strong>borracha</strong> — en español: persona ebria. En portugués: <em>goma / neumático</em>. (Para "ebria" en PT: bêbada)</li>
+      <li><strong>polvo</strong> — en español: partículas de suciedad. En portugués: <em>pulpo</em>. (Para "polvo" en PT: pó)</li>
+      <li><strong>embarazada</strong> — en español: gestante. En portugués no existe con ese significado; para "embarazada" se dice <em>grávida</em>. (Cuidado: en inglés, <em>embarrassed</em> significa avergonzada)</li>
+      <li><strong>esquisito</strong> — en español: de sabor excelente. En portugués: <em>extraño, raro</em>.</li>
+    </ul>
+    <p>La regla de oro: cuando una palabra suene demasiado parecida al español, verifica su significado antes de usarla. Los falsos amigos son divertidos una vez conocidos, pero pueden generar situaciones muy incómodas.</p>
+  </div>
+
+  <h2>Las 20 palabras más útiles para empezar</h2>
+  <div class="error-card">
+    <div class="error-num">Punto 05</div>
+    <h3>El vocabulario de supervivencia</h3>
+    <p>Con estas 20 palabras puedes construir cientos de frases básicas. Memorízalas antes de tu primera clase:</p>
+    <ul>
+      <li><strong>sim / não</strong> — sí / no</li>
+      <li><strong>eu / você</strong> — yo / tú (usted)</li>
+      <li><strong>quero</strong> — quiero</li>
+      <li><strong>tenho</strong> — tengo</li>
+      <li><strong>onde</strong> — dónde</li>
+      <li><strong>quando</strong> — cuándo</li>
+      <li><strong>quanto</strong> — cuánto</li>
+      <li><strong>hoje</strong> — hoy <span class="lang-pill pt">O-ji</span></li>
+      <li><strong>amanhã</strong> — mañana <span class="lang-pill pt">a-ma-NHÃ</span></li>
+      <li><strong>muito / pouco</strong> — mucho / poco</li>
+      <li><strong>bom / ruim</strong> — bueno / malo</li>
+      <li><strong>grande / pequeno</strong> — grande / pequeño</li>
+    </ul>
+  </div>
+
+  <div class="highlight-box">
+    <p><strong>Consejo clave:</strong> el portugués brasileño y el europeo tienen diferencias notables en pronunciación y vocabulario cotidiano. Si tu objetivo es Brasil, el acento es más abierto y musical. Si apuntas a Portugal, las vocales átonas se reducen mucho. Elige tu variante desde el principio y consigue un profesor nativo de esa región.</p>
+  </div>
+
+  <div class="cta-banner">
+    <h3>Aprende portugués brasileño con profesores nativos</h3>
+    <p>En Parling Academy tenemos clases de portugués brasileño en grupos reducidos, con un enfoque desde el primer día en la pronunciación y la conversación real.</p>
+    <a href="portugues.html">Ver el curso de portugués</a>
+  </div>
+
+</article>
+
+<footer>
+  <span>© 2026 Parling Academy. Todos los derechos reservados.</span>
+</footer>
+
+<script>
+  var LANGS = {
+    en: { nav_lang:'Languages', nav_comp:'For companies', nav_contact:'Contact', nav_blog:'Blog', nav_cta:'Start Free' },
+    es: { nav_lang:'Idiomas', nav_comp:'Para empresas', nav_contact:'Contacto', nav_blog:'Blog', nav_cta:'Empieza gratis' },
+    fr: { nav_lang:'Langues', nav_comp:'Pour les entreprises', nav_contact:'Contact', nav_blog:'Blog', nav_cta:'Commencer gratuitement' },
+    de: { nav_lang:'Sprachen', nav_comp:'Für Unternehmen', nav_contact:'Kontakt', nav_blog:'Blog', nav_cta:'Kostenlos starten' },
+    it: { nav_lang:'Lingue', nav_comp:'Per le aziende', nav_contact:'Contatto', nav_blog:'Blog', nav_cta:'Inizia gratis' },
+    pt: { nav_lang:'Idiomas', nav_comp:'Para empresas', nav_contact:'Contato', nav_blog:'Blog', nav_cta:'Comece grátis' },
+    zh: { nav_lang:'语言', nav_comp:'企业服务', nav_contact:'联系', nav_blog:'博客', nav_cta:'免费开始' }
+  };
+  var FLAGS = {en:'🇬🇧',es:'🇪🇸',fr:'🇫🇷',de:'🇩🇪',it:'🇮🇹',pt:'🇧🇷',zh:'🇨🇳'};
+  var CODES = {en:'EN',es:'ES',fr:'FR',de:'DE',it:'IT',pt:'PT',zh:'ZH'};
+
+  function applyLang(lang) {
+    var t = LANGS[lang];
+    if (!t) return;
+    var trigger = document.querySelector('.nav-lang-trigger');
+    if (trigger) trigger.innerHTML = t.nav_lang + ' <span class="nav-lang-chev">▼</span>';
+    var navLinks = document.querySelectorAll('.nav-links > a');
+    if (navLinks[0]) navLinks[0].textContent = t.nav_comp;
+    if (navLinks[1]) navLinks[1].textContent = t.nav_contact;
+    if (navLinks[2]) navLinks[2].textContent = t.nav_blog;
+    var navCta = document.querySelector('.nav-cta');
+    if (navCta) navCta.textContent = t.nav_cta;
+    var btnSpans = document.querySelectorAll('#langBtn span');
+    if (btnSpans[0]) btnSpans[0].textContent = FLAGS[lang] || '';
+    if (btnSpans[1]) btnSpans[1].textContent = CODES[lang] || lang.toUpperCase();
+    localStorage.setItem('parling_lang', lang);
+  }
+
+  var langMap = {
+    'ingles.html':'en','espanol.html':'es','frances.html':'fr',
+    'aleman.html':'de','italiano.html':'it','portugues.html':'pt','chino.html':'zh'
+  };
+
+  document.getElementById('langBtn').addEventListener('click', function(e) {
+    e.stopPropagation();
+    document.getElementById('langPicker').classList.toggle('open');
+  });
+  document.addEventListener('click', function() {
+    document.getElementById('langPicker').classList.remove('open');
+  });
+  document.querySelectorAll('.lang-option').forEach(function(opt) {
+    opt.addEventListener('click', function(e) {
+      e.preventDefault();
+      var lang = langMap[this.getAttribute('href')];
+      if (lang) { applyLang(lang); document.getElementById('langPicker').classList.remove('open'); }
+    });
+  });
+
+  (function() {
+    var saved = localStorage.getItem('parling_lang');
+    if (saved && LANGS[saved]) applyLang(saved);
+  })();
+</script>
+</body>
+</html>
