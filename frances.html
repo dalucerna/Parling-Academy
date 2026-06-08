@@ -500,6 +500,7 @@
       calc_no_plan: 'Please select a plan first',
       calc_invalid: 'Code not recognized. Try: FUNDADOR or REFERIDO',
       calc_grupal_only: 'This code is only valid for the Group plan.',
+      calc_personal_only: 'This code is only valid for the Personalized plan.',
       calc_no_stack: 'Codes cannot be combined with each other.',
     },
     es: {
@@ -581,6 +582,7 @@
       calc_no_plan: 'Selecciona un plan primero',
       calc_invalid: 'Código no reconocido. Prueba: FUNDADOR o REFERIDO',
       calc_grupal_only: 'Este código solo aplica al plan Grupal.',
+      calc_personal_only: 'Este código solo aplica al plan Personalizado.',
       calc_no_stack: 'Los códigos no son acumulables entre sí.',
     },
     fr: {
@@ -662,6 +664,7 @@
       calc_no_plan: "Sélectionnez d'abord un plan",
       calc_invalid: 'Code non reconnu. Essayez : FUNDADOR ou REFERIDO',
       calc_grupal_only: 'Ce code est uniquement valable pour le plan Groupé.',
+      calc_personal_only: 'Ce code est uniquement valable pour le plan Personnalisé.',
       calc_no_stack: 'Les codes ne sont pas cumulables entre eux.',
     },
     de: {
@@ -743,6 +746,7 @@
       calc_no_plan: 'Bitte zuerst einen Plan auswählen',
       calc_invalid: 'Code nicht erkannt. Versuche: FUNDADOR oder REFERIDO',
       calc_grupal_only: 'Dieser Code gilt nur für den Gruppen-Plan.',
+      calc_personal_only: 'Dieser Code gilt nur für den Persönlich-Plan.',
       calc_no_stack: 'Codes sind nicht miteinander kombinierbar.',
     },
     it: {
@@ -824,6 +828,7 @@
       calc_no_plan: 'Seleziona prima un piano',
       calc_invalid: 'Codice non riconosciuto. Prova: FUNDADOR o REFERIDO',
       calc_grupal_only: 'Questo codice è valido solo per il piano Grupal.',
+      calc_personal_only: 'Questo codice è valido solo per il piano Personalizzato.',
       calc_no_stack: 'I codici non sono cumulabili tra loro.',
     },
     pt: {
@@ -905,6 +910,7 @@
       calc_no_plan: 'Selecione um plano primeiro',
       calc_invalid: 'Código não reconhecido. Tente: FUNDADOR ou REFERIDO',
       calc_grupal_only: 'Este código é válido apenas para o plano Grupal.',
+      calc_personal_only: 'Este código é válido apenas para o plano Personalizado.',
       calc_no_stack: 'Os códigos não são acumuláveis entre si.',
     },
     zh: {
@@ -986,6 +992,7 @@
       calc_no_plan: '请先选择一个计划',
       calc_invalid: '代码无效。请尝试：FUNDADOR、REFERIDO',
       calc_grupal_only: '此代码仅适用于团体计划。',
+      calc_personal_only: '此代码仅适用于个性化计划。',
       calc_no_stack: '优惠码不可叠加使用。',
     },
   };
@@ -1218,8 +1225,8 @@
   })();
   // Price calculator
   const PRICE_CODES = {
-    'FUNDADOR':  { pct: 15, name: 'Fundador',      grupalOnly: true },
-    'REFERIDO':  { pct: 10, name: 'Referido',      grupalOnly: true },
+    'FUNDADOR':  { pct: 15, name: 'Fundador',      personalOnly: true },
+    'REFERIDO':  { pct: 10, name: 'Referido',      personalOnly: true },
     'LUCERNA':   { pct: 40, name: 'Beca académica', grupalOnly: true },
     'PANDORA-ROOF':  { pct: 35, name: 'Meseros',      grupalOnly: true },
     'TOSCO':         { pct: 20, name: 'Tosco',         grupalOnly: true },
@@ -1249,6 +1256,12 @@
       resultEl.style.display = 'block';
       resultEl.className = 'calc-result calc-error';
       resultEl.innerHTML = t.calc_grupal_only;
+      return;
+    }
+    if (discount.personalOnly && plan !== '2970') {
+      resultEl.style.display = 'block';
+      resultEl.className = 'calc-result calc-error';
+      resultEl.innerHTML = t.calc_personal_only;
       return;
     }
     const orig = parseInt(plan);
