@@ -512,22 +512,22 @@
       nav_comp: 'Para empresas',
       nav_cta: 'Empieza gratis',
       back_link: '\u2190 Todos los idiomas',
-      toggle_group: 'Grupal',
+      toggle_group: 'Resident Program',
       toggle_individual: 'Personalizado',
       toggle_starter: 'Starter',
       label_monthly: 'Mensual',
       label_annual: 'Anual',
       label_companies: 'Empresas',
-      note_monthly: 'Mes a mes \u00b7 sin contrato',
+      note_monthly: 'USD 1.700 x 4 meses',
       note_annual: 'Pago \u00fanico anual',
       note_companies: 'Para equipos y organizaciones',
       per_month: '/mes',
       savings: 'Ahorr\u00e1s $4,044 al a\u00f1o',
-      inc_live: '8 clases en vivo/mes (12h)',
-      inc_groups: 'Grupos m\u00e1x. 8 alumnos',
-      inc_material: 'Material incluido',
-      inc_platform: 'Contenidos digitales',
-      inc_whatsapp: 'Soporte IA 24/7 (en desarrollo)',
+      inc_live: '4 horas semanales',
+      inc_groups: '2 d\u00edas por semana \u00b7 17 a 19 hs',
+      inc_material: 'Grupos peque\u00f1os (2\u20136 alumnos)',
+      inc_platform: 'Material incluido',
+      inc_whatsapp: 'Programas de 2 o 4 meses',
       inc_recorded: 'Reprogramación flexible de clases',
       inc_invoice: 'Factura empresarial',
       inc_private: 'Grupos privados',
@@ -555,7 +555,7 @@
       starter_inc_3: 'Material b\u00e1sico incluido',
       starter_inc_4: 'Acceso a plataforma',
       starter_inc_5: 'Soporte WhatsApp',
-      popular_badge: 'Popular',
+      popular_badge: 'Presencial',
       plans_title: 'Nuestros planes',
       starter_btn: 'En desarrollo',
       features_h2: 'Qu\u00e9 incluye tu plan',
@@ -1083,7 +1083,7 @@
 
     // Per-month spans
     document.querySelectorAll('.card-price span').forEach(function(s) {
-      s.textContent = t.per_month;
+      if (!s.closest('#group')) s.textContent = t.per_month;
     });
 
     // Group includes
