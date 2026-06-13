@@ -328,11 +328,11 @@
       <div class="card-label" style="color:var(--accent2)">⚡ SURVIVAL SPANISH COURSE</div>
       <div>
         <div class="card-price" style="color:var(--accent2)">USD 300<span></span></div>
-        <div class="card-note">1 semana · 14 horas · Sin complicaciones</div>
+        <div class="card-note" id="starterNote">1 semana · 14 horas · Sin complicaciones</div>
       </div>
-      <p style="font-size:.88rem;color:var(--muted);line-height:1.5;margin:0 0 14px;">¿Recién llegado a Ciudad de México? Deja de adivinar. Esta semana táctica de alto impacto elimina la paja de los libros de texto para darte las herramientas conversacionales exactas que necesitas para moverte por CDMX hoy mismo.</p>
-      <p style="font-size:.82rem;color:var(--accent2);line-height:1.4;margin:0 0 10px;"><strong>El objetivo:</strong> Pedir como un local, manejar situaciones de hospitalidad y hablar con tu casero con cero ansiedad.</p>
-      <p style="font-size:.82rem;color:var(--muted);line-height:1.4;margin:0 0 14px;"><strong>El formato:</strong> 2 horas al día durante 7 días. Sesiones privadas 100% en línea.</p>
+      <p id="starterDesc" style="font-size:.88rem;color:var(--muted);line-height:1.5;margin:0 0 14px;">¿Recién llegado a Ciudad de México? Deja de adivinar. Esta semana táctica de alto impacto elimina la paja de los libros de texto para darte las herramientas conversacionales exactas que necesitas para moverte por CDMX hoy mismo.</p>
+      <p id="starterGoal" style="font-size:.82rem;color:var(--accent2);line-height:1.4;margin:0 0 10px;"><strong>El objetivo:</strong> Pedir como un local, manejar situaciones de hospitalidad y hablar con tu casero con cero ansiedad.</p>
+      <p id="starterFormat" style="font-size:.82rem;color:var(--muted);line-height:1.4;margin:0 0 14px;"><strong>El formato:</strong> 2 horas al día durante 7 días. Sesiones privadas 100% en línea.</p>
       <ul class="includes">
         <li>Clases privadas 100% personalizadas</li>
         <li>Profesor nativo dedicado</li>
@@ -432,7 +432,7 @@
       back_link: '\u2190 All languages',
       toggle_group: 'Group',
       toggle_individual: 'Personalizado',
-      toggle_starter: 'Starter',
+      toggle_starter: 'SURVIVAL SPANISH COURSE',
       label_monthly: 'Monthly',
       label_annual: 'Annual',
       label_companies: 'Companies',
@@ -600,7 +600,7 @@
       back_link: '\u2190 Toutes les langues',
       toggle_group: 'Groupe',
       toggle_individual: 'Personalizado',
-      toggle_starter: 'D\u00e9butant',
+      toggle_starter: 'SURVIVAL SPANISH COURSE',
       label_monthly: 'Mensuel',
       label_annual: 'Annuel',
       label_companies: 'Entreprises',
@@ -684,7 +684,7 @@
       back_link: '\u2190 Alle Sprachen',
       toggle_group: 'Gruppe',
       toggle_individual: 'Personalizado',
-      toggle_starter: 'Starter',
+      toggle_starter: 'SURVIVAL SPANISH COURSE',
       label_monthly: 'Monatlich',
       label_annual: 'J\u00e4hrlich',
       label_companies: 'Unternehmen',
@@ -768,7 +768,7 @@
       back_link: '\u2190 Tutte le lingue',
       toggle_group: 'Gruppo',
       toggle_individual: 'Personalizado',
-      toggle_starter: 'Starter',
+      toggle_starter: 'SURVIVAL SPANISH COURSE',
       label_monthly: 'Mensile',
       label_annual: 'Annuale',
       label_companies: 'Aziende',
@@ -852,7 +852,7 @@
       back_link: '\u2190 Todos os idiomas',
       toggle_group: 'Grupo',
       toggle_individual: 'Personalizado',
-      toggle_starter: 'Iniciante',
+      toggle_starter: 'SURVIVAL SPANISH COURSE',
       label_monthly: 'Mensal',
       label_annual: 'Anual',
       label_companies: 'Empresas',
@@ -936,7 +936,7 @@
       back_link: '\u2190 \u6240\u6709\u8bed\u8a00',
       toggle_group: '\u5c0f\u7ec4',
       toggle_individual: 'Personalizado',
-      toggle_starter: '\u5165\u95e8',
+      toggle_starter: 'SURVIVAL SPANISH COURSE',
       label_monthly: '\u6708\u4ed8',
       label_annual: '\u5e74\u4ed8',
       label_companies: '\u4f01\u4e1a',
@@ -1137,11 +1137,21 @@
 
     // Starter includes
     const starterItems = document.querySelectorAll('#starter .includes li');
-    [t.starter_inc_1, t.starter_inc_2, t.starter_inc_3, t.starter_inc_4, t.starter_inc_5].forEach(function(txt, i) {
+    [t.starter_inc_1, t.starter_inc_2, t.starter_inc_3, t.starter_inc_4].forEach(function(txt, i) {
       if (starterItems[i]) starterItems[i].textContent = txt;
     });
     const starterBtn = document.querySelector('#starter .card-btn');
-    if (starterBtn) starterBtn.textContent = t.starter_btn;
+    if (starterBtn) starterBtn.textContent = t.btn_enroll;
+
+    // Starter description
+    const starterNoteEl = document.getElementById('starterNote');
+    if (starterNoteEl) starterNoteEl.textContent = t.starter_note;
+    const starterDescEl = document.getElementById('starterDesc');
+    if (starterDescEl) starterDescEl.textContent = t.starter_desc;
+    const starterGoalEl = document.getElementById('starterGoal');
+    if (starterGoalEl) starterGoalEl.innerHTML = '<strong>' + (lang === 'en' ? 'The Goal:' : lang === 'es' ? 'El objetivo:' : lang === 'fr' ? "L'objectif:" : lang === 'de' ? 'Das Ziel:' : lang === 'it' ? "L'obiettivo:" : lang === 'pt' ? 'O objetivo:' : '目标:') + '</strong> ' + t.starter_goal.replace(/^[^:]+:\s*/, '');
+    const starterFormatEl = document.getElementById('starterFormat');
+    if (starterFormatEl) starterFormatEl.innerHTML = '<strong>' + (lang === 'en' ? 'The Format:' : lang === 'es' ? 'El formato:' : lang === 'fr' ? 'Le format:' : lang === 'de' ? 'Das Format:' : lang === 'it' ? 'Il formato:' : lang === 'pt' ? 'O formato:' : '形式:') + '</strong> ' + t.starter_format.replace(/^[^:]+:\s*/, '');
 
     // Features section
     const plansTitle = document.querySelector('.plans-title');
